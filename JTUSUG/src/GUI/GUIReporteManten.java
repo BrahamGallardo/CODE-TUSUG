@@ -10,6 +10,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import net.sf.jasperreports.engine.JRException;
 public class GUIReporteManten{
+    String carpeta_img = "src/imagenes/";
+
     private ControladorMantenimiento controlador;
     private JFrame          ventana;
     public JPanel          panel;
@@ -74,9 +76,10 @@ public class GUIReporteManten{
         txt_matricula  =        Builder.crearTextField( panel, new Rectangle(504,177,127,20),"", null, null, f, true, true, true);
         txt_costo      =        Builder.crearTextField( panel, new Rectangle(355,222,165,20),"", null, null, f, true, true, true);
         text_descripcionEquipos=Builder.crearTextArea(  panel, new Rectangle(355,266,276,53), c);
-        btn_genReporte =        Builder.crearBoton(     panel, "Generar Reporte", new Rectangle(440,447,105,27), new ReportCustomListener(), true, true);
-        btn_cerrarsesion=       Builder.crearBoton(     panel, "Cerrar Sesion",   new Rectangle(460,506,201,63), null, true, true);
-        btn_regresar    =       Builder.crearBoton(     panel, "Regresar",        new Rectangle(326,518,32,32),  null, true, true);
+        ReportCustomListener listen = new ReportCustomListener();
+        btn_genReporte =        Builder.crearButtonIcon(     panel, "Generar Reporte", carpeta_img + "btn_new_reporte.png", new Rectangle(440,447,150,27), listen, true, true);
+        btn_cerrarsesion=       Builder.crearButtonIcon(     panel, "Cerrar Sesion",   carpeta_img + "cerrar_sesion.png",   new Rectangle(460,506,201,63), listen, true, true);
+        btn_regresar    =       Builder.crearButtonIcon(     panel, "Regresar",        carpeta_img + "regresar.png",        new Rectangle(326,518,32,32),  listen, true, true);
     }
     
     
@@ -99,8 +102,10 @@ public class GUIReporteManten{
             }
                     break;
                 case "Cerrar Sesion":
+                    ventana.dispose();                    
                     break;
                 case "Regresar":
+                    ventana.dispose();
                     break;
             }
         }

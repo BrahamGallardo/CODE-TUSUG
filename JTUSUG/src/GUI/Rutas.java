@@ -31,7 +31,7 @@ public class Rutas extends JFrame implements ActionListener {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         numImg = 1;
 
-        ListaImagenes.add("Ruta7");
+        //ListaImagenes.add("Ruta7");
         img = new CuadroImagen();
         scroll = new JScrollPane(img, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
         this.add(scroll, BorderLayout.CENTER);

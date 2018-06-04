@@ -1,6 +1,7 @@
 package GUI;
 
 import CONTROLLERS.Conexion;
+import GaleriaRutas.interfaz;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
@@ -77,7 +78,7 @@ public class RootGUI {
         root =                  Builder.construirFrame(nombre_usuario + " - Bienvenido -", new Rectangle(460, 506, 700, 600), false);
         panel =                 Builder.crearPanel(     root,       new Rectangle(0, 0, 700, 600),      "src/imagenes/pagina_de_fondo.png", true);
         lb_title =              Builder.crearLabel(     panel, "",               new Rectangle(317, 202, 200, 40), Color.BLUE,   null, font);        
-        lb_descripcion =        Builder.crearLabel(     panel, "descripcion",    new Rectangle(114, 445, 100, 40), null,         null, font);
+        //lb_descripcion =        Builder.crearLabel(     panel, "descripcion",    new Rectangle(114, 445, 100, 40), null,         null, font);
         lb_text =               Builder.crearLabel(     panel, "Seleccione el icono de la seccion que desea visitar",   new Rectangle(193, 172, 300, 60), null, null, font);        
         // Botones generales
         btn_regresar =          Builder.crearButtonIcon(panel, "Uncknown",          carpeta_img + "regresar.png",               new Rectangle(335, 523, 32,  32), listen, true, false,false);
@@ -144,8 +145,12 @@ public class RootGUI {
                     lb_title.setText("Almacen");
                     break;
                     case "btnrutas":
-                        Rutas r = new Rutas();
-                        root.dispose();
+                        //Rutas r = new Rutas();                        
+                        java.awt.EventQueue.invokeLater(new Runnable() {
+                            public void run() {
+                                new interfaz().setVisible(true);
+                            }
+                        });
                     break;
                     
                 case "btnManten":
@@ -183,9 +188,7 @@ public class RootGUI {
                     AutobusGUI auto = new AutobusGUI();
                     break;
                 case "facturas":
-                    //javax.swing.JOptionPane.showMessageDialog(null, "Esta funcion aun no esta implementada");
                     GFacturas facuras = new GFacturas();
-                    root.dispose();
                     break;
                 case "reportes":
                     javax.swing.JOptionPane.showMessageDialog(null, "Esta funcion aun no esta implementada");
@@ -215,13 +218,13 @@ public class RootGUI {
                     break;
                 // Botones de Mantenimiento
                 case "MnuevoReporte":
-                    javax.swing.JOptionPane.showMessageDialog(null, "Esta funcion aun no esta implementada");
+                    GUIReporteManten report = new GUIReporteManten();
                     break;
                 case "MreUnidades":
                     javax.swing.JOptionPane.showMessageDialog(null, "Esta funcion aun no esta implementada");
                     break;
                 case "Mhistorial":
-                    javax.swing.JOptionPane.showMessageDialog(null, "Esta funcion aun no esta implementada");
+                    HistorialMantenGUI h = new HistorialMantenGUI();
                     break;
             }
         }

@@ -135,7 +135,8 @@ public class Autobus {
             // Obtener la ruta de la imagen
             String absPathImg = Fachada.getSelectedFileImage();
             // Cargar las variables
-            matricula = ui.txt_matricula.getText();//.toLowerCase();
+            matricula = ui.txt_matricula.getText().toLowerCase();
+            System.err.println(matricula);
             // Actualizar dato en la Base de datos
             // Preparar Consulta
             Connection conn = Conexion.getConexion();
@@ -144,6 +145,7 @@ public class Autobus {
             pstm.setString(2, matricula);
             pstm.execute();
             pstm.close();
+            conn.close();
             // Mostrar la img en el Label
             putImageProfile(absPathImg);
         } catch (SQLException e) {

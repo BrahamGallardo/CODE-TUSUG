@@ -19,6 +19,7 @@ public class interfaz extends javax.swing.JFrame {
         FOTO_B.setIcon(Mi_Galeria.getPreview(1));
         FOTO_C.setIcon(Mi_Galeria.getPreview(2));
         FOTO_D.setIcon(Mi_Galeria.getPreview(3));
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
     }
 
     /** This method is called from within the constructor to
