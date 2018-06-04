@@ -134,7 +134,5 @@ public class GFacturas1 extends JFrame {
         }
     }
 
-    public static void main(String[] args) {
-        GFacturas1 g = new GFacturas1();
-    }
+
 }

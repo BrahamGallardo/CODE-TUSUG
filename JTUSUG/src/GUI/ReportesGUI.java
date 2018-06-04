@@ -65,8 +65,5 @@ public class ReportesGUI {
         scrollPane.setBounds(75,196,504,278);
         p.add(scrollPane);
     }
-    public static void main(String []agrs)
-    {
-        ReportesGUI r = new ReportesGUI();
-    }
+   
 }

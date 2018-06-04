@@ -68,9 +68,7 @@ public class LoginGUI {
         b.addKeyListener(new CustomKeyListener());
     }
 
-    public static void main(String[] args) {
-        LoginGUI login = new LoginGUI();
-    }
+   
 
     public void cargarSesion() {
         try {

@@ -193,13 +193,7 @@ public class AutobusGUI extends JFrame
         }
     }
     
-    public static void main(String []args)
-    {
-        //Conexion.setConfiguracion("postgres", "root");
-        Conexion.setRol("Gallardo.1997");
-        AutobusGUI x= new AutobusGUI();
-        //p(Fachada.getSelectedFileImage());
-    }
+   
     
     
     

@@ -57,7 +57,4 @@ public class Insumos {
         
        }
        
-       public static void main(String [] args){
-           Insumos i= new Insumos();
-       } 
 }

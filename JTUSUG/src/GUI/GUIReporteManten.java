@@ -79,9 +79,6 @@ public class GUIReporteManten{
         btn_regresar    =       Builder.crearBoton(     panel, "Regresar",        new Rectangle(326,518,32,32),  null, true, true);
     }
     
-    public static void main(String[] args){
-        new GUIReporteManten();
-    }
     
     class ReportCustomListener implements ActionListener{
         String op;
