@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Rectangle;
 import java.awt.event.ActionListener;
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -25,6 +26,7 @@ public class ReportarSiniestroGUI {
     static String estadoSiniestro[]  = {"Pendiente","Resuelto"};
     static String tipoSiniestro[]  = {"Choques","Colisiones","Atropellos","Salidas de Via"};
     public JComboBox tipoS,status;
+    ButtonGroup group;
     String ruta = "src/imagenes/";
     JFrame f;
     JPanel p;
@@ -39,7 +41,7 @@ public class ReportarSiniestroGUI {
     public ReportarSiniestroGUI()
     {
         f = Builder.construirFrame("Reportar Siniestro", new Rectangle(0,0, 700, 649), false); 
-        p = Builder.crearPanel(f, new Rectangle(0, 0, 700, 649),ruta+"fondo_frame_sec.png", false);
+        p = Builder.crearPanel(f, new Rectangle(0, 0, 700, 649),ruta+"fondo_vta_siniestro.png", false);
         
         user = "Usuario";
         //Menu
@@ -110,11 +112,14 @@ public class ReportarSiniestroGUI {
          paga  = Builder.crearTextField(p,new Rectangle(320,389,137,25), "", null, null, new Font("Segoe UI", Font.PLAIN, 11), true,true, true,listener);
          
          //RadioButtons
+         group = new ButtonGroup();
          cliente = new JRadioButton("Cliente");
-         tercero = new JRadioButton("Tercero");
          p.add(cliente);
-         p.add(tercero);
+         group.add(cliente);
          cliente.setBounds(new Rectangle(31,474,90,16));
+         tercero = new JRadioButton("Tercero");
+         p.add(tercero);
+         group.add(tercero);
          tercero.setBounds(new Rectangle(31,500,90,16));
          
          

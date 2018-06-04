@@ -1,7 +1,5 @@
 package GaleriaRutas;
 
-import GaleriaRutas.Galeria;
-
 
 public class interfaz extends javax.swing.JFrame {
     Galeria Mi_Galeria = new Galeria();
@@ -12,7 +10,7 @@ public class interfaz extends javax.swing.JFrame {
     /** Creates new form interfaz */
     public interfaz() {
         initComponents();
-        this.setTitle("Galeria de Imagenes Java - por Mouse");
+        this.setTitle("RUTAS TUSUG EN OAXACA DE JUAREZ");
         this.setLocationRelativeTo(null);
         //se elimina el texto
         FOTO_A.setText("");FOTO_B.setText("");FOTO_C.setText("");FOTO_D.setText("");FOTO_GRANDE.setText("");

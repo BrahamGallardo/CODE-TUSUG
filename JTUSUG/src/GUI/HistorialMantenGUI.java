@@ -1,8 +1,8 @@
 
 package GUI;
 
-import CONTROLLERS.Autobus;
 import CONTROLLERS.Conexion;
+import CONTROLLERS.SQLHistMant;
 import Validacion.Validador;
 import com.toedter.calendar.JDateChooser;
 import java.awt.Color;
@@ -10,6 +10,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Rectangle;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
@@ -26,7 +27,6 @@ import javax.swing.table.DefaultTableModel;
 public class HistorialMantenGUI {
     String              ruta = "src/imagenes/";
     ActionListener      listener;
-    Autobus             controlador;
     Validador           valida;
     public JTable        tabla;
     public JTextField   txt_no_manten,txt_fecha;
@@ -34,15 +34,24 @@ public class HistorialMantenGUI {
     public JButton      btn_buscar,btn_abrir,btn_imprimir,btn_guardar,btn_regresar,btn_cerrarSesion;
     public JLabel       lb_no_manten,lb_fecha,lb_historial_manten;
     public JDateChooser dateChooser;
+    public SQLHistMant controlador;
     
     JPanel p;
     JFrame a;
     Object[][] dtPer;
     public HistorialMantenGUI()
     {
+        
         a=Builder.construirFrame("Historial de Mantenimiento", new Rectangle(200,50,700,610),false);
         inicializarComp();
-                
+        tabla.addMouseListener(new java.awt.event.MouseAdapter() 
+        {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) 
+            {
+                tableMouseClicked(evt);
+            }
+        });                
     }
     
     public void inicializarComp()
@@ -72,46 +81,23 @@ public class HistorialMantenGUI {
         JLabel fondo    =   Builder.crearLabelImagen(a, ruta + "fondo_mant.png", new Rectangle(0,0,700,600));
         
         String lista[] = {"num. de manten","Responsable","Fecha de emision"};
-        Object[][] datos ={{"","",""},
-                           {"","",""},
-                           {"","",""},
-                           {"","",""},
-                           {"","",""},
-                           {"","",""},
-                           {"","",""},
-                           {"","",""},
-                           {"","",""},
-                           {"","",""},
-                           {"","",""},
-                           {"","",""},
-                           {"","",""},
-                           {"","",""},
-                           {"","",""},
-                           {"","",""},
-                           {"","",""},
-                           {"","",""},
-                           {"","",""},
-                           {"","",""}};
+        controlador=new SQLHistMant();
+        Object[][] datos =controlador.obtenerRegistro();
         
         tabla = new JTable(datos,lista);
         tabla.setPreferredSize(new Dimension(515,277));
         JScrollPane scrollPane = new JScrollPane(tabla);
         scrollPane.setBounds(69,210,515,277);
-        p.add(scrollPane);
-        
-        
-        
+        p.add(scrollPane);    
     }
-    
-    
-    
     
     private void updateTabla(){             
         String[] columNames = {"Num. Mantenimiento", "Responsable", "Fecha de emisión"};  
         // se utiliza la funcion
         //dtPer = p.getDatos();
         // se colocan los datos en la tabla
-        DefaultTableModel datos = new DefaultTableModel(null,columNames);                        
+        Object[][] registro =controlador.obtenerRegistro();
+        DefaultTableModel datos = new DefaultTableModel(registro,columNames);                        
         tabla.setModel(datos); 
     }
     
@@ -119,5 +105,22 @@ public class HistorialMantenGUI {
     {
         //Conexion.setConfiguracion("postgres", "root");
         HistorialMantenGUI a= new HistorialMantenGUI();
+    }
+    public void registro(){
+        txt_no_manten.addKeyListener(new java.awt.event.KeyAdapter() 
+        {
+            @Override
+            public void keyTyped(java.awt.event.KeyEvent evt) 
+            {
+               
+            }
+        });
+    }
+    public int tableMouseClicked(MouseEvent evt)
+    {
+    	int filasele= tabla.getSelectedRow();
+    	int valor= Integer.valueOf(tabla.getValueAt(filasele, 0).toString());
+        System.out.println(valor);
+        return valor;
     }
 }
