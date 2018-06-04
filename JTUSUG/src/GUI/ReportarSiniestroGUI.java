@@ -1,9 +1,13 @@
 package GUI;
+import CONTROLLERS.ControladorSiniestro;
 import com.toedter.calendar.JDateChooser;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -18,6 +22,7 @@ import javax.swing.JRadioButton;
 import javax.swing.JScrollBar;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import net.sf.jasperreports.engine.JRException;
 public class ReportarSiniestroGUI {
     public JButton lSiniestros,Rsiniestro,regresar,guardar,cerrar;
     public JLabel fechas,ingreso,indemnizado,siniestro,detalle,comentarios,tipo,importe,reclamado,pagado,estado,reclamante;
@@ -38,8 +43,10 @@ public class ReportarSiniestroGUI {
     JMenuItem Cerrar_Sesion;
     public JDateChooser calendarioSiniestro,calendarioIngreso,calendarioIndemnizado;
     public JTextArea areaComentarios,Descripcion;
+    ControladorSiniestro controlador;
     public ReportarSiniestroGUI()
     {
+        controlador= new ControladorSiniestro(this);
         f = Builder.construirFrame("Reportar Siniestro", new Rectangle(0,0, 700, 649), false); 
         p = Builder.crearPanel(f, new Rectangle(0, 0, 700, 649),ruta+"fondo_vta_siniestro.png", false);
         
@@ -90,7 +97,7 @@ public class ReportarSiniestroGUI {
          lSiniestros = Builder.crearButtonIcon(p, "listado", ruta+"boton_listado_siniestros.png",new Rectangle(135,69,142,43), listener, true, false);
          Rsiniestro = Builder.crearButtonIcon(p, "reportar", ruta+"boton_reportar_siniestro_selected.png",new Rectangle(313,69,142,43), listener, true, false);
          regresar = Builder.crearButtonIcon(p, "regresar", ruta+"regresar.png",new Rectangle(53,560, 41,41), listener, true, false);
-         guardar = Builder.crearButtonIcon(p, "guardar", ruta+"boton_guardar.png",new Rectangle(426,560,101,39), listener, true, false);
+         guardar = Builder.crearButtonIcon(p, "guardar", ruta+"boton_guardar.png",new Rectangle(426,560,101,39), new ReportCustomListener(), true, false);
          cerrar = Builder.crearButtonIcon(p, "cerrar", ruta+"boton_cerrar.png",new Rectangle(554,560,101,39), listener, true, false);
          
          
@@ -125,4 +132,35 @@ public class ReportarSiniestroGUI {
          
     }
  
+        class ReportCustomListener implements ActionListener{
+        String op;
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            op = e.getActionCommand();
+            switch (op){
+                
+                case "guardar":
+                    
+            {
+                controlador.agregaMan();
+                try {
+                    controlador.creaRepor();
+                } catch (JRException ex) {
+                    Logger.getLogger(ReportarSiniestroGUI.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+                    break;
+                case "Cerrar Sesion":
+                    break;
+                case "Regresar":
+                    break;
+            }
+        }
+        
+    }
+            public static void main(String []args)
+    {
+        ReportarSiniestroGUI l = new ReportarSiniestroGUI();
+    }
+    
 }
