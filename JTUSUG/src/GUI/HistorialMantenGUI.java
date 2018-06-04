@@ -10,6 +10,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Rectangle;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
@@ -40,9 +41,17 @@ public class HistorialMantenGUI {
     Object[][] dtPer;
     public HistorialMantenGUI()
     {
+        
         a=Builder.construirFrame("Historial de Mantenimiento", new Rectangle(200,50,700,610),false);
         inicializarComp();
-                
+        tabla.addMouseListener(new java.awt.event.MouseAdapter() 
+        {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) 
+            {
+                tableMouseClicked(evt);
+            }
+        });                
     }
     
     public void inicializarComp()
@@ -79,14 +88,8 @@ public class HistorialMantenGUI {
         tabla.setPreferredSize(new Dimension(515,277));
         JScrollPane scrollPane = new JScrollPane(tabla);
         scrollPane.setBounds(69,210,515,277);
-        p.add(scrollPane);
-        
-        
-        
+        p.add(scrollPane);    
     }
-    
-    
-    
     
     private void updateTabla(){             
         String[] columNames = {"Num. Mantenimiento", "Responsable", "Fecha de emisión"};  
@@ -112,5 +115,12 @@ public class HistorialMantenGUI {
                
             }
         });
+    }
+    public int tableMouseClicked(MouseEvent evt)
+    {
+    	int filasele= tabla.getSelectedRow();
+    	int valor= Integer.valueOf(tabla.getValueAt(filasele, 0).toString());
+        System.out.println(valor);
+        return valor;
     }
 }

@@ -12,6 +12,7 @@ import java.util.logging.Logger;
 public class SQLHistMant {
     Connection conn;
     public SQLHistMant(){
+            Conexion.setConfiguracion("postgres","root");
             conn = Conexion.getConexion();
     }
     public String[][] obtenerRegistro(){
@@ -41,7 +42,6 @@ public class SQLHistMant {
                 String dato=res.getString("codigo_m");
                 tabla[index][0] = dato;
                 index++;
-                System.out.println(dato);
             }
             sql = "select responsable from sistemaTusug.mantenimiento ORDER BY codigo_m";
             pst = conn.prepareStatement(sql);
@@ -94,7 +94,6 @@ public class SQLHistMant {
                 String dato=res.getString("codigo_m");
                 tabla[index][0] = dato;
                 index++;
-                System.out.print(dato);
             }
             sql = "select responsable from sistemaTusug.mantenimiento ORDER BY codigo_m";
             pst = conn.prepareStatement(sql);
