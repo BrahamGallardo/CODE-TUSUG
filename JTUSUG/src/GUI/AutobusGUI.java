@@ -4,6 +4,7 @@ import CONTROLLERS.Conexion;
 import CONTROLLERS.SQLAutobus;
 import Validacion.Validador;
 import static Validacion.Validador.*;
+import com.sun.media.jfxmedia.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.*;
 import java.awt.*;
@@ -11,6 +12,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.logging.Level;
 public class AutobusGUI extends JFrame 
 { 
     //String              defaultImagePath;
@@ -268,7 +270,7 @@ public class AutobusGUI extends JFrame
                 txt_Km.       setText(registro[4].toUpperCase());
                 txt_asientos. setText(registro[5].toUpperCase());
                 btn_eliminar.setEnabled(true);
-                
+                Logger.logMsg(0, registro[6]);
                 controlador.putImageProfile(registro[6]);
             }
             else
