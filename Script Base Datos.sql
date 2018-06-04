@@ -118,7 +118,7 @@ create table rol(
 );
 
 create table usuario(
-	rfc varchar(13) references trabajador(rfc),
+	rfc varchar(13) references trabajador(rfc) primary key,
 	id_rol int references rol(id_rol),
 	contrasenia varchar (64),
 	url_image varchar(100),--Siempre debe una por default
