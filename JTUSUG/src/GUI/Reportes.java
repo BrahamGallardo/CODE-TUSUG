@@ -58,8 +58,6 @@ public class Reportes {
         p.add(scrollPane);
  }
     
-    public static void main(String [] args){
-        Reportes c= new Reportes();
-    }
+   
     
 }

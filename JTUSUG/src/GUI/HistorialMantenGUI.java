@@ -110,11 +110,7 @@ public class HistorialMantenGUI {
         tabla.setModel(datos); 
     }
     
-    public static void main(String []args)
-    {
-        //Conexion.setConfiguracion("postgres", "root");
-        HistorialMantenGUI a= new HistorialMantenGUI();
-    }
+  
     public void registro(){
         txt_no_manten.addKeyListener(new java.awt.event.KeyAdapter() 
         {

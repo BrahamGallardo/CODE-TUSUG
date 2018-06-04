@@ -216,13 +216,6 @@ public class Builder {
         return producto;
     }
     
-    public static void main(String[] args) {
-        JFrame f = new JFrame();
-        Builder.buildFrame(f, "@Test", new Rectangle(200, 50, 700, 600), false);
-        Builder.crearButtonIcon(f, "Btn1", "src/imagenes/logo_tusug.png", new Rectangle(100, 100, 200, 70), null, true, false);
-        Builder.crearTextField(f, new Rectangle(100, 200, 200, 70), null, null, null, null, true, true, true);
-        Builder.crearPanel(f, new Rectangle(100, 300, 200, 70),"src/imagenes/logo_tusug.png", false );
-        Builder.crearComboBox(f, new Rectangle(100, 400, 200, 70), null, null, null, null);
-    }
+
 
 }

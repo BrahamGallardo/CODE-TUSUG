@@ -215,8 +215,5 @@ public class RootGUI {
             }
         }
     }
-    public static void main(String [] x){
-        Conexion.setRol("root");
-        new RootGUI("root", "Alejo");
-    }
+
 }

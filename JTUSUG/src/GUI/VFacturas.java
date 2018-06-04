@@ -91,7 +91,5 @@ public class VFacturas extends JFrame {
         
     }
 
-    public static void main(String[] args) {
-        VFacturas f = new VFacturas();
-    }
+  
 }

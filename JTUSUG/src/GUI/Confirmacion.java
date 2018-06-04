@@ -41,8 +41,5 @@ public final class Confirmacion extends JFrame{
         advertencia.append("¡ATENCION! Usted esta apunto de eliminar un\nregistro de un trabajador.Hacer esto implica borrar\ntodo registro relacionado al trabajador dentro de la\nbase de datos. Esta accion no se podra revertir.\n\n¿Esta usted seguro de ello?");
         
     }   
-    public static void main (String []args)
-    {
-        Confirmacion c  = new Confirmacion();
-    }
+  
 }
