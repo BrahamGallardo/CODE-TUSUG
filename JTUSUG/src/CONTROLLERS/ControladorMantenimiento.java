@@ -37,8 +37,8 @@ public class ControladorMantenimiento {
           
             Map parametros = new HashMap();
             parametros.clear();
-            parametros.put("para1", Indice);
-            JasperReport reporte=JasperCompileManager.compileReport("ReportaMante.jrxml");
+            parametros.put("holis", Indice);
+            JasperReport reporte=JasperCompileManager.compileReport("ReporteMante.jrxml");
             JasperPrint p= JasperFillManager.fillReport(reporte, parametros, c);
             JasperViewer ventanavisor= new JasperViewer(p, false);
             ventanavisor.setTitle("REPORTE DE COMPRA");
@@ -55,7 +55,7 @@ public class ControladorMantenimiento {
            System.out.print("agregado");
            ResultSet res;
             PreparedStatement pstm = c.prepareStatement("insert into "
-                    + "sistemaTusug.mantenimiento(matricula,fecha_ingreso,fecha_salida,solicitante,responsable,solicitud,area_trabajo,prioridad,tipo_mantenimiento,direccion,telefono,email,costo_reparacion) "
+                    + "sistemaTusug.mantenimiento(matricula,fecha_ingreso,fecha_salida,solicitante,responsable,solicitud,area_trabajo,prioridad,tipo_de_mantenimiento,direccion,telefono,email,costo_reparacion) "
                     + " values(?,CURRENT_DATE,?,?,?,?,?,?,?,?,?,?,?) returning codigo_m");
             System.out.print("agregado");
             

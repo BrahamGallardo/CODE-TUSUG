@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="5b4fbcff-d1f4-4719-b4a0-78ebe3650447">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="16"/>
 	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
 	<style name="SubTitle" forecolor="#CCCCCC" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
 	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true" pdfFontName="Times-Roman"/>
@@ -10,8 +13,11 @@
 			<style mode="Opaque" backcolor="#F0EFEF"/>
 		</conditionalStyle>
 	</style>
+	<parameter name="holis" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
 	<queryString language="SQL">
-		<![CDATA[select * from sistemaTusug.mantenimiento ]]>
+		<![CDATA[select * from sistemaTusug.mantenimiento]]>
 	</queryString>
 	<field name="codigo_m" class="java.lang.Integer"/>
 	<field name="matricula" class="java.lang.String"/>
@@ -32,37 +38,37 @@
 	</background>
 	<title>
 		<band height="132" splitType="Stretch">
-			<image>
-				<reportElement x="456" y="0" width="99" height="132" uuid="800aa5ce-7c31-45c9-9f5a-75908942916c"/>
-				<imageExpression><![CDATA["cherry.jpg"]]></imageExpression>
-			</image>
 			<frame>
-				<reportElement mode="Opaque" x="0" y="0" width="451" height="95" backcolor="#000000" uuid="46f06e82-c562-4843-9dad-ef4bad28c57e"/>
+				<reportElement mode="Opaque" x="0" y="0" width="410" height="95" backcolor="#000000" uuid="46f06e82-c562-4843-9dad-ef4bad28c57e"/>
 				<staticText>
 					<reportElement style="Title" x="0" y="0" width="370" height="66" uuid="2ae0375d-4691-486a-8716-c112f4fed201"/>
 					<textElement>
 						<font isBold="false"/>
 					</textElement>
-					<text><![CDATA[Cherry Title]]></text>
+					<text><![CDATA[REPORTE]]></text>
 				</staticText>
 				<staticText>
 					<reportElement style="SubTitle" x="157" y="66" width="249" height="29" uuid="000c3c76-e48b-43e6-8037-c2fde1964677"/>
 					<textElement>
 						<font size="22" isBold="false"/>
 					</textElement>
-					<text><![CDATA[Cherry SubTitle]]></text>
+					<text><![CDATA[MANTENIMIENTO]]></text>
 				</staticText>
 			</frame>
 			<frame>
-				<reportElement mode="Opaque" x="0" y="100" width="451" height="32" forecolor="#000000" backcolor="#CC0000" uuid="a7607861-9f17-44f6-90e3-716feec15b89"/>
+				<reportElement mode="Opaque" x="2" y="100" width="553" height="32" forecolor="#000000" backcolor="#009933" uuid="a7607861-9f17-44f6-90e3-716feec15b89"/>
 				<textField pattern="EEEEE dd MMMMM yyyy">
-					<reportElement x="307" y="12" width="144" height="20" forecolor="#FFFFFF" uuid="58bf7aea-089a-473f-b1b7-358fc8915834"/>
+					<reportElement x="409" y="12" width="144" height="20" forecolor="#FFFFFF" uuid="58bf7aea-089a-473f-b1b7-358fc8915834"/>
 					<textElement textAlignment="Right">
 						<font size="12"/>
 					</textElement>
 					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 				</textField>
 			</frame>
+			<image>
+				<reportElement x="406" y="0" width="155" height="132" uuid="1cfccf16-4bd4-4cb2-8c39-3766c678f518"/>
+				<imageExpression><![CDATA["/Users/Guillermo/Desktop/CODE-TUSUG/JTUSUG/src/imagenes/tusug logo.png"]]></imageExpression>
+			</image>
 		</band>
 	</title>
 	<pageHeader>
@@ -71,218 +77,218 @@
 	<columnHeader>
 		<band height="26" splitType="Stretch">
 			<staticText>
-				<reportElement style="Column header" x="0" y="7" width="39" height="18" forecolor="#000000" uuid="33a923fc-246e-47c8-8be7-6c3fd500e406"/>
+				<reportElement style="Column header" x="0" y="7" width="78" height="19" forecolor="#000000" uuid="33a923fc-246e-47c8-8be7-6c3fd500e406"/>
 				<textElement>
-					<font isBold="false"/>
+					<font size="16" isBold="false"/>
 				</textElement>
-				<text><![CDATA[codigo_m]]></text>
+				<text><![CDATA[CODIGO MANTENIMIENTO]]></text>
 			</staticText>
-			<staticText>
-				<reportElement style="Column header" x="39" y="7" width="39" height="18" forecolor="#000000" uuid="e27af1db-029a-477e-a56a-0ab511c71c2e"/>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" positionType="Float" x="429" y="0" width="99" height="26" uuid="c6aaa8ff-d248-4d7e-9a73-61e9892c3f4c"/>
 				<textElement>
-					<font isBold="false"/>
+					<font size="14"/>
 				</textElement>
-				<text><![CDATA[matricula]]></text>
-			</staticText>
-			<staticText>
-				<reportElement style="Column header" x="78" y="7" width="39" height="18" forecolor="#000000" uuid="28a963e1-f4dd-4385-87be-f8b2ad7e5e11"/>
-				<textElement>
-					<font isBold="false"/>
-				</textElement>
-				<text><![CDATA[fecha_ingreso]]></text>
-			</staticText>
-			<staticText>
-				<reportElement style="Column header" x="117" y="7" width="39" height="18" forecolor="#000000" uuid="8c34e664-1d5d-4b6f-9515-46aae2d129e3"/>
-				<textElement>
-					<font isBold="false"/>
-				</textElement>
-				<text><![CDATA[fecha_salida]]></text>
-			</staticText>
-			<staticText>
-				<reportElement style="Column header" x="156" y="7" width="39" height="18" forecolor="#000000" uuid="bc8db6f8-9997-42d6-932e-1aaccc716925"/>
-				<textElement>
-					<font isBold="false"/>
-				</textElement>
-				<text><![CDATA[solicitante]]></text>
-			</staticText>
-			<staticText>
-				<reportElement style="Column header" x="195" y="7" width="39" height="18" forecolor="#000000" uuid="9429f2da-e621-4bcc-8cfa-5773f1744ae8"/>
-				<textElement>
-					<font isBold="false"/>
-				</textElement>
-				<text><![CDATA[responsable]]></text>
-			</staticText>
-			<staticText>
-				<reportElement style="Column header" x="234" y="7" width="39" height="18" forecolor="#000000" uuid="707d1388-c7ae-4cc6-af04-d5aa881a75d3"/>
-				<textElement>
-					<font isBold="false"/>
-				</textElement>
-				<text><![CDATA[solicitud]]></text>
-			</staticText>
-			<staticText>
-				<reportElement style="Column header" x="273" y="7" width="39" height="18" forecolor="#000000" uuid="755cdb25-35ba-427e-8055-89db2c2809f1"/>
-				<textElement>
-					<font isBold="false"/>
-				</textElement>
-				<text><![CDATA[area_trabajo]]></text>
-			</staticText>
-			<staticText>
-				<reportElement style="Column header" x="312" y="7" width="39" height="18" forecolor="#000000" uuid="b1123e54-81ff-4172-a6bb-37446af1c88a"/>
-				<textElement>
-					<font isBold="false"/>
-				</textElement>
-				<text><![CDATA[prioridad]]></text>
-			</staticText>
-			<staticText>
-				<reportElement style="Column header" x="351" y="7" width="39" height="18" forecolor="#000000" uuid="1793429e-a316-4d0e-848b-8dd42f9334cf"/>
-				<textElement>
-					<font isBold="false"/>
-				</textElement>
-				<text><![CDATA[tipo_de_mantenimiento]]></text>
-			</staticText>
-			<staticText>
-				<reportElement style="Column header" x="390" y="7" width="39" height="18" forecolor="#000000" uuid="c4957993-05de-4e91-8cb8-9c02fbd97579"/>
-				<textElement>
-					<font isBold="false"/>
-				</textElement>
-				<text><![CDATA[direccion]]></text>
-			</staticText>
-			<staticText>
-				<reportElement style="Column header" x="429" y="7" width="39" height="18" forecolor="#000000" uuid="bea03776-dd13-4d33-b422-ca36c90a8978"/>
-				<textElement>
-					<font isBold="false"/>
-				</textElement>
-				<text><![CDATA[telefono]]></text>
-			</staticText>
-			<staticText>
-				<reportElement style="Column header" x="468" y="7" width="39" height="18" forecolor="#000000" uuid="275ed1ef-57c6-4988-9e7c-9d2265d8a026"/>
-				<textElement>
-					<font isBold="false"/>
-				</textElement>
-				<text><![CDATA[email]]></text>
-			</staticText>
-			<staticText>
-				<reportElement style="Column header" x="507" y="7" width="39" height="18" forecolor="#000000" uuid="f37e928c-7db9-40d4-8943-e3bdc722a918"/>
-				<textElement>
-					<font isBold="false"/>
-				</textElement>
-				<text><![CDATA[costo_reparacion]]></text>
-			</staticText>
+				<textFieldExpression><![CDATA[$F{codigo_m}]]></textFieldExpression>
+			</textField>
 		</band>
 	</columnHeader>
 	<detail>
 		<band height="18" splitType="Stretch">
 			<frame>
 				<reportElement style="Row" mode="Opaque" x="0" y="0" width="555" height="18" uuid="a817bc2e-03bf-48a4-82b0-5627573b3397"/>
-				<textField isStretchWithOverflow="true">
-					<reportElement style="Detail" positionType="Float" x="0" y="0" width="39" height="18" uuid="c6aaa8ff-d248-4d7e-9a73-61e9892c3f4c"/>
-					<textElement>
-						<font size="14"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$F{codigo_m}]]></textFieldExpression>
-				</textField>
-				<textField isStretchWithOverflow="true">
-					<reportElement style="Detail" positionType="Float" x="39" y="0" width="39" height="18" uuid="947f9d1e-dc4e-46dd-88bb-10789b25bcb7"/>
-					<textElement>
-						<font size="14"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$F{matricula}]]></textFieldExpression>
-				</textField>
-				<textField isStretchWithOverflow="true">
-					<reportElement style="Detail" positionType="Float" x="78" y="0" width="39" height="18" uuid="fbd0e0a3-7f2b-45d2-81a0-e85520266cfd"/>
-					<textElement>
-						<font size="14"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$F{fecha_ingreso}]]></textFieldExpression>
-				</textField>
-				<textField isStretchWithOverflow="true">
-					<reportElement style="Detail" positionType="Float" x="117" y="0" width="39" height="18" uuid="c6df0bc4-4b14-471b-934a-f44c86ecb379"/>
-					<textElement>
-						<font size="14"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$F{fecha_salida}]]></textFieldExpression>
-				</textField>
-				<textField isStretchWithOverflow="true">
-					<reportElement style="Detail" positionType="Float" x="156" y="0" width="39" height="18" uuid="84d151cb-b67a-463a-8e9e-2fbe10ca1d92"/>
-					<textElement>
-						<font size="14"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$F{solicitante}]]></textFieldExpression>
-				</textField>
-				<textField isStretchWithOverflow="true">
-					<reportElement style="Detail" positionType="Float" x="195" y="0" width="39" height="18" uuid="a7d11ac6-6206-4370-a0b7-3e2f825dea2f"/>
-					<textElement>
-						<font size="14"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$F{responsable}]]></textFieldExpression>
-				</textField>
-				<textField isStretchWithOverflow="true">
-					<reportElement style="Detail" positionType="Float" x="234" y="0" width="39" height="18" uuid="278d039b-2c9e-4745-b475-e44474ef7535"/>
-					<textElement>
-						<font size="14"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$F{solicitud}]]></textFieldExpression>
-				</textField>
-				<textField isStretchWithOverflow="true">
-					<reportElement style="Detail" positionType="Float" x="273" y="0" width="39" height="18" uuid="eeae926e-0816-46ca-866d-37260345b055"/>
-					<textElement>
-						<font size="14"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$F{area_trabajo}]]></textFieldExpression>
-				</textField>
-				<textField isStretchWithOverflow="true">
-					<reportElement style="Detail" positionType="Float" x="312" y="0" width="39" height="18" uuid="b74b8369-7472-45a7-89a8-e071a7ca844f"/>
-					<textElement>
-						<font size="14"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$F{prioridad}]]></textFieldExpression>
-				</textField>
-				<textField isStretchWithOverflow="true">
-					<reportElement style="Detail" positionType="Float" x="351" y="0" width="39" height="18" uuid="3b9ac914-5a25-4ec6-bc1d-794816dafb02"/>
-					<textElement>
-						<font size="14"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$F{tipo_de_mantenimiento}]]></textFieldExpression>
-				</textField>
-				<textField isStretchWithOverflow="true">
-					<reportElement style="Detail" positionType="Float" x="390" y="0" width="39" height="18" uuid="5018ba73-fb2b-4942-9860-d6a4393fe973"/>
-					<textElement>
-						<font size="14"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$F{direccion}]]></textFieldExpression>
-				</textField>
-				<textField isStretchWithOverflow="true">
-					<reportElement style="Detail" positionType="Float" x="429" y="0" width="39" height="18" uuid="064d38df-f5c7-456f-bb48-fa3acf6739b3"/>
-					<textElement>
-						<font size="14"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$F{telefono}]]></textFieldExpression>
-				</textField>
-				<textField isStretchWithOverflow="true">
-					<reportElement style="Detail" positionType="Float" x="468" y="0" width="39" height="18" uuid="3047c47b-f18b-4fdc-9efd-9ac44f714193"/>
-					<textElement>
-						<font size="14"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$F{email}]]></textFieldExpression>
-				</textField>
-				<textField isStretchWithOverflow="true">
-					<reportElement style="Detail" positionType="Float" x="507" y="0" width="39" height="18" uuid="4e9337ba-3090-4181-bf9a-dfed1e01c6fb"/>
-					<textElement>
-						<font size="14"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$F{costo_reparacion}]]></textFieldExpression>
-				</textField>
 			</frame>
 		</band>
 	</detail>
 	<columnFooter>
-		<band height="7" splitType="Stretch">
+		<band height="619" splitType="Stretch">
 			<line>
 				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="40dc28f1-5f53-43de-939c-ebfdc4d0727c"/>
 				<graphicElement>
 					<pen lineWidth="0.5" lineColor="#999999"/>
 				</graphicElement>
 			</line>
+			<staticText>
+				<reportElement style="Column header" x="2" y="15" width="155" height="29" forecolor="#000000" uuid="e27af1db-029a-477e-a56a-0ab511c71c2e"/>
+				<textElement>
+					<font size="16" isBold="false"/>
+				</textElement>
+				<text><![CDATA[MATRICULA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="2" y="59" width="154" height="28" forecolor="#000000" uuid="28a963e1-f4dd-4385-87be-f8b2ad7e5e11"/>
+				<textElement>
+					<font size="16" isBold="false"/>
+				</textElement>
+				<text><![CDATA[FECHA INGRESO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="2" y="103" width="154" height="29" forecolor="#000000" uuid="8c34e664-1d5d-4b6f-9515-46aae2d129e3"/>
+				<textElement>
+					<font size="16" isBold="false"/>
+				</textElement>
+				<text><![CDATA[FECHA SALIDA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="2" y="155" width="155" height="34" forecolor="#000000" uuid="bc8db6f8-9997-42d6-932e-1aaccc716925"/>
+				<textElement>
+					<font size="16" isBold="false"/>
+				</textElement>
+				<text><![CDATA[SOLICITANTE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="2" y="210" width="154" height="29" forecolor="#000000" uuid="9429f2da-e621-4bcc-8cfa-5773f1744ae8"/>
+				<textElement>
+					<font size="16" isBold="false"/>
+				</textElement>
+				<text><![CDATA[RESPONSABLE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="2" y="255" width="154" height="29" forecolor="#000000" uuid="707d1388-c7ae-4cc6-af04-d5aa881a75d3"/>
+				<textElement>
+					<font size="16" isBold="false"/>
+				</textElement>
+				<text><![CDATA[SOLICITUD]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="2" y="306" width="155" height="29" forecolor="#000000" uuid="755cdb25-35ba-427e-8055-89db2c2809f1"/>
+				<textElement>
+					<font size="16" isBold="false"/>
+				</textElement>
+				<text><![CDATA[AREA TRABAJO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="2" y="358" width="154" height="27" forecolor="#000000" uuid="b1123e54-81ff-4172-a6bb-37446af1c88a"/>
+				<textElement>
+					<font size="16" isBold="false"/>
+				</textElement>
+				<text><![CDATA[PRIORIDAD]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="2" y="406" width="208" height="26" forecolor="#000000" uuid="1793429e-a316-4d0e-848b-8dd42f9334cf"/>
+				<textElement>
+					<font size="16" isBold="false"/>
+				</textElement>
+				<text><![CDATA[TIPO DE MANTENIMIENTO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="2" y="453" width="154" height="24" forecolor="#000000" uuid="c4957993-05de-4e91-8cb8-9c02fbd97579"/>
+				<textElement>
+					<font size="16" isBold="false"/>
+				</textElement>
+				<text><![CDATA[DIRECCION]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="0" y="497" width="154" height="28" forecolor="#000000" uuid="bea03776-dd13-4d33-b422-ca36c90a8978"/>
+				<textElement>
+					<font size="16" isBold="false"/>
+				</textElement>
+				<text><![CDATA[TELEFONO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="0" y="542" width="210" height="28" forecolor="#000000" uuid="275ed1ef-57c6-4988-9e7c-9d2265d8a026"/>
+				<textElement>
+					<font size="16" isBold="false"/>
+				</textElement>
+				<text><![CDATA[CORREO ELECTRONICO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="0" y="582" width="210" height="27" forecolor="#000000" uuid="f37e928c-7db9-40d4-8943-e3bdc722a918"/>
+				<textElement>
+					<font size="16" isBold="false"/>
+				</textElement>
+				<text><![CDATA[COSTO DE REPARACION]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" positionType="Float" x="433" y="15" width="95" height="29" uuid="947f9d1e-dc4e-46dd-88bb-10789b25bcb7"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{matricula}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" positionType="Float" x="433" y="59" width="113" height="28" uuid="fbd0e0a3-7f2b-45d2-81a0-e85520266cfd"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fecha_ingreso}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" positionType="Float" x="433" y="103" width="113" height="29" uuid="c6df0bc4-4b14-471b-934a-f44c86ecb379"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fecha_salida}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" positionType="Float" x="433" y="155" width="113" height="34" uuid="84d151cb-b67a-463a-8e9e-2fbe10ca1d92"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{solicitante}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" positionType="Float" x="433" y="210" width="113" height="29" uuid="a7d11ac6-6206-4370-a0b7-3e2f825dea2f"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{responsable}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" positionType="Float" x="433" y="255" width="113" height="29" uuid="278d039b-2c9e-4745-b475-e44474ef7535"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{solicitud}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" positionType="Float" x="433" y="306" width="113" height="29" uuid="eeae926e-0816-46ca-866d-37260345b055"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{area_trabajo}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" positionType="Float" x="433" y="358" width="113" height="27" uuid="b74b8369-7472-45a7-89a8-e071a7ca844f"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{prioridad}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" positionType="Float" x="433" y="406" width="122" height="26" uuid="3b9ac914-5a25-4ec6-bc1d-794816dafb02"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tipo_de_mantenimiento}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" positionType="Float" x="435" y="453" width="120" height="24" uuid="5018ba73-fb2b-4942-9860-d6a4393fe973"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{direccion}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" positionType="Float" x="435" y="497" width="118" height="28" uuid="064d38df-f5c7-456f-bb48-fa3acf6739b3"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{telefono}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" positionType="Float" x="435" y="542" width="118" height="28" uuid="3047c47b-f18b-4fdc-9efd-9ac44f714193"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{email}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" positionType="Float" x="433" y="582" width="120" height="27" uuid="4e9337ba-3090-4181-bf9a-dfed1e01c6fb"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{costo_reparacion}]]></textFieldExpression>
+			</textField>
 		</band>
 	</columnFooter>
 	<pageFooter>
