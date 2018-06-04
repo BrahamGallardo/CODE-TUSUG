@@ -93,21 +93,30 @@ public class HistorialMantenGUI {
         controlador=new SQLHistMant(g);
         Object[][] datos =controlador.obtenerRegistro();
         
-        tabla = new JTable(datos,lista);
+        tabla = new JTable();
         tabla.setPreferredSize(new Dimension(515,277));
-        JScrollPane scrollPane = new JScrollPane(tabla);
+        JScrollPane scrollPane = new JScrollPane(updateTabla());
         scrollPane.setBounds(69,210,515,277);
-        p.add(scrollPane);    
+        p.add(scrollPane);      
     }
     
-    private void updateTabla(){             
+    private JTable updateTabla(){             
         String[] columNames = {"Num. Mantenimiento", "Responsable", "Fecha de emisión"};  
         // se utiliza la funcion
         //dtPer = p.getDatos();
         // se colocan los datos en la tabla
         Object[][] registro =controlador.obtenerRegistro();
-        DefaultTableModel datos = new DefaultTableModel(registro,columNames);                        
+        DefaultTableModel datos = new DefaultTableModel(registro,columNames);
+        tabla = new JTable(datos)
+        {
+            @Override
+            public boolean isCellEditable(int row, int column)
+            {
+                return false;
+            }
+        };
         tabla.setModel(datos); 
+        return tabla;
     }
     
     public static void main(String []args)
