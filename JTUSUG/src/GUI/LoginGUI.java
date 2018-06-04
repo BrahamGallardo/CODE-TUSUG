@@ -68,9 +68,7 @@ public class LoginGUI {
         b.addKeyListener(new CustomKeyListener());
     }
 
-    public static void main(String[] args) {
-        LoginGUI login = new LoginGUI();
-    }
+   
 
     public void cargarSesion() {
         try {
@@ -98,6 +96,7 @@ public class LoginGUI {
 
     public void iniciarSesion() throws Exception {
         cargarSesion();
+        //System.err.println(contrasenia + " - " + Encriptar.md5(txt_password.getText()));
         if (contrasenia.equals(
                 Encriptar.md5(txt_password.getText()))) {
             RootGUI main = new RootGUI(rol, nombre_usuario);

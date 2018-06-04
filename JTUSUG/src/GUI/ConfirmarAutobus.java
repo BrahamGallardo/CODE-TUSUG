@@ -46,10 +46,7 @@ public final class ConfirmarAutobus extends JFrame{
         advertencia.append("¡ATENCION! Usted esta apunto de eliminar un\nregistro de un autobus.Hacer esto implica borrar\ntodo registro relacionado al trabajador dentro de la\nbase de datos. Esta accion no se podra revertir.\n\n¿Esta usted seguro de ello?");
         
     }   
-    public static void main (String []args)
-    {
-        Confirmacion c  = new Confirmacion();
-    }
+  
     class CustomActionListener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {

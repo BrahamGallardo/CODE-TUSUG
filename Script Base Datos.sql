@@ -74,11 +74,13 @@ create table expediente_permanente(
 --o declarar autoincrement
 create table siniestro(
 	codigo_accidente SERIAL primary key,
-	id_posesion int ,
-	fecha date not null,
-	descripcion varchar(250) not null,
-	lugar varchar(100),
-	velocidad int
+	siniestro date,
+	ingreso date,
+	indemnizado date,
+	tipo varchar(50),
+	reclamado int,
+	pagado int,
+	estado varchar(50)
 );
 
 -- Un disparador que genere automaticamente un codigo_mantenimiento
@@ -116,7 +118,7 @@ create table rol(
 );
 
 create table usuario(
-	rfc varchar(13) references trabajador(rfc),
+	rfc varchar(13) references trabajador(rfc) primary key,
 	id_rol int references rol(id_rol),
 	contrasenia varchar (64),
 	url_image varchar(100),--Siempre debe una por default

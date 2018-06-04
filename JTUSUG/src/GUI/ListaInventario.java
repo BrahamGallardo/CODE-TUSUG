@@ -75,8 +75,5 @@ public class ListaInventario {
         
         
      }
-     public static void main (String []args)
-     {
-         ListaInventario inventario = new ListaInventario();
-     }
+    
 }

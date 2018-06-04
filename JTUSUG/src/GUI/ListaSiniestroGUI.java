@@ -1,4 +1,6 @@
 package GUI;
+import CONTROLLERS.SQLHistMant;
+import CONTROLLERS.SQLRepSinies;
 import static GUI.ListaInventario.datos;
 import com.toedter.calendar.JDateChooser;
 import java.awt.Color;
@@ -6,6 +8,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Rectangle;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -29,20 +32,13 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ListaSiniestroGUI {
     public JButton lSiniestros,Rsiniestro,regresar,guardar,abrir,imprimir;
-    static String encabezado[]  = {"Referencia","Tipo de Siniestro","Fecha de Alta","Responsable"};
-     static Object [][]datos = {{"","","",""},
-                                {"","","",""},
-                                {"","","",""},
-                                {"","","",""},
-                                {"","","",""},
-                                {"","","",""},
-                                {"","","",""},
-                                {"","","",""},
-                                {"","","",""},
-                                {"","","",""}};
+    static String encabezado[]  = {"Referencia","Fecha siniestro","Tipo","Estado"};
+     static Object [][]datos;
      public JTable tabla;
+     public int valor;
+     ListaSiniestroGUI g;
     ActionListener listener;
-    DefaultTableModel dtm;
+    SQLRepSinies controlador;
     String ruta = "src/imagenes/";
     JFrame f;
     JPanel p;
@@ -78,16 +74,43 @@ public class ListaSiniestroGUI {
          guardar = Builder.crearButtonIcon(p,"guardar", ruta+"save.png",new Rectangle(656,318,24,24), listener, true,false);
          regresar = Builder.crearButtonIcon(p, "regresar", ruta+"regresar.png",new Rectangle(326,518,39,39), listener, true, false);
          
-          //Tabla
-        dtm= new DefaultTableModel();
-        tabla = new JTable(datos,encabezado);
-        //tabla.setBackground(Color.GRAY);
+        //Tabla
+        controlador = new SQLRepSinies(g);
+        Object[][] datos =controlador.obtenerRegistro();
+        
+        tabla = new JTable();
         tabla.setPreferredSize(new Dimension(576,329));
-        JScrollPane scrollPane = new JScrollPane(tabla);
+        JScrollPane scrollPane = new JScrollPane(updateTabla());
         scrollPane.setBounds(54,145,576,329);
         p.add(scrollPane);
          
+        valor = 0;
     }
+    private JTable updateTabla(){             
+        String[] columNames = {"Referencia","Fecha siniestro","Tipo","Estado"};  
+        // se utiliza la funcion
+        //dtPer = p.getDatos();
+        // se colocan los datos en la tabla
+        Object[][] registro = controlador.obtenerRegistro();
+        DefaultTableModel datos = new DefaultTableModel(registro,columNames);
+        tabla = new JTable(datos)
+        {
+            @Override
+            public boolean isCellEditable(int row, int column)
+            {
+                return false;
+            }
+        };
+        tabla.setModel(datos); 
+        return tabla;
+    }
+     public int tableMouseClicked (MouseEvent evt)
+     {
+         int filasele=tabla.getSelectedRow();
+         valor = Integer.valueOf(tabla.getValueAt(filasele,0).toString());
+         System.out.println(valor);
+         return valor;
+     }
     public static void main(String []args)
     {
         ListaSiniestroGUI l = new ListaSiniestroGUI();

@@ -26,7 +26,7 @@ public class RootGUI {
     Font font;
     public static JFrame root;
     public static JPanel panel;
-    public JButton btn_close, btn_secre, btn_almacen, btn_manten, btn_rrhh;
+    public JButton btn_close, btn_secre, btn_almacen, btn_manten, btn_rrhh, btn_rutas;
     
     //Para reciclar
     JLabel lb_text;
@@ -51,12 +51,16 @@ public class RootGUI {
                 habilitarComponentes(btn_secre, btn_almacen, btn_manten, btn_rrhh);
                 break;
             case "secretaria":
+                habilitarComponentes(btn_regresar, btn_listaBus, btn_facturas, btn_reportes);
                 break;
             case "mantenimiento":
+                habilitarComponentes(btn_nuevoreporte, btn_reUnidades, btn_historial);
                 break;
             case "almacen":
+                habilitarComponentes(btn_insumos, btn_lista_invent, btn_gener_inventario);
                 break;
             case "recursos humanos":
+                habilitarComponentes(btn_trabajadores, btn_expedientes, btn_nuevosempleado, btn_iactivos);
                 break;
             default:
                 // Code Here:
@@ -77,12 +81,14 @@ public class RootGUI {
         lb_text =               Builder.crearLabel(     panel, "Seleccione el icono de la seccion que desea visitar",   new Rectangle(193, 172, 300, 60), null, null, font);        
         // Botones generales
         btn_regresar =          Builder.crearButtonIcon(panel, "Uncknown",          carpeta_img + "regresar.png",               new Rectangle(335, 523, 32,  32), listen, true, false,false);
-        btn_close =             Builder.crearButtonIcon(panel, "CerrarSesion",      carpeta_img + "cerrar_sesion.png",          new Rectangle(460, 506, 201, 63), listen, true, true, false);
+        btn_close =             Builder.crearButtonIcon(panel, "CerrarSesion",      carpeta_img + "cerrar_sesion.png",          new Rectangle(460, 506, 201, 63), listen, true, true, true);
         // Botones de root
         btn_secre =             Builder.crearButtonIcon(panel, "btnSecretaria",     carpeta_img + "secretaria.png",             new Rectangle(85,  256, 256, 63), listen, true, true, false);
         btn_almacen =           Builder.crearButtonIcon(panel, "btnAlmacen",        carpeta_img + "almacen.png",                new Rectangle(85,  352, 256, 63), listen, true, true, false);
         btn_manten =            Builder.crearButtonIcon(panel, "btnManten",         carpeta_img + "mantenimiento.png",          new Rectangle(379, 256, 256, 63), listen, true, true, false);        
         btn_rrhh =              Builder.crearButtonIcon(panel, "btnRRHH",           carpeta_img + "recursos_humanos.png",       new Rectangle(379, 352, 256, 63), listen, true, true, false);
+        btn_rutas =             Builder.crearButtonIcon(panel, "btnrutas",           carpeta_img + "rutas.png",                  new Rectangle(85 , 446, 256, 63), listen, true, true, true);
+        
         // Botones de Secretaria
         btn_listaBus =          Builder.crearButtonIcon(panel, "modulo_autobus",    carpeta_img + "lista_de_autobuses.png",     new Rectangle(85,  256, 256, 63), listen, false,true, false);
         btn_facturas =          Builder.crearButtonIcon(panel, "facturas",          carpeta_img + "facturas.png",               new Rectangle(85,  352, 256, 63), listen, false,true, false);
@@ -137,6 +143,11 @@ public class RootGUI {
                     btn_regresar.setActionCommand("btn_back_almacen");
                     lb_title.setText("Almacen");
                     break;
+                    case "btnrutas":
+                        Rutas r = new Rutas();
+                        root.dispose();
+                    break;
+                    
                 case "btnManten":
                     deshabilitarComponentes(btn_secre, btn_almacen, btn_manten, btn_rrhh);
                     habilitarComponentes(btn_regresar, btn_nuevoreporte, btn_reUnidades, btn_historial);
@@ -215,8 +226,12 @@ public class RootGUI {
             }
         }
     }
+
     public static void main(String [] x){
         Conexion.setRol("root");
         new RootGUI("root", "Alejo");
+        //new RootGUI("secretarua", "Alejo");
+        //new RootGUI("root", "Alejo");
+        //new RootGUI("root", "Alejo");
     }
 }

@@ -59,8 +59,5 @@ public class GFacturas extends JFrame{
             }
         }
     }
-    public static void main (String []args)
-    {
-        GFacturas f = new GFacturas();
-    }
+
 }

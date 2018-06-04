@@ -124,8 +124,5 @@ public class ReportarSiniestroGUI {
          
          
     }
-    public static void main (String []args)
-    {
-        ReportarSiniestroGUI siniestro = new ReportarSiniestroGUI();
-    }
+ 
 }
