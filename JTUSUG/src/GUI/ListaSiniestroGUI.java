@@ -1,4 +1,6 @@
 package GUI;
+import CONTROLLERS.SQLHistMant;
+import CONTROLLERS.SQLRepSinies;
 import static GUI.ListaInventario.datos;
 import com.toedter.calendar.JDateChooser;
 import java.awt.Color;
@@ -29,17 +31,8 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ListaSiniestroGUI {
     public JButton lSiniestros,Rsiniestro,regresar,guardar,abrir,imprimir;
-    static String encabezado[]  = {"Referencia","Tipo de Siniestro","Fecha de Alta","Responsable"};
-     static Object [][]datos = {{"","","",""},
-                                {"","","",""},
-                                {"","","",""},
-                                {"","","",""},
-                                {"","","",""},
-                                {"","","",""},
-                                {"","","",""},
-                                {"","","",""},
-                                {"","","",""},
-                                {"","","",""}};
+    static String encabezado[]  = {"Referencia","Fecha siniestro","Tipo","Estado"};
+     static Object [][]datos;
      public JTable tabla;
     ActionListener listener;
     DefaultTableModel dtm;
@@ -78,7 +71,9 @@ public class ListaSiniestroGUI {
          guardar = Builder.crearButtonIcon(p,"guardar", ruta+"save.png",new Rectangle(656,318,24,24), listener, true,false);
          regresar = Builder.crearButtonIcon(p, "regresar", ruta+"regresar.png",new Rectangle(326,518,39,39), listener, true, false);
          
-          //Tabla
+        //Tabla
+        SQLRepSinies controlador = new SQLRepSinies();
+        Object[][] datos =controlador.obtenerRegistro();
         dtm= new DefaultTableModel();
         tabla = new JTable(datos,encabezado);
         //tabla.setBackground(Color.GRAY);

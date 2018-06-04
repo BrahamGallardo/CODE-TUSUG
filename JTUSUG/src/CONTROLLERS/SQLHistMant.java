@@ -12,6 +12,7 @@ import java.util.logging.Logger;
 public class SQLHistMant {
     Connection conn;
     public SQLHistMant(){
+            Conexion.setConfiguracion("postgres", "root");
             conn = Conexion.getConexion();
     }
     public String[][] obtenerRegistro(){
