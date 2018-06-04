@@ -22,10 +22,15 @@ import net.sf.jasperreports.view.JasperViewer;
  */
 public class SQLHistMant {
     Connection conn;
+<<<<<<< HEAD
+    public SQLHistMant(){
+            Conexion.setConfiguracion("postgres", "root");
+=======
     HistorialMantenGUI interfaz;
     public SQLHistMant(HistorialMantenGUI ui){
             interfaz=ui;
             Conexion.setConfiguracion("postgres","root");
+>>>>>>> 72e610a1853994bfa349c91c5e0ba66c56f4ff37
             conn = Conexion.getConexion();
     }
     public String[][] obtenerRegistro(){
