@@ -7,7 +7,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Conexion {
-
+ 
     //Rol por defecto
     private static String rol;
     private static String contrasena;

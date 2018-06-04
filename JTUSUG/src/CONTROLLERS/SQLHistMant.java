@@ -22,7 +22,10 @@ import net.sf.jasperreports.view.JasperViewer;
  */
 public class SQLHistMant {
     Connection conn;
+<<<<<<< HEAD
 
+=======
+>>>>>>> 46b374612e0c7b3c40e383b97f0e58581a4117ce
     HistorialMantenGUI interfaz;
     public SQLHistMant(HistorialMantenGUI ui){
             interfaz=ui;
