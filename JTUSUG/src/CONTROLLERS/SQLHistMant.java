@@ -1,17 +1,30 @@
 package CONTROLLERS;
+import GUI.HistorialMantenGUI;
+import java.awt.HeadlessException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.view.JasperViewer;
 /**
  *
  * @author gallardo
  */
 public class SQLHistMant {
     Connection conn;
-    public SQLHistMant(){
+    HistorialMantenGUI interfaz;
+    public SQLHistMant(HistorialMantenGUI ui){
+            interfaz=ui;
             Conexion.setConfiguracion("postgres","root");
             conn = Conexion.getConexion();
     }
@@ -67,6 +80,23 @@ public class SQLHistMant {
         }
         return tabla;
     }
+    
+    
+     public void creaRepor() throws JRException{
+               try{
+          
+            Map parametros = new HashMap();
+            parametros.clear();
+            parametros.put("holis", interfaz.valor);
+            JasperReport reporte=JasperCompileManager.compileReport("ReporteMante.jrxml");
+            JasperPrint p= JasperFillManager.fillReport(reporte, parametros, conn);
+            JasperViewer ventanavisor= new JasperViewer(p, false);
+            ventanavisor.setTitle("REPORTE DE MANTENIMIENTO");
+            ventanavisor.setVisible(true);
+               }catch(HeadlessException | JRException e){
+                     JOptionPane.showMessageDialog(null,"Error en el reporte"+ e);
+                 }              
+               }
     public String[][] obtenerRegistroArgs(String args){
         String sql = "select count(codigo_m) as total from sistemaTusug.mantenimiento ";
             PreparedStatement pst;

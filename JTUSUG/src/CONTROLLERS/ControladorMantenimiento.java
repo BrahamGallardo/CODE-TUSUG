@@ -41,7 +41,7 @@ public class ControladorMantenimiento {
             JasperReport reporte=JasperCompileManager.compileReport("ReporteMante.jrxml");
             JasperPrint p= JasperFillManager.fillReport(reporte, parametros, c);
             JasperViewer ventanavisor= new JasperViewer(p, false);
-            ventanavisor.setTitle("REPORTE DE COMPRA");
+            ventanavisor.setTitle("REPORTE DE MANTENIMIENTO");
             ventanavisor.setVisible(true);
                }catch(HeadlessException | JRException e){
                      JOptionPane.showMessageDialog(null,"Error en el reporte"+ e);
