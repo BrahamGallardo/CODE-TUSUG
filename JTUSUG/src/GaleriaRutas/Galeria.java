@@ -18,11 +18,6 @@ public class Galeria {
         fotos.add(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Ruta2.jpg")));
         fotos.add(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Ruta3.jpg")));
         fotos.add(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Ruta4.jpg")));
-        fotos.add(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Ruta5.jpg")));
-        fotos.add(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Ruta6.jpg")));
-        fotos.add(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Ruta7.jpg")));
-        fotos.add(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Ruta8.jpg")));
-        fotos.add(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Ruta10.jpg")));
          
     }
 
