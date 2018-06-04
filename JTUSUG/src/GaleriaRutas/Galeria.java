@@ -12,8 +12,9 @@ public class Galeria {
     private ImageIcon nofoto;//el nombre lo dice todo
 
     public Galeria(){
-        //se cargan las fotos
-        nofoto = new javax.swing.ImageIcon(getClass().getResource("nofoto.gif"));
+        //se cargan las fotos        
+        
+        nofoto = new javax.swing.ImageIcon(getClass().getResource("/imagenes/nofoto.gif"));
         fotos.add(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Ruta1.jpg")));
         fotos.add(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Ruta2.jpg")));
         fotos.add(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Ruta3.jpg")));

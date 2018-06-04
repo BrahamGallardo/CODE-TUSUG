@@ -1,4 +1,4 @@
-package GUI;
+package Test;
 
 import CONTROLLERS.Conexion;
 
@@ -9,6 +9,8 @@ public class Test {
         //RootGUI s = new RootGUI("almacen", "Alejo Gutierrez");
         //RootGUI t = new RootGUI("mantenimiento", "GURA96");        
         //RootGUI u = new RootGUI("recursos humanos", "Alejo Gutierrez");
-        new TrabajadorGUI();
+        //new TrabajadorGUI();
+        System.out.println(System.getProperty("java.class.path"));
+        
     }
 }
