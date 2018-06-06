@@ -56,7 +56,7 @@ public class Splash implements Runnable{
         }
         a.dispose();
         LoginGUI l = new LoginGUI();
-    }
+    } 
     
     public void pausa(int mlSeg){
         try{

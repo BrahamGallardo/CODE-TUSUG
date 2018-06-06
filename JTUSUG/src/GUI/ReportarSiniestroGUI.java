@@ -142,8 +142,12 @@ public class ReportarSiniestroGUI {
                 case "guardar":
                     
             {
-                controlador.agregaMan();
-                controlador.creaRepor();
+                try {
+                    controlador.agregaMan();
+                    controlador.creaRepor();
+                } catch (JRException ex) {
+                    Logger.getLogger(ReportarSiniestroGUI.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
                     break;
                 case "Cerrar Sesion":
@@ -154,9 +158,6 @@ public class ReportarSiniestroGUI {
         }
         
     }
-            public static void main(String []args)
-    {
-        ReportarSiniestroGUI l = new ReportarSiniestroGUI();
-    }
+    
     
 }

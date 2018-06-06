@@ -127,7 +127,11 @@ public class ListaSiniestroGUI {
             switch (op) {
 
                 case "abrir":  {
+                try {
                     controlador.creaRepor();
+                } catch (JRException ex) {
+                    Logger.getLogger(ListaSiniestroGUI.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 }
                 break;
                 case "Cerrar Sesion":
@@ -139,7 +143,5 @@ public class ListaSiniestroGUI {
 
     }
 
-    public static void main(String[] args) {
-        ListaSiniestroGUI l = new ListaSiniestroGUI();
-    }
+ 
 }

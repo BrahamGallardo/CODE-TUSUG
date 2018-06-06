@@ -134,7 +134,7 @@ public class LoginGUI {
         class CustomKeyListener extends KeyAdapter {
 
             @Override
-            public void keyReleased(KeyEvent e) {
+            public void keyReleased(KeyEvent e) {                
                 if (e.getKeyCode()==10){
                     try {
                         iniciarSesion();

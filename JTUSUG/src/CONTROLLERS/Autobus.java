@@ -1,6 +1,7 @@
 package CONTROLLERS;
 
 import GUI.AutobusGUI;
+import GUI.RootGUI;
 import Servicios.Fachada;
 import static Validacion.Validador.validaIngreso;
 import java.io.File;
@@ -116,7 +117,9 @@ public class Autobus {
     }
 
     public void inicio() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        RootGUI a= new RootGUI();
+       
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public void regresar() {
@@ -136,7 +139,7 @@ public class Autobus {
             String absPathImg = Fachada.getSelectedFileImage();
             // Cargar las variables
             matricula = ui.txt_matricula.getText().toLowerCase();
-            System.err.println(matricula);
+            //System.err.println(matricula);
             // Actualizar dato en la Base de datos
             // Preparar Consulta
             Connection conn = Conexion.getConexion();
