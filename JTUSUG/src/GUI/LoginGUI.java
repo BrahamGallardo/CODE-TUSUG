@@ -55,7 +55,9 @@ public class LoginGUI {
         for (Sesion s: sesiones.values())
             System.out.println(s.toString());
     }
-    
+    public static void main(String [] args){
+        new LoginGUI();
+    }
     public void loadSesiones(){
         try {
             String query = "SELECT * from sistemaTusug.sesiones;";                         
@@ -64,10 +66,10 @@ public class LoginGUI {
             
             Sesion aux;
             while (rs.next()) {                
-                rfc = rs.getString("rfc");
-                nombre_usuario = rs.getString("nombre");
-                rol = rs.getString("puesto");                
-                contrasenia = rs.getString("contrasenia");
+                rfc =               rs.getString("rfc");
+                nombre_usuario =    rs.getString("nombre");
+                rol =               rs.getString("puesto");                
+                contrasenia =       rs.getString("contrasenia");
                 aux = new Sesion(rfc, nombre_usuario, rol, contrasenia);
                 sesiones.put(rfc, aux);
                 

@@ -4,10 +4,12 @@ import GUI.AutobusGUI;
 import GUI.RootGUI;
 import Servicios.Fachada;
 import static Validacion.Validador.validaIngreso;
+import java.awt.Image;
 import java.io.File;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
@@ -86,9 +88,9 @@ public class Autobus {
         return registro;
     }
 
-    public String[] obtenerlista() {
+    public ArrayList<String> obtenerlista() {
 
-        String[] lista = bd.listaAutobuses();
+        ArrayList lista = bd.listaAutobuses();
 
         return lista;
     }
@@ -129,7 +131,10 @@ public class Autobus {
     public void putImageProfile(String path) {
         // Replace los simbolos        '\'       por '/'
         String Path = path.replace('\u005C\u005C' ,  '\u002F');
-        Icon icon = new ImageIcon(Path);
+        ImageIcon fot = new ImageIcon(Path);
+        Icon icon = new ImageIcon(fot.getImage().getScaledInstance(ui.lb_imagen_autobus.getWidth(), ui.lb_imagen_autobus.getHeight(), Image.SCALE_DEFAULT));
+        //Icon icon = new ImageIcon(Path);
+        
         ui.lb_imagen_autobus.setIcon(icon);
     }
 
@@ -148,7 +153,7 @@ public class Autobus {
             pstm.setString(2, matricula);
             pstm.execute();
             pstm.close();
-            conn.close();
+            //conn.close();
             // Mostrar la img en el Label
             putImageProfile(absPathImg);
         } catch (SQLException e) {
@@ -160,9 +165,9 @@ public class Autobus {
 
     public void cargarLista(JList l) {
         DefaultListModel modelo = new DefaultListModel();
-        String lista[] = obtenerlista();
-        for (int i = 0; i < lista.length; i++) {
-            modelo.addElement(lista[i]);
+        ArrayList<String> lista = obtenerlista();
+        for (int i = 0; i < lista.size(); i++) {
+            modelo.addElement(lista.get(i));
         }
         l.setModel(modelo);
     }
