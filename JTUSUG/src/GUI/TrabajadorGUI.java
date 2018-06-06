@@ -1,7 +1,6 @@
 package GUI;
-import CONTROLLERS.Conexion;
-import CONTROLLERS.SQLAutobus;
 import CONTROLLERS.Trabajador;
+import com.toedter.calendar.JDateChooser;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Rectangle;
@@ -21,6 +20,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.DefaultListModel;
@@ -39,9 +39,9 @@ public class TrabajadorGUI {
     String              mes[]={"1","2","3","4","5","6","7", "8","9", "10", "11", "12"};        
     String              anio[]={"1990", "1991", "1992", "1993", "1994", "1995", "1996", 
                             "1997", "1998", "1999", "2000"};        
-    String              Cargo[]={"secretaria", "chofer", "mantenimiento", "recursos humanos"};        
+    String              Cargo[]={"secretaria", "chofer", "mantenimiento", "recursos humanos", "almacen"};
     String              Categoria[]= {"1","2","3","4","5"};        
-    String              st[]={"activo", "pasivo", "baja"};        
+    String              st[]={"activo", "pasivo", "baja"};
     private JComboBox<String> cb4;    
     
     JFrame x;    
@@ -53,6 +53,7 @@ public class TrabajadorGUI {
     public JComboBox    cb1, cb2, cb3, cb5,cb6, cb7,cbPuesto;
 
     Trabajador          interfaz;
+    public JDateChooser        fecha_nac;
     public LocalDate    fecha1,fecha2;    
     public int          dia1,mes1,anio1;    
     public JList        lista;    
@@ -118,9 +119,12 @@ public class TrabajadorGUI {
          tfnom=     Builder.crearTextField(p, new Rectangle(381, 174, 127, 23), null, null, null, null, true, false, true, new KeyListenerValidation(10) );
        
          //comboBox
-         cb1=       Builder.crearComboBox(p, new Rectangle(351,316,52,17),  dia,  null, null, null);  
-         cb2=       Builder.crearComboBox(p, new Rectangle(420,316,56,17),  mes,  null, null, null);
-         cb3=       Builder.crearComboBox(p, new Rectangle(488,316,72,17),  anio, null, null, null);
+          fecha_nac =   new JDateChooser();
+          p.            add(fecha_nac);
+          fecha_nac.    setBounds(420, 316, 100, 17);
+         //cb1=       Builder.crearComboBox(p, new Rectangle(351,316,52,17),  dia,  null, null, null);  
+         //cb2=       Builder.crearComboBox(p, new Rectangle(420,316,56,17),  mes,  null, null, null);
+         //cb3=       Builder.crearComboBox(p, new Rectangle(488,316,72,17),  anio, null, null, null);
          cb6=       Builder.crearComboBox(p, new Rectangle(351,290,80,17),  st,   null, null, null);
          cbPuesto=  Builder.crearComboBox(p, new Rectangle(380,438,111,17), Cargo,null, null, null);
           //area de texto
@@ -136,9 +140,9 @@ public class TrabajadorGUI {
          lista.setVisible(true);
          lista.addMouseListener(new TrabajadorGUI.CustomMouseListener());
      
-         fecha =    new Date(cb3.getItemCount(),cb2.getItemCount(),cb1.getItemCount());
-         fecha2 =   LocalDate.now();
-         fechaA =   new Date(fecha2.getYear(),fecha2.getMonthValue(),fecha2.getDayOfMonth());
+         //fecha =    new Date(cb3.getItemCount(),cb2.getItemCount(),cb1.getItemCount());
+         //fecha2 =   LocalDate.now();
+         //fechaA =   new Date(fecha2.getYear(),fecha2.getMonthValue(),fecha2.getDayOfMonth());
          JLabel fondo    =   Builder.crearLabelImagen(p, "src/imagenes/fondo_ventana_2.png", new Rectangle(0,0,700,518));
     }
     
@@ -150,9 +154,9 @@ public class TrabajadorGUI {
     
     public void cargarLista(JList l){
         DefaultListModel modelo = new DefaultListModel();
-                    String list[] = interfaz.listatrabajador();
-                    for(int i = 0;i<list.length;i++){
-                        modelo.addElement(list[i]);
+                    ArrayList<String> list = interfaz.listatrabajador();
+                    for(int i = 0;i<list.size();i++){
+                        modelo.addElement(list.get(i));
                     }
                     l.setModel(modelo);
     }

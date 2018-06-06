@@ -3,6 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/Users/Guillermo/Desktop/CODE-TUSUG/JTUSUG/src/CONTROLLERS/ControladorMantenimiento.java</file>
             <file>file:/Users/Guillermo/Desktop/CODE-TUSUG/JTUSUG/src/GUI/ListaSiniestroGUI.java</file>
             <file>file:/Users/Guillermo/Desktop/CODE-TUSUG/JTUSUG/src/GUI/RootGUI.java</file>
@@ -13,6 +14,9 @@
             <file>file:/Users/Guillermo/Desktop/CODE-TUSUG/JTUSUG/src/CONTROLLERS/SQLHistMant.java</file>
             <file>file:/Users/Guillermo/Desktop/CODE-TUSUG/JTUSUG/src/GUI/TrabajadorGUI.java</file>
             <file>file:/Users/Guillermo/Desktop/CODE-TUSUG/JTUSUG/src/GUI/ReportarSiniestroGUI.java</file>
+=======
+            <file>file:/C:/Lab/Git/CODE-TUSUG/JTUSUG/src/GUI/Splash.java</file>
+>>>>>>> 24b30590e425cc2d878fc51859d7c4cfe8d65afe
         </group>
     </open-files>
 </project-private>

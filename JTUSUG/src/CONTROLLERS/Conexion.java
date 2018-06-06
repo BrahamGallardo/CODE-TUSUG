@@ -37,13 +37,7 @@ public class Conexion {
         return conn;
     }
 
-    public static void main(String[] args) {
-        Conexion.setRol("root");
-        Conexion.setContrasena("root");
-        System.out.println(
-                Conexion.getConexion()
-        );
-    }
+   
 
     public static void setRol(String rol) {
         //Roles y usuario y contraseña confifuracion

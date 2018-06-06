@@ -180,7 +180,8 @@ public class AutobusGUI extends JFrame
                     }
                     break;
                 case "inicio":
-                    controlador.inicio();
+                    x.dispose();
+                    //controlador.inicio();
                      break;
                 case "regresar":
                    x.dispose();

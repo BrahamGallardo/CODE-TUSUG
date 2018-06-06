@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.Icon;
@@ -39,8 +40,10 @@ public class Trabajador {
         String ap_materno = interfaz.tfapm.getText().toLowerCase();
         String domicilio = interfaz.area1.getText().toLowerCase();
         String puesto = (String) interfaz.cbPuesto.getSelectedItem().toString().toLowerCase();
-        Date f_nac = interfaz.fecha;
-        Date f_cont = interfaz.fechaA;
+        java.sql.Date f_nac = new java.sql.Date(interfaz.fecha_nac.getDate().getTime());
+        java.sql.Date f_cont = new java.sql.Date(interfaz.fecha_nac.getDate().getTime());
+        //Date f_nac = interfaz.fecha;
+        //Date f_cont = interfaz.fechaA;
         String estado = (String) interfaz.cb6.getSelectedItem().toString().toLowerCase();
         String url = "";
         addT(rfc, nombre, ap_paterno, ap_materno, domicilio, puesto, f_nac, f_cont, estado, url);
@@ -66,8 +69,8 @@ public class Trabajador {
             pstm.setString(9, estado);
             pstm.setString(10, urlImage);
             pstm.execute();
-        } catch (SQLException e) {
-            System.out.println(e);
+        } catch (SQLException ex) {
+            Logger.getLogger(SQLAutobus.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -79,7 +82,7 @@ public class Trabajador {
                     + " estado= ? "
                     + "WHERE rfc = ? ");
             pstm.setString(1, estado);
-            pstm.setString(2, rfc);
+            pstm.setString(2, rfc.toLowerCase());
             pstm.execute();
             pstm.close();
         } catch (SQLException e) {
@@ -87,39 +90,21 @@ public class Trabajador {
         }
     }
 
-    public String[] listatrabajador() {
-        String sql = "select count(rfc) as total from sistemaTusug.trabajador ";
+    public ArrayList<String> listatrabajador() {
+        ArrayList<String> listEmployers = new ArrayList<String>();
+        String sql = "select rfc from sistemaTusug.trabajador where estado like 'activo' ORDER BY rfc";
         PreparedStatement pst;
         ResultSet res;
-        int n = 0;
         try {
+            //sql = "select rfc from sistemaTusug.trabajador ORDER BY rfc";
             pst = c.prepareStatement(sql);
-
             res = pst.executeQuery();
-            res.next();
-            n = res.getInt("total");
-            res.close();
+            while (res.next())
+                listEmployers.add(res.getString("rfc"));
         } catch (SQLException ex) {
             Logger.getLogger(SQLAutobus.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-        String lista[] = new String[n];
-
-        try {
-            sql = "select rfc from sistemaTusug.trabajador ORDER BY rfc";
-            pst = c.prepareStatement(sql);
-            res = pst.executeQuery();
-            int index = 0;
-            while (res.next()) {
-                String dato = res.getString("rfc");
-                lista[index] = dato;
-                index++;
-            }
-            res.close();
-        } catch (SQLException ex) {
-            Logger.getLogger(SQLAutobus.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return lista;
+        return listEmployers;
 
     }
 

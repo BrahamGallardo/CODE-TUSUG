@@ -11,25 +11,30 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 /**
  *
  * @author Alekhius
  */
 public class SQLAutobus {
+
     Connection conn;
-    
-    public SQLAutobus(){
+
+    public SQLAutobus() {
         //Conexion.setConfiguracion("postgres", "Gallardo.1997");
         conn = Conexion.getConexion();
-    }    
-    public void ingresarAutobus(String matr, String id, String marca, 
-            String num_eco, int km, int asientos, 
-            String url_img) throws SQLException{
-        
-        String sql = 
-                "insert into sistemaTusug.autobus values (?,?,?,?,?,?,?)";
+    }
+
+    public void ingresarAutobus(String matr, String id, String marca,
+            String num_eco, int km, int asientos,
+            String url_img) throws SQLException {
+
+        String sql
+                = "insert into sistemaTusug.autobus values (?,?,?,?,?,?,?)";
         PreparedStatement pst = null;
         pst = conn.prepareStatement(sql);
         pst.setString(1, matr);
@@ -43,8 +48,9 @@ public class SQLAutobus {
         System.err.println(
                 n);
     }
+
     // caso "matricula"
-    public void borrarAutobusBy( String arg) throws SQLException{
+    public void borrarAutobusBy(String arg) throws SQLException {
         PreparedStatement stmt = null;
         //int tuplas = 0;
         try {
@@ -57,8 +63,8 @@ public class SQLAutobus {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
         }
     }
-    
-    public String[] obtenerRegistro(String matricula){
+
+    public String[] obtenerRegistro(String matricula) {
         String[] registro = new String[7];
         String sql = "select * from sistemaTusug.autobus where matricula = '" + matricula + "'";
         PreparedStatement pst = null;
@@ -73,66 +79,52 @@ public class SQLAutobus {
             registro[4] = Integer.toString(res.getInt("kilometraje"));
             registro[5] = Integer.toString(res.getInt("asientos"));
             registro[6] = res.getString("url_img");
-            res.close();
+            //res.close();
 
         } catch (SQLException ex) {
             Logger.getLogger(SQLAutobus.class.getName()).log(Level.SEVERE, null, ex);
         }
         return registro;
     }
-    
-    public String[] listaAutobuses(){
-        
-            String sql = "select count(matricula) as total from sistemaTusug.autobus ";
-            PreparedStatement pst;
-            ResultSet res;
-            int n = 0;
+
+    public ArrayList listaAutobuses() {
+        Conexion.getConexion();
+        ArrayList<String> listBuses = new ArrayList<String>();
+        String sql = null;// = "select count(matricula) as total from sistemaTusug.autobus ";
+        PreparedStatement pst;
+        ResultSet res;
         try {
-            pst = conn.prepareStatement(sql);
-        
-            res = pst.executeQuery();
-            res.next();
-            n = res.getInt("total");
-            res.close();
-            } catch (SQLException ex) {
-            Logger.getLogger(SQLAutobus.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        String lista[] = new String[n];
-        
-        try{
             sql = "select matricula from sistemaTusug.autobus ORDER BY matricula";
             pst = conn.prepareStatement(sql);
             res = pst.executeQuery();
-            int index = 0;
-            while(res.next()){
+            while (res.next()) {
                 String dato = res.getString("matricula");
-                lista[index] = dato;
-                index++;
+                listBuses.add(dato);
             }
             res.close();
         } catch (SQLException ex) {
             Logger.getLogger(SQLAutobus.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return lista;
+        return listBuses;
     }
-    public void update(String matricula, String marca, String num_eco, int km, int asientos)throws SQLException{
-        try{
-            PreparedStatement pstm = conn.prepareStatement("UPDATE sistemaTusug.autobus SET " +
-              //+"matricula= ? ," +
-              "marca= ? ," +  
-              "numero_economico= ? ," +  
-              "kilometraje= ? ," +
-              "asientos= ? " + 
-              "WHERE matricula = ? ");            
+
+    public void update(String matricula, String marca, String num_eco, int km, int asientos) throws SQLException {
+        try {
+            PreparedStatement pstm = conn.prepareStatement("UPDATE sistemaTusug.autobus SET "
+                    + //+"matricula= ? ," +
+                    "marca= ? ,"
+                    + "numero_economico= ? ,"
+                    + "kilometraje= ? ,"
+                    + "asientos= ? "
+                    + "WHERE matricula = ? ");
             pstm.setString(1, marca);
             pstm.setString(2, num_eco);
             pstm.setInt(3, km);
             pstm.setInt(4, asientos);
             pstm.setString(5, matricula);
             pstm.execute();
-            pstm.close();            
-        }catch(SQLException e){
+            pstm.close();
+        } catch (SQLException e) {
             System.out.println(e);
         }
     }

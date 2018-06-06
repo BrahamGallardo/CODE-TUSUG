@@ -112,8 +112,6 @@ public class Rutas extends JFrame implements ActionListener {
         return false;
     }
 
-    public static void main(String[] args) {
-        Rutas vp = new Rutas();
-    }
+
 
 }

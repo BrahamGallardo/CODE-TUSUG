@@ -61,7 +61,7 @@
 			</frame>
 			<image>
 				<reportElement x="414" y="0" width="155" height="132" uuid="36bb8b68-8010-43c2-b664-dca940a64883"/>
-				<imageExpression><![CDATA["/Users/Guillermo/Desktop/CODE-TUSUG/JTUSUG/src/imagenes/tusug logo.png"]]></imageExpression>
+				<imageExpression><![CDATA["C:/Lab/Git/CODE-TUSUG/JTUSUG/src/imagenes/tusug logo.png"]]></imageExpression>
 			</image>
 		</band>
 	</title>

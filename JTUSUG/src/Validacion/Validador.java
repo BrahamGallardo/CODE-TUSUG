@@ -51,26 +51,5 @@ public class Validador extends JFrame
             }
         return aux;
     }
-    public static void main(String[]args){
-        Validador v = new Validador();
-        JTextField JTextField=new JTextField();
-        JTextField JTex=new JTextField();
-        JTextField JTextFi=new JTextField();
-        JTextField.setText("TuGfa");
-        JTextFi.setText("Hola");
-        //Este es el formato para mandar a llamar los listener
-        JTextField.addKeyListener(new java.awt.event.KeyAdapter() 
-        {
-            @Override
-            public void keyTyped(java.awt.event.KeyEvent evt) 
-            {
-                validaNum(evt,JTextField,20);
-            }
-        });
-        //Aqui acaba :v
-        System.out.println(validaIngreso(JTextField,JTex,JTextFi));
-        v.add(JTextField);
-        v.setSize(200,200);
-        v.setVisible(true);
-    }
+
 }

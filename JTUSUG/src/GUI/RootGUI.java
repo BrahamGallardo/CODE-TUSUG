@@ -92,7 +92,7 @@ public class RootGUI {
         
         // Botones de Secretaria
         btn_listaBus =          Builder.crearButtonIcon(panel, "modulo_autobus",    carpeta_img + "lista_de_autobuses.png",     new Rectangle(85,  256, 256, 63), listen, false,true, false);
-        btn_facturas =          Builder.crearButtonIcon(panel, "facturas",          carpeta_img + "facturas.png",               new Rectangle(85,  352, 256, 63), listen, false,true, false);
+        btn_facturas =          Builder.crearButtonIcon(panel, "facturas",          carpeta_img + "sec_facturas.png",           new Rectangle(85,  352, 256, 63), listen, false,true, false);
         btn_reportes =          Builder.crearButtonIcon(panel, "reportes",          carpeta_img + "reportes.png",               new Rectangle(379, 256, 256, 63), listen, false,true, false);
         // Botones de Almacen
         btn_insumos =           Builder.crearButtonIcon(panel, "insumos",           carpeta_img + "Insumos.png",                new Rectangle(85,  256, 256, 63), listen, false,true, false);
@@ -230,11 +230,5 @@ public class RootGUI {
         }
     }
 
-    public static void main(String [] x){
-        Conexion.setRol("root");
-        new RootGUI("root", "Alejo");
-        //new RootGUI("secretarua", "Alejo");
-        //new RootGUI("root", "Alejo");
-        //new RootGUI("root", "Alejo");
-    }
+
 }

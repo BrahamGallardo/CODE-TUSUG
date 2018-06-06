@@ -143,7 +143,5 @@ public class ListaSiniestroGUI {
 
     }
 
-    public static void main(String[] args) {
-        ListaSiniestroGUI l = new ListaSiniestroGUI();
-    }
+ 
 }
