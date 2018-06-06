@@ -49,7 +49,7 @@ public class LoginGUI {
     public LoginGUI() {
         Conexion.setRol("root");
         conn = Conexion.getConexion();
-        sesiones = new HashMap<>();
+        sesiones = new HashMap<String, Sesion>();
         loadSesiones();
         initComponents();
         for (Sesion s: sesiones.values())
@@ -100,49 +100,6 @@ public class LoginGUI {
 
         b.addKeyListener(new CustomKeyListener());
     }
-
-    public void cargarSesion() {
-        try {
-            String rfc = txt_rfc.getText();
-            String query = "SELECT rfc, descripcion, contrasenia  FROM sistemaTusug.usuario as a INNER JOIN "
-                    + "sistemaTusug.rol as b  ON a.id_rol = b.id_rol "
-                    + "WHERE  a.rfc  = '" + rfc + "'";
-            PreparedStatement s = conn.prepareStatement(query);
-            ResultSet rs = s.executeQuery();
-            if (rs.next()) {
-                nombre_usuario = rs.getString("rfc");;
-                rol = rs.getString("descripcion");
-                contrasenia = rs.getString("contrasenia");
-            } else {
-                nombre_usuario = "";
-                rol = "";
-                contrasenia = "";
-            }
-            rs.close();
-            s.close();
-        } catch (SQLException ex) {
-            Logger.getLogger(LoginGUI.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    /**public void iniciarSesion() throws Exception {
-        cargarSesion();
-        //System.err.println(contrasenia + " - " + Encriptar.md5(txt_password.getText()));
-        if (contrasenia.equals(
-                Encriptar.md5(txt_password.getText()))) {
-            RootGUI main = new RootGUI(rol, nombre_usuario);
-            Conexion.setRol(rol);
-            frame.dispose();
-        } else {
-            // Code here:
-            // Aviso de contraseña incorrecta
-            javax.swing.JOptionPane.showMessageDialog(null,
-                    "Usuario o contraseña incorrectos");
-            //txt_rfc.setText("");
-            txt_password.setText("");
-        }
-
-    }*/
 
     public void iniciarSesion() throws Exception {
         String inputPass = txt_password.getText();
