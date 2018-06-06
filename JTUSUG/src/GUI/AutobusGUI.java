@@ -258,7 +258,7 @@ public class AutobusGUI extends JFrame
             if(list.getSelectedValue()!=null){
                 String matricula = (String)list.getSelectedValue();
                 SQLAutobus s = new SQLAutobus();
-                String registro[] = s.obtenerRegistro(matricula);
+                String registro[] = s.obtenerRegistro(matricula.toLowerCase());
                 txt_matricula.setText(registro[0].toUpperCase());
                 txt_marca.    setText(registro[2].toUpperCase());
                 txt_No_Eco.   setText(registro[3].toUpperCase());

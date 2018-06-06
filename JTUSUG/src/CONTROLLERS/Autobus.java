@@ -66,13 +66,13 @@ public class Autobus {
 
     public void cargarvariables() {
         matricula = ui.txt_matricula.getText().toLowerCase();
-        id = "";//ui.txt_id.getText().toLowerCase();
-        marca = ui.txt_marca.getText();//.toLowerCase();
-        num_eco = ui.txt_No_Eco.getText();//.toLowerCase();
+        id = ui.txt_id.getText().toLowerCase();
+        marca = ui.txt_marca.getText().toLowerCase();
+        num_eco = ui.txt_No_Eco.getText().toLowerCase();
         km = Integer.valueOf(ui.txt_Km.getText());
         asientos = Integer.valueOf(ui.txt_asientos.getText());
         //Logger.getLogger("Hi").log(Level.SEVERE, " - Linea 55 - ");
-        url_img = "Not found";//seleccionarImg();
+        url_img = "src/imagenes/autobu.png";//seleccionarImg();
     }
 
     public String seleccionarImg() {
@@ -167,7 +167,7 @@ public class Autobus {
         DefaultListModel modelo = new DefaultListModel();
         ArrayList<String> lista = obtenerlista();
         for (int i = 0; i < lista.size(); i++) {
-            modelo.addElement(lista.get(i));
+            modelo.addElement(lista.get(i).toUpperCase());
         }
         l.setModel(modelo);
     }

@@ -3,6 +3,7 @@ package CONTROLLERS;
 import Servicios.Fachada;
 import java.sql.Date;
 import GUI.TrabajadorGUI;
+import java.awt.Image;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -217,12 +218,14 @@ public class Trabajador {
         }
     }
 
-    public void putImageProfile(String path) {
-        System.err.println(path);
-        Icon icon = new ImageIcon(path);
+        public void putImageProfile(String path) {
+        // Replace los simbolos        '\'       por '/'
+        String Path = path.replace('\u005C\u005C' ,  '\u002F');
+        ImageIcon fot = new ImageIcon(Path);
+        Icon icon = new ImageIcon(fot.getImage().getScaledInstance(interfaz.lb_imagen.getWidth(), interfaz.lb_imagen.getHeight(), Image.SCALE_DEFAULT));
         interfaz.lb_imagen.setIcon(icon);
     }
-
+    
     public void cargarImagen() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

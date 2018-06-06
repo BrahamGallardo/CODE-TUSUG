@@ -67,7 +67,7 @@ public class GFacturas1 extends JFrame {
         vaciar.setBackground(Color.white);
         vaciar.setForeground(Color.black);
         regresar = Builder.crearButtonIcon(p, "regresar", ruta + "regresar.png", new Rectangle(326, 513, 41, 41), listener, true, false);
-        cSesion = Builder.crearButtonIcon(p, "Cerrar Sesión", ruta + "boton_cerrar_sesion.png", new Rectangle(460, 510, 142, 45), listener, true, false);
+        //cSesion = Builder.crearButtonIcon(p, "Cerrar Sesión", ruta + "boton_cerrar_sesion.png", new Rectangle(460, 510, 142, 45), listener, true, false);
         siguiente = Builder.crearButtonIcon(p, "Siguiente", ruta + "img_siguiente.png", new Rectangle(552, 460, 87, 43), listener, true, false);
 
         //RadioButton
@@ -115,7 +115,7 @@ public class GFacturas1 extends JFrame {
         public void actionPerformed(ActionEvent e) {
             String op = e.getActionCommand();
             switch (op) {
-                case "Regresar":
+                case "regresar":
                     f.dispose();
                     break;
                 case "Cerrar Sesión":
