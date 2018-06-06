@@ -6,13 +6,10 @@
 package CONTROLLERS;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -121,7 +118,7 @@ public class SQLAutobus {
             pstm.setString(2, num_eco);
             pstm.setInt(3, km);
             pstm.setInt(4, asientos);
-            pstm.setString(5, matricula);
+            pstm.setString(5, matricula.toLowerCase());
             pstm.execute();
             pstm.close();
         } catch (SQLException e) {

@@ -5,7 +5,6 @@ import GUI.RootGUI;
 import Servicios.Fachada;
 import static Validacion.Validador.validaIngreso;
 import java.awt.Image;
-import java.io.File;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -15,9 +14,7 @@ import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
-import javax.swing.JFileChooser;
 import javax.swing.JList;
-import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
@@ -66,7 +63,7 @@ public class Autobus {
 
     public void cargarvariables() {
         matricula = ui.txt_matricula.getText().toLowerCase();
-        id = ui.txt_id.getText().toLowerCase();
+       id = "";//ui.txt_id.getText().toLowerCase();
         marca = ui.txt_marca.getText().toLowerCase();
         num_eco = ui.txt_No_Eco.getText().toLowerCase();
         km = Integer.valueOf(ui.txt_Km.getText());
