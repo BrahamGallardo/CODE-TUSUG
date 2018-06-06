@@ -187,6 +187,7 @@ public class TrabajadorGUI {
                 nuevo.setEnabled(false);
                 agregar.setEnabled(false);
                 baja.setEnabled(false);
+                area1.setEnabled(false);
                 btn_cancelar.setVisible(true);
         }
     };
@@ -272,6 +273,7 @@ public class TrabajadorGUI {
                 nuevo.setEnabled(true);
                 agregar.setEnabled(true);
                 baja.setEnabled(true);
+                area1.setEnabled(true);
                 btn_cancelar.setVisible(false);
             }
             else

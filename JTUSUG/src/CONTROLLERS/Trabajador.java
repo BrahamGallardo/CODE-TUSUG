@@ -46,19 +46,17 @@ public class Trabajador {
         //Date f_nac = interfaz.fecha;
         //Date f_cont = interfaz.fechaA;
         String estado = (String) interfaz.cb6.getSelectedItem().toString().toLowerCase();
-        String url = "";
+        String url = " ";
         addT(rfc, nombre, ap_paterno, ap_materno, domicilio, puesto, f_nac, f_cont, estado, url);
 
     }
 
     public void addT(String rfc, String nombre, String ap_paterno, String ap_materno, String domicilio, String puesto, Date f_nac, Date f_cont, String estado, String urlImage) {
         try {
-            System.out.print("agregado");
 
             PreparedStatement pstm = c.prepareStatement("insert into "
                     + "sistemaTusug.trabajador(rfc,nombre,ap_paterno, ap_materno,domicilio,puesto,fecha_nac,fecha_contratacion,estado,url_img) "
                     + " values(?,?,?,?,?,?,?,?,?,?)");
-            System.out.print("agregado");
             pstm.setString(1, rfc);
             pstm.setString(2, nombre);
             pstm.setString(3, ap_paterno);
@@ -70,6 +68,7 @@ public class Trabajador {
             pstm.setString(9, estado);
             pstm.setString(10, urlImage);
             pstm.execute();
+            System.out.print("agregado");
         } catch (SQLException ex) {
             Logger.getLogger(SQLAutobus.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -85,7 +84,7 @@ public class Trabajador {
             pstm.setString(1, estado);
             pstm.setString(2, rfc.toLowerCase());
             pstm.execute();
-            pstm.close();
+           // pstm.close();
         } catch (SQLException e) {
             System.out.println(e);
         }
@@ -132,7 +131,7 @@ public class Trabajador {
             pstm.setString(5, puesto);
             pstm.setString(6, rfc);
             pstm.execute();
-            pstm.close();
+           // pstm.close();
         } catch (SQLException e) {
             System.out.println(e);
         }
@@ -151,7 +150,7 @@ public class Trabajador {
                 registros[0] = rs.getString(1);
                 System.out.print(registros[0]);
                 m.add(registros[0]);
-                st.close();
+             //   st.close();
 
             }
 
@@ -185,7 +184,7 @@ public class Trabajador {
                 registros[8] = rs.getString(9);
                 putImageProfile(rs.getString("url_img"));
             }
-            pstm.close();
+         //   pstm.close();
         } catch (Exception e) {
             //System.out.println(e.getMessage());
             Logger.getLogger(SQLAutobus.class.getName()).log(Level.SEVERE, null, e);
