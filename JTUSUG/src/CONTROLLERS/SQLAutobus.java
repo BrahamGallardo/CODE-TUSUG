@@ -52,7 +52,7 @@ public class SQLAutobus {
         //int tuplas = 0;
         try {
             stmt = conn.prepareStatement("delete from sistematusug.autobus where matricula = ?");
-            stmt.setString(1, arg);
+            stmt.setString(1, arg.toLowerCase());
             int tuplas = stmt.executeUpdate();
             //rs.close();
             stmt.close();
