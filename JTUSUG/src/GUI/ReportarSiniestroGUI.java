@@ -150,9 +150,10 @@ public class ReportarSiniestroGUI {
                 }
             }
                     break;
-                case "Cerrar Sesion":
+                case "cerrarSesion":
                     break;
-                case "Regresar":
+                case "regresar":
+                    f.dispose();
                     break;
             }
         }

@@ -58,7 +58,7 @@ public class VFacturas extends JFrame {
         
         //botones  
         regresar = Builder.crearButtonIcon(p, "regresar", ruta+"regresar.png",new Rectangle(326,513, 41,41), listener, true, false);
-        cSesion = Builder.crearButtonIcon(p,"Cerrar Sesión", ruta+"boton_cerrar_sesion.png",new Rectangle(460,510, 142,45), listener, true, false);
+        cSesion = Builder.crearButtonIcon(p,"cerrarSesion", ruta+"boton_cerrar_sesion.png",new Rectangle(460,510, 142,45), listener, true, false);
         b1 = Builder.crearButtonIcon(p,"1", ruta+"btn_1.png",new Rectangle(77,106,36,36), listener, true,false);
         b2 = Builder.crearButtonIcon(p,"2", ruta+"btn_2_selected.png",new Rectangle(156,106,36,36), listener, true,false);
         buscar = Builder.crearBoton(p, "Buscar",new Rectangle(291,106,74,21) , listener, true, false);

@@ -41,7 +41,7 @@ public class AutobusGUI extends JFrame
     {
         Color color = new Color(233,233,233);
         JButton inicio=     Builder.crearButtonIcon(p,"inicio",ruta + "boton_inicio.png",       new Rectangle(14,63,101,43), listener,false,false);
-        JButton sesion=     Builder.crearButtonIcon(p,"sesion",ruta + "boton_cerrar_sesion.png",new Rectangle(539,65,142,43),listener,false,false);
+        JButton sesion=     Builder.crearButtonIcon(p,"cerrarSesion",ruta + "boton_cerrar_sesion.png",new Rectangle(539,65,142,43),listener,false,false);
         JButton buscar =    Builder.crearButtonIcon(p,"buscar",ruta + "buscar.png",             new Rectangle(26,185,32,32) ,listener,false,false);
         txt_buscar=         Builder.crearTextField(p, new Rectangle(68, 189, 106, 25), "", null, null,new Font("Segoe UI", Font.BOLD, 10),true,true,true);
         list=new JList();
@@ -195,7 +195,7 @@ public class AutobusGUI extends JFrame
                 case "regresar":
                    x.dispose();
                     break;
-                case "sesion":
+                case "cerrarSesion":
                     LoginGUI l = new LoginGUI();
                     x.dispose();
                     break;

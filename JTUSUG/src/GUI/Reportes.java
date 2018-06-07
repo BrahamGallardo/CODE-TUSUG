@@ -36,7 +36,7 @@ public class Reportes {
         imprimir=       Builder.crearButtonIcon(p, "imprimir",     "src/imagenes/print.png",        new Rectangle(663,243,24,24),  null, true, false);
         guardar=        Builder.crearButtonIcon(p, "guardar",      "src/imagenes/save.png",         new Rectangle(663,301, 24, 24),null, true, false);
         regresar=       Builder.crearButtonIcon(p, "regresar",     "src/imagenes/regresar.png",     new Rectangle(362, 518,32, 32), null, true, false);
-        //cerrar_sesion=  Builder.crearButtonIcon(p, "cerrar_sesion","src/imagenes/cerrar_sesion.png",new Rectangle(460, 506, 201, 63) , null, true, false);
+        cerrar_sesion=  Builder.crearButtonIcon(p, "cerrarSesion","src/imagenes/cerrar_sesion.png",new Rectangle(460, 506, 201, 63) , null, true, false);
         
         //JLabel
         

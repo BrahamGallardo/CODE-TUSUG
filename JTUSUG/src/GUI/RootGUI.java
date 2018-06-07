@@ -115,7 +115,7 @@ public class RootGUI {
         
         // Botones generales
         btn_regresar =          Builder.crearButtonIcon(panel, "Uncknown",          carpeta_img + "regresar.png",               new Rectangle(335, 523, 32,  32), listen, true, false,false);
-        btn_close =             Builder.crearButtonIcon(panel, "CerrarSesion",      carpeta_img + "cerrar_sesion.png",          new Rectangle(460, 506, 201, 63), listen, true, true, true);
+        //btn_close =             Builder.crearButtonIcon(panel, "CerrarSesion",      carpeta_img + "cerrar_sesion.png",          new Rectangle(460, 506, 201, 63), listen, true, true, true);
         // Botones de root
         btn_secre =             Builder.crearButtonIcon(panel, "btnSecretaria",     carpeta_img + "secretaria.png",             new Rectangle(85,  256, 256, 63), listen, true, true, false);
         //           Builder.crearButtonIcon(panel, "btnAlmacen",        carpeta_img + "almacen.png",                new Rectangle(85,  352, 256, 63), listen, true, true, false);
@@ -177,15 +177,6 @@ public class RootGUI {
                     btn_regresar.setActionCommand("btn_back_almacen");
                     lb_title.setText("Almacen");
                     break;
-                    case "btnrutas":
-                        //Rutas r = new Rutas();                        
-                        java.awt.EventQueue.invokeLater(new Runnable() {
-                            public void run() {
-                                new interfaz().setVisible(true);
-                            }
-                        });
-                    break;
-                    
                 case "btnManten":
                     deshabilitarComponentes(btn_secre, btn_manten, btn_rrhh);
                     habilitarComponentes(btn_regresar, btn_nuevoreporte, btn_historial);
@@ -198,6 +189,26 @@ public class RootGUI {
                     btn_regresar.setActionCommand("btn_back_RH");
                     lb_title.setText("Recursos Humanos");
                     break;
+                 /**-----------------------------| Boton Global |---------------------------------------------*/
+                case "btnrutas":
+                    root.setVisible(false);
+                    java.awt.EventQueue.invokeLater(new Runnable() {
+                        public void run() {
+                            interfaz instance = new interfaz();//.setVisible(true);
+                            instance.setVisible(true);
+                            instance.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE); 
+                            instance.addWindowListener(new java.awt.event.WindowAdapter() {
+                                @Override
+                                public void windowClosing(java.awt.event.WindowEvent evt) {
+                                    instance.dispose();
+                                    root.setVisible(true);
+                                }
+                            });
+                            
+                            //instance.setDefaultCloseOperation(0);
+                        }
+                    });
+                break;
                 /*-------------------------------|Botones para el flujo el programa|--------------------------*/
                 case "btn_regresar": //Secretaria
                     deshabilitarComponentes(btn_regresar, btn_listaBus, btn_facturas, btn_reportes);
@@ -218,16 +229,21 @@ public class RootGUI {
                     break;
                 /*-------------------------------|Botones para Secretaria|--------------------------*/
                 case "modulo_autobus":
+                    root.setVisible(false);
                     AutobusGUI auto = new AutobusGUI();
+                    auto.btn_regresar.addActionListener(nextWindowFlowProgram);
                     break;
                 case "facturas":
-                    GFacturas facuras = new GFacturas();
+                    root.setVisible(false);
+                    GFacturas facturas = new GFacturas();
+                    facturas.regresar.addActionListener(nextWindowFlowProgram);
+                    facturas.cSesion.addActionListener(nextWindowFlowProgram);
                     break;
                 case "reportes":
                     javax.swing.JOptionPane.showMessageDialog(null, "Esta funcion aun no esta implementada");
                     break;
                 /*-------------------------------|Botones para Almacen|--------------------------*/
-                case "insumos":
+                /*case "insumos":
                     javax.swing.JOptionPane.showMessageDialog(null, "Esta funcion aun no esta implementada");
                     break;
                 case "lista_inventario":
@@ -236,9 +252,12 @@ public class RootGUI {
                 case "generarInventario":
                     javax.swing.JOptionPane.showMessageDialog(null, "Esta funcion aun no esta implementada");
                     break;
+                    */
                 /*-------------------------------|Botones para Recursos Humanos|--------------------------*/
                 case "btntrabajadores":
+                    root.setVisible(false);
                     TrabajadorGUI employer = new TrabajadorGUI();
+                    employer.back.addActionListener(nextWindowFlowProgram);
                     break;
                 case "btnexpedientes":
                     javax.swing.JOptionPane.showMessageDialog(null, "Esta funcion aun no esta implementada");
@@ -251,18 +270,24 @@ public class RootGUI {
                     break;
                 /*-------------------------------|Botones para Mantenimiento|--------------------------*/
                 case "MnuevoReporte":
+                    root.setVisible(false);
                     GUIReporteManten report = new GUIReporteManten();
+                    report.btn_regresar.addActionListener(nextWindowFlowProgram);
+                    report.btn_cerrarsesion.addActionListener(nextWindowFlowProgram);
                     break;
                 case "MreUnidades":
                     javax.swing.JOptionPane.showMessageDialog(null, "Esta funcion aun no esta implementada");
                     break;
                 case "Mhistorial":
+                    root.setVisible(false);
                     HistorialMantenGUI h = new HistorialMantenGUI();
+                    h.btn_regresar.addActionListener(nextWindowFlowProgram);
+                    h.btn_cerrarSesion.addActionListener(nextWindowFlowProgram);
                     break;
                     
                  /** -------------------|Eventos para el JMenuBar|--------------------*/
                 case "Cerrar Sesion":
-                   new LoginGUI();
+                   LoginGUI login = new LoginGUI();                   
                    root.dispose();
                    break;
                 case "Cambiar Password":
@@ -277,13 +302,30 @@ public class RootGUI {
                         
                     }catch (Exception ex){
                         
-                    }
-                   
+                    }                   
                    break;
+                /** ---------------------------->   <-----------------------------------*/
             }
         }
     }
 
+    ActionListener nextWindowFlowProgram = new ActionListener(){
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            String op = e.getActionCommand();
+            switch(op){
+                case "cerrarSesion":
+                    LoginGUI l = new LoginGUI();
+                    root.dispose();
+                    
+                    //root.setVisible(false);
+                    break;
+                case "regresar":
+                    root.setVisible(true);
+                    break;
+            }
+        }        
+    };
     public void cambiarPasswordEvt(){
         
     }
