@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -42,6 +43,7 @@ public class SQLAutobus {
         pst.setInt(6, asientos);
         pst.setString(7, url_img);
         int n = pst.executeUpdate();
+        JOptionPane.showMessageDialog(null, "AUTOBUS AGREGADO");
         System.err.println(
                 n);
     }
