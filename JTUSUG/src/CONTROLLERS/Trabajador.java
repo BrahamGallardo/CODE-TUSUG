@@ -209,7 +209,7 @@ public class Trabajador {
             //pstm.close();
             // Mostrar la img en el Label
             Icon icon = new ImageIcon(absPathImg);
-            interfaz.lb_imagen.setIcon(icon);
+            interfaz.lb_imagen.setIcon(icon); 
         } catch (SQLException e) {
             System.out.println("Error 404: Conexion refusada o algun pedo así");
         } catch (NullPointerException ex) {
