@@ -109,7 +109,7 @@ public class TrabajadorGUI {
         baja=           Builder.crearButtonIcon( p, "Eliminar Empleado",    "src/imagenes/boton-x.png",                             new Rectangle(218, 268, 32, 32), bajaT,  false, false,true,color); 
         baja.setEnabled(false);
         btlista=        Builder.crearButtonIcon( p, "Lista Trabajadores",   "src/imagenes/boton_lista_trabajadores__selected_.png", new Rectangle(175, 67, 140, 27), null,   true, false); 
-        btactinac=      Builder.crearButtonIcon( p, "Activos e Inactivos",  "src/imagenes/boton_activos_inactivos.png",             new Rectangle(342, 67, 130, 27), null,   true, false); 
+       // btactinac=      Builder.crearButtonIcon( p, "Activos e Inactivos",  "src/imagenes/boton_activos_inactivos.png",             new Rectangle(342, 67, 130, 27), null,   true, false); 
         Cfoto=          Builder.crearBoton(      p, "Cambiar Foto",         new Rectangle(547, 273, 109, 20),eventos, true, true);
         Cfoto.setBackground(Color.white);
         Cfoto.setEnabled(false);
@@ -198,6 +198,7 @@ public class TrabajadorGUI {
                 cb6.setEnabled(true);
                 cbPuesto.setEnabled(true);
                 fecha_nac.setEnabled(true);
+                
         }
     };
     
@@ -306,6 +307,7 @@ public class TrabajadorGUI {
                 cb6.setEnabled(false);
                 cbPuesto.setEnabled(false);
                 fecha_nac.setEnabled(false);
+                JOptionPane.showMessageDialog(null,"Guardado Exitosamente");
             }
             else
                 JOptionPane.showMessageDialog(null,"Campos vacios");
@@ -331,6 +333,7 @@ public class TrabajadorGUI {
                 area1.setText("");
                 interfaz.putImageProfile("src/imagenes/");
                 Cfoto.setEnabled(false);
+                JOptionPane.showMessageDialog(null,"Guardado Exitosamente");
             }else
                 JOptionPane.showMessageDialog(null,"Campos vacios");
         }
