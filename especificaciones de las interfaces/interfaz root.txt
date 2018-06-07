@@ -20,7 +20,7 @@ momento, estaran siempre disponibles.
 *Posicion: (85,256).
 *Tamaño: 256 x 63 px.
 
->>JButton "almacen".
+>>JButton "rutas".
 *Posicion: (85,352).
 *Tamaño: 256 x 63 px.
 
