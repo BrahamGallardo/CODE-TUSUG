@@ -50,7 +50,7 @@ create table chofer
 
 create table chofer_autobus
 (	
-	rfc varchar(13) references chofer(rfc) not null,
+	rfc varchar(13) references trabajador(rfc) not null,
 	matricula varchar(10) references autobus(matricula) not null
 );
 

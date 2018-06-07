@@ -100,5 +100,5 @@ JLabel "lista de autobuses"
 *Tamaño: 114 x 20 px.
 
 JList lista_trabajadores
-*Posicion: (488,167).
+*Posicion: (488,167).1
 *Tamaño: 140 x 280 px.
