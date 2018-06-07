@@ -160,7 +160,7 @@ public class RootGUI {
         public void actionPerformed(ActionEvent e) {
             String op = e.getActionCommand();
             switch (op) {
-                // Btns Principales
+                /*-------------------------------|Botones de flujo del programa|--------------------------*/
                 case "CerrarSesion":
                     LoginGUI l = new LoginGUI();
                     root.dispose();
@@ -198,7 +198,7 @@ public class RootGUI {
                     btn_regresar.setActionCommand("btn_back_RH");
                     lb_title.setText("Recursos Humanos");
                     break;
-                // Btns de Regresar segun el caso
+                /*-------------------------------|Botones para el flujo el programa|--------------------------*/
                 case "btn_regresar": //Secretaria
                     deshabilitarComponentes(btn_regresar, btn_listaBus, btn_facturas, btn_reportes);
                     habilitarComponentes(btn_secre, btn_manten, btn_rrhh);
@@ -216,7 +216,7 @@ public class RootGUI {
                     deshabilitarComponentes(btn_regresar, btn_nuevoreporte, btn_reUnidades, btn_historial);
                     habilitarComponentes(btn_secre, btn_manten, btn_rrhh);
                     break;
-                //  Botones de la Secretaria
+                /*-------------------------------|Botones para Secretaria|--------------------------*/
                 case "modulo_autobus":
                     AutobusGUI auto = new AutobusGUI();
                     break;
@@ -226,7 +226,7 @@ public class RootGUI {
                 case "reportes":
                     javax.swing.JOptionPane.showMessageDialog(null, "Esta funcion aun no esta implementada");
                     break;
-                //Botones de almacen
+                /*-------------------------------|Botones para Almacen|--------------------------*/
                 case "insumos":
                     javax.swing.JOptionPane.showMessageDialog(null, "Esta funcion aun no esta implementada");
                     break;
@@ -236,7 +236,7 @@ public class RootGUI {
                 case "generarInventario":
                     javax.swing.JOptionPane.showMessageDialog(null, "Esta funcion aun no esta implementada");
                     break;
-                // Btns de Recursos Humanos RRHH
+                /*-------------------------------|Botones para Recursos Humanos|--------------------------*/
                 case "btntrabajadores":
                     TrabajadorGUI employer = new TrabajadorGUI();
                     break;
@@ -249,7 +249,7 @@ public class RootGUI {
                 case "btniactivos":
                     javax.swing.JOptionPane.showMessageDialog(null, "Esta funcion aun no esta implementada");
                     break;
-                // Botones de Mantenimiento
+                /*-------------------------------|Botones para Mantenimiento|--------------------------*/
                 case "MnuevoReporte":
                     GUIReporteManten report = new GUIReporteManten();
                     break;
