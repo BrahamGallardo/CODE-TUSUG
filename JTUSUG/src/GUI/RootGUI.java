@@ -155,6 +155,7 @@ public class RootGUI {
     
     public void cambiarContra()
     {
+        conn = Conexion.getConexion();
         try {
             PreparedStatement pstm = conn.prepareStatement("UPDATE sistemaTusug.usuario set contrasenia = md5(?) where rfc = ?;");                  
             pstm.setString(1,newPassConfirm );
@@ -323,9 +324,9 @@ public class RootGUI {
                             javax.swing.JOptionPane.showMessageDialog(null, "Contraseña cambiada");
                         }
                     }catch(NullPointerException ex){
-                        
+                        Logger.getLogger(RootGUI.class.getName()).log(Level.SEVERE, null, ex);
                     }catch (Exception ex){
-                        
+                        Logger.getLogger(RootGUI.class.getName()).log(Level.SEVERE, null, ex);
                     }                   
                    break;
                 /** ---------------------------->   <-----------------------------------*/
