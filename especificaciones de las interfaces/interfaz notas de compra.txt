@@ -1,0 +1,28 @@
+JLabel etiqueta "notas de compra"
+*Posicion: (291,100)
+*Tamaño: 119 x 18 px.
+*Fuente de letra: Segoe UI
+*Tamaño letra: 14 (NEGRITA).
+
+JButton boton "regresar"
+*Posicion: (326,518).
+*Tamaño: 32 x 32 px.
+*Nombre icono: "regresar.png"
+
+JMenuBar username
+*Posicion: (589,116).
+*Tamaño: 67 x 18 px.
+Fuente letra: Segoe UI
+tamaño letra: 14
+
+JImageIcon foto_usuario
+*Posicion: (547,109).
+*Tamaño: 32 x 32 px.
+
+JButton boton "generar nota de compra"
+*Posicion: (104,162).
+*Tamaño: 207 x 333 px.
+
+JButton boton "visualizar nota de compra"
+*Posicion: (380,162).
+*Tamaño: 207 x 333 px.
