@@ -1,8 +1,16 @@
 package GUI;
+import CONTROLLERS.ControladorChoferAutobus;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.sql.SQLException;
+import static java.util.Collections.list;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -18,12 +26,12 @@ import javax.swing.*;
 
 public class GUIAutobusChofer {
     String ruta = "src/imagenes/";
-    public JList lista;
+    public JList lista, list;
     public JScrollBar   scroll; 
     public JButton btActualizar,confirm,regresar;
     public JLabel lTrabajadores,dGeneral,nombre,apP,apM,estado,cAutobus,matricula,marca,km;
-    public JTextField name,ap_paterno,ap_materno,state,matric,marc,kilometraje;
-    public JComboBox combo;
+    public JTextField name,ap_paterno,ap_materno,state,matric,marc,kilometraje, combo;
+   
     public String user;
     JMenuBar barra;
     JMenu archivo;
@@ -32,8 +40,11 @@ public class GUIAutobusChofer {
     JFrame x;    
     JPanel p;
     ActionListener listener;
+    ControladorChoferAutobus controlador;
     public GUIAutobusChofer()
     {
+        ControladorChoferAutobus ui= new ControladorChoferAutobus(this);
+        controlador=ui;
         user = "Usuario";
         x = Builder.construirFrame("Trabajador", new Rectangle(0,0,700,600), false); 
         p = Builder.crearPanel(x, new Rectangle(0,0,700,600),ruta + "fondo_vta_chofer_autobus.png", false);
@@ -52,24 +63,24 @@ public class GUIAutobusChofer {
          barra.setVisible(true);
          
         //botones
-        btActualizar =  Builder.crearButtonIcon( p, "Actualizar",ruta+"boton_actualizar_lista.png",new Rectangle(89,444,145,36),listener ,true, false);      
-        confirm = Builder.crearButtonIcon(p,"confirmar", ruta+"btn_confirmar.png",new Rectangle(409,451,114,43), listener, true, false);
-        regresar = Builder.crearButtonIcon(p, "regresar", ruta+"regresar.png",new Rectangle(326,513, 41,41), listener, true, false);
+        btActualizar =  Builder.crearButtonIcon( p,     "Actualizar",ruta+"boton_actualizar_lista.png", new Rectangle(89,444,145,36),listener ,true, false);      
+        confirm =       Builder.crearButtonIcon(p,      "confirmar", ruta+"btn_confirmar.png",          new Rectangle(409,451,114,43), new  CustomActionListener(), true, false);
+        regresar =      Builder.crearButtonIcon(p,      "regresar",  ruta+"regresar.png",               new Rectangle(326,513, 41,41), listener, true, false);
 
         
         
         
         //Labels
-        lTrabajadores = Builder.crearLabel(p,"Lista de Trabajadores",new Rectangle(87,122,136,20),new Color(66,66,66), null, new Font("Segoe UI", Font.PLAIN, 14)); 
-        dGeneral = Builder.crearLabel(p,"Descripcion General",new Rectangle(387,112,121,20),new Color(66,66,66), null, new Font("Segoe UI", Font.PLAIN, 14)); 
-        nombre = Builder.crearLabel(p,"Nombre:",new Rectangle(336,150,55,20),new Color(66,66,66), null, new Font("Segoe UI", Font.PLAIN, 14)); 
-        apP = Builder.crearLabel(p,"Ap. Paterno:",new Rectangle(314,183,76,20),new Color(66,66,66), null, new Font("Segoe UI", Font.PLAIN, 14)); 
-        apM = Builder.crearLabel(p,"Ap. Materno:",new Rectangle(309,223,80,20),new Color(66,66,66), null, new Font("Segoe UI", Font.PLAIN, 14)); 
-        estado = Builder.crearLabel(p,"Estado:",new Rectangle(344,258,45,20),new Color(66,66,66), null, new Font("Segoe UI", Font.PLAIN, 14)); 
-        cAutobus = Builder.crearLabel(p,"Codigo Autobus:",new Rectangle(285,318,105,20),new Color(66,66,66), null, new Font("Segoe UI", Font.PLAIN, 14)); 
-        matricula = Builder.crearLabel(p,"Matricula:",new Rectangle(328,349,62,20),new Color(66,66,66), null, new Font("Segoe UI", Font.PLAIN, 14)); 
-        marca = Builder.crearLabel(p,"Marca:",new Rectangle(346,381,43,20),new Color(66,66,66), null, new Font("Segoe UI", Font.PLAIN, 14)); 
-        km = Builder.crearLabel(p,"Kilometraje:",new Rectangle(315,416,73,20),new Color(66,66,66), null, new Font("Segoe UI", Font.PLAIN, 14)); 
+        lTrabajadores = Builder.crearLabel(p,"Lista de Trabajadores",   new Rectangle(65,137,136,20),new Color(66,66,66), null, new Font("Segoe UI", Font.PLAIN, 14)); 
+        dGeneral =      Builder.crearLabel(p,"Descripcion General",     new Rectangle(317,129,121,20),new Color(66,66,66), null, new Font("Segoe UI", Font.PLAIN, 14)); 
+        nombre =        Builder.crearLabel(p,"Nombre:",                 new Rectangle(266,167,55,20),new Color(66,66,66), null, new Font("Segoe UI", Font.PLAIN, 14)); 
+        apP =           Builder.crearLabel(p,"Ap. Paterno:",            new Rectangle(242,200,76,20),new Color(66,66,66), null, new Font("Segoe UI", Font.PLAIN, 14)); 
+        apM =           Builder.crearLabel(p,"Ap. Materno:",            new Rectangle(239,240,80,20),new Color(66,66,66), null, new Font("Segoe UI", Font.PLAIN, 14)); 
+        estado =        Builder.crearLabel(p,"Estado:",                 new Rectangle(271,270,45,20),new Color(66,66,66), null, new Font("Segoe UI", Font.PLAIN, 14)); 
+        cAutobus =      Builder.crearLabel(p,"Codigo Autobus:",         new Rectangle(219,333,102,20),new Color(66,66,66), null, new Font("Segoe UI", Font.PLAIN, 14)); 
+        matricula =     Builder.crearLabel(p,"Matricula:",              new Rectangle(258,366,62,20),new Color(66,66,66), null, new Font("Segoe UI", Font.PLAIN, 14)); 
+        marca =         Builder.crearLabel(p,"Marca:",                  new Rectangle(276,398,43,20),new Color(66,66,66), null, new Font("Segoe UI", Font.PLAIN, 14)); 
+        km =            Builder.crearLabel(p,"Kilometraje:",            new Rectangle(245,433,73,20),new Color(66,66,66), null, new Font("Segoe UI", Font.PLAIN, 14)); 
         
         
         
@@ -77,25 +88,72 @@ public class GUIAutobusChofer {
         //lista
          lista= new JList();
          p.add(lista);
-         lista.setBounds(new Rectangle(65,150,193,280));
+         lista.setBounds(new Rectangle(65,167,140,280));
          lista.setVisible(true);
+         lista.addMouseListener(new CustomMouseListener());
+         controlador.cargarLista(lista);
+         
+         list= new JList();
+         p.add(list);
+         list.setBounds(new Rectangle(468, 167, 140,280));
+         list.setVisible(true);
+         list.addMouseListener(new CustomMouseListener2());
+         controlador.cargarListaAutobus(list);
+         
          //lista.addMouseListener(new TrabajadorGUI.CustomMouseListener());
          
          //JTextField
-         name = Builder.crearTextField(p,new Rectangle(401,146,129,25), "", null, null, new Font("Segoe UI", Font.PLAIN, 11), false,true, true,listener);
-         ap_paterno = Builder.crearTextField(p,new Rectangle(401,181,129,25), "", null, null, new Font("Segoe UI", Font.PLAIN, 11), false,true, true,listener);
-         ap_materno= Builder.crearTextField(p,new Rectangle(401,216,129,25), "", null, null, new Font("Segoe UI", Font.PLAIN, 11), false,true, true,listener);
-         state = Builder.crearTextField(p,new Rectangle(401,251,129,25), "", null, null, new Font("Segoe UI", Font.PLAIN, 11), false,true, true,listener);
-         matric = Builder.crearTextField(p,new Rectangle(401,346,129,25), "", null, null, new Font("Segoe UI", Font.PLAIN, 11), true,true, true,listener);
-         marc = Builder.crearTextField(p,new Rectangle(401,381,129,25), "", null, null, new Font("Segoe UI", Font.PLAIN, 11), true,true, true,listener);
-         kilometraje = Builder.crearTextField(p,new Rectangle(401,416,129,25), "", null, null, new Font("Segoe UI", Font.PLAIN, 11), true,true, true,listener);
+         name =           Builder.crearTextField(p,new Rectangle(331,163,129,25), "", null, null, new Font("Segoe UI", Font.PLAIN, 11), false,true, true,listener);
+         ap_paterno =     Builder.crearTextField(p,new Rectangle(331,198,129,25), "", null, null, new Font("Segoe UI", Font.PLAIN, 11), false,true, true,listener);
+         ap_materno=      Builder.crearTextField(p,new Rectangle(331,233,129,25), "", null, null, new Font("Segoe UI", Font.PLAIN, 11), false,true, true,listener);
+         state =          Builder.crearTextField(p,new Rectangle(331,268,129,25), "", null, null, new Font("Segoe UI", Font.PLAIN, 11), false,true, true,listener);
+         matric =         Builder.crearTextField(p,new Rectangle(331,363,129,25), "", null, null, new Font("Segoe UI", Font.PLAIN, 11), false,true, true,listener);
+         marc =           Builder.crearTextField(p,new Rectangle(331,398,129,25), "", null, null, new Font("Segoe UI", Font.PLAIN, 11), false,true, true,listener);
+         kilometraje =    Builder.crearTextField(p,new Rectangle(331,433,129,25), "", null, null, new Font("Segoe UI", Font.PLAIN, 11), false,true, true,listener);
          
          //JComboBox
-         combo= Builder.crearComboBox(p, new Rectangle(401,314,129,22),null , null, null,null);
-         
-         
-         
- 
+         combo= Builder.crearTextField(p, new Rectangle(331,331,129,22),"",null , null, new Font("Segoe UI", Font.PLAIN, 11),false,true, true, listener);
+    }
+    public static void main(String[] args){
+        GUIAutobusChofer s= new GUIAutobusChofer();
     }
  
+    
+            class CustomMouseListener extends MouseAdapter{
+            public void mouseClicked(MouseEvent me){
+            if(lista.getSelectedValue()!=null){
+                String matricula1 = (String)lista.getSelectedValue();
+                try {
+                    controlador.listaParametro(matricula1.toLowerCase());
+                } catch (SQLException ex) {
+                    Logger.getLogger(GUIAutobusChofer.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            else
+                System.err.println("Nada que elegir");
+        };
+    }
+            
+            class CustomMouseListener2 extends MouseAdapter{
+            public void mouseClicked(MouseEvent me){            
+            if(list.getSelectedValue()!=null){
+                String matricula1 = (String)list.getSelectedValue();
+                try {
+                    controlador.listaParametroAutobus(matricula1.toLowerCase());
+                } catch (SQLException ex) {
+                    Logger.getLogger(GUIAutobusChofer.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            else
+                System.err.println("Nada que elegir");
+        };
+    }
+         
+      class CustomActionListener implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            controlador.addT();
+        }
+        }
+            
 }

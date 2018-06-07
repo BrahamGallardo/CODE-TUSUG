@@ -1,25 +1,51 @@
 JButton buscar
-*Posicion: (54,89).
+*Posicion: (54,128).
 *Tamaño: 74 x 21 px.
 
 JLabel "No. mantenimiento"
-*Posicion: (158,90).
+*Posicion: (158,129).
 *Tamaño: 125 x 18 px.
 *Fuente: Segoe UI
 *Tamaño fuente: 14
 *Color fuente: 797979 (hexadecimal)
 
 JTextField numero_manten
-*Posicion: (293,88).
+*Posicion: (293,127).
 *Tamaño: 131 x 22 px.
 
 JLabel "fecha"
-*Posicion: (461,90).
+*Posicion: (461,129).
 *Tamaño: 45 x 18 px.
 *Fuente: Segoe UI
 *Tamaño fuente: 14
 *Color fuente: 797979 (hexadecimal)
 
 JCalendar fecha
-*Posicion: (516,88).
+*Posicion: (516,127).
 *Tamaño: 131 x 22 px.
+
+JLabel "Historial de mantenimiento"
+*Posicion: (260,170).
+*Tamaño: 170 x 80 px.
+*Fuente letra: Segoe UI
+*Tamaño letra: 14
+
+JTable tabla
+*Posicion: (69,210).
+*Tamaño: 515 x 277 px.
+
+JButton regresar
+*Posicion: (321,528).
+*Tamaño: 32 x 32 px
+
+JButton abrir
+*Posicion: (663,182).
+*Tamaño: 24 x 24 px.
+
+JButton guardar
+*Posicion: (663,243).
+*Tamaño: 24 x 24 px.
+
+JButton salir
+*Posicion: (540,69).
+*Tamaño: 89 x 32 px.

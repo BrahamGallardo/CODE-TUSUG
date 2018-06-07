@@ -206,7 +206,7 @@ public class Trabajador {
             pstm.setString(1, absPathImg);
             pstm.setString(2, rfc);
             pstm.execute();
-            pstm.close();
+            //pstm.close();
             // Mostrar la img en el Label
             Icon icon = new ImageIcon(absPathImg);
             interfaz.lb_imagen.setIcon(icon); 

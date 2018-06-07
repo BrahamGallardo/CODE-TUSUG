@@ -102,7 +102,7 @@ public class LoginGUI {
         String inputRFC = txt_rfc.getText();
         Sesion userValid = sesiones.get(inputRFC);
         if (userValid!=null && Encriptar.md5(inputPass).equals(userValid.password)){
-            RootGUI main = new RootGUI(userValid.puesto, userValid.nombre);
+            RootGUI main = new RootGUI(userValid.puesto, userValid.nombre, "src/imagenes/icono usuario.jpg");
             frame.dispose();
         }else javax.swing.JOptionPane.showMessageDialog(null, "Error: Usuario o Contraseña invalidos\nIntente otra vez");
     }
