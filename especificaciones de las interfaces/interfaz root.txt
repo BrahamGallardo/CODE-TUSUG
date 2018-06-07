@@ -1,13 +1,17 @@
-NOTA: Los primeros dos componentes seran los que no cambiaran de posicion o se desvaneceran en ningun
+﻿NOTA: Los primeros dos componentes seran los que no cambiaran de posicion o se desvaneceran en ningun
 momento, estaran siempre disponibles.
 
 >>JLabel texto "Seleccione el icono de la seccion que desea visitar"
 *Fuente: Segoe UI    *Tamaño de fuente: 14.
 *Posicion: (193,172).
 
->>JButton "cerrar sesion".
-*Posicion: (460,506).
+>>JMenuBar "username".
+*Posicion: (589,116).
 *Tamaño: 201 x 63 px.
+
+>>ImageIcon foto_usuario
+*Posicion: (547,109).
+*Tamaño: 32 x 32 px.
 
 *Tamaño de la ventana "ROOT": 700 x 600 px.
 /////////////////////////////////////////////////////////////////////////////////////////////////////
