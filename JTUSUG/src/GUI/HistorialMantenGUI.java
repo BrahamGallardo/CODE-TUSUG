@@ -150,7 +150,6 @@ public class HistorialMantenGUI {
             }
                     break;
                 case "cerrarSesion":
-                    break;
                 case "regresar":
                     a.dispose();
                     break;

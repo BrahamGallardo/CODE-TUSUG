@@ -94,10 +94,10 @@ public class GUIMenuSiniestros {
             String x = e.getActionCommand();
             
             switch(x){
-                case("regresar"):                                                               ventana.dispose(); break;
+                case("regresar"):  ventana.dispose(); break;
                 case("reportar"):   ReportarSiniestroGUI repor = new ReportarSiniestroGUI();                       break;
                 case("visualizar"): ListaSiniestroGUI lista    = new ListaSiniestroGUI();                          break;
-                case("Cerrar Sesion"): LoginGUI l = new LoginGUI();                             ventana.dispose(); break;
+                case("Cerrar Sesion"): ventana.dispose(); break;
             
         }
             

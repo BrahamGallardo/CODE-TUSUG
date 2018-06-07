@@ -126,7 +126,7 @@ public class RootGUI {
         // Botones de Secretaria
         btn_listaBus =          Builder.crearButtonIcon(panel, "modulo_autobus",    carpeta_img + "lista_de_autobuses.png",     new Rectangle(85,  256, 256, 63), listen, false,true, false);
         btn_facturas =          Builder.crearButtonIcon(panel, "facturas",          carpeta_img + "sec_facturas.png",           new Rectangle(85,  352, 256, 63), listen, false,true, false);
-        btn_reportes =          Builder.crearButtonIcon(panel, "reportes",          carpeta_img + "reportes.png",               new Rectangle(379, 352, 256, 63), listen, false,true, false);
+        btn_reportes =          Builder.crearButtonIcon(panel, "reportes",          carpeta_img + "reportes de siniestros.png", new Rectangle(379, 352, 256, 63), listen, false,true, false);
         // Botones de Almacen
         btn_insumos =           Builder.crearButtonIcon(panel, "insumos",           carpeta_img + "Insumos.png",                new Rectangle(85,  256, 256, 63), listen, false,true, false);
         btn_lista_invent =      Builder.crearButtonIcon(panel, "lista_inventario",  carpeta_img + "lista_de_inventario.png",    new Rectangle(85,  352, 256, 63), listen, false,true, false);
@@ -161,10 +161,6 @@ public class RootGUI {
             String op = e.getActionCommand();
             switch (op) {
                 /*-------------------------------|Botones de flujo del programa|--------------------------*/
-                case "CerrarSesion":
-                    LoginGUI l = new LoginGUI();
-                    root.dispose();
-                    break;
                 case "btnSecretaria":
                     deshabilitarComponentes(btn_secre, btn_manten, btn_rrhh);
                     habilitarComponentes(btn_regresar, btn_listaBus, btn_facturas, btn_reportes);
@@ -240,7 +236,10 @@ public class RootGUI {
                     facturas.cSesion.addActionListener(nextWindowFlowProgram);
                     break;
                 case "reportes":
-                    javax.swing.JOptionPane.showMessageDialog(null, "Esta funcion aun no esta implementada");
+                    root.setVisible(false);
+                    GUIMenuSiniestros frameSiniestro = new GUIMenuSiniestros();
+                    frameSiniestro.bt_regresar.addActionListener(nextWindowFlowProgram);
+                    frameSiniestro.Cerrar_Sesion.addActionListener(nextWindowFlowProgram);
                     break;
                 /*-------------------------------|Botones para Almacen|--------------------------*/
                 /*case "insumos":
@@ -314,11 +313,10 @@ public class RootGUI {
         public void actionPerformed(ActionEvent e) {
             String op = e.getActionCommand();
             switch(op){
+                case "Cerrar Sesion":
                 case "cerrarSesion":
                     LoginGUI l = new LoginGUI();
                     root.dispose();
-                    
-                    //root.setVisible(false);
                     break;
                 case "regresar":
                     root.setVisible(true);
