@@ -3,26 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-            <file>file:/C:/Lab/Git/CODE-TUSUG/JTUSUG/src/GUI/GUIAutobusChofer.java</file>
-            <file>file:/C:/Lab/Git/CODE-TUSUG/JTUSUG/src/GUI/AutobusGUI.java</file>
-            <file>file:/C:/Lab/Git/CODE-TUSUG/JTUSUG/src/CONTROLLERS/Autobus.java</file>
-=======
-<<<<<<< HEAD
-            <file>file:/Users/Guillermo/Desktop/CODE-TUSUG/JTUSUG/src/CONTROLLERS/ControladorMantenimiento.java</file>
-            <file>file:/Users/Guillermo/Desktop/CODE-TUSUG/JTUSUG/src/GUI/ListaSiniestroGUI.java</file>
-            <file>file:/Users/Guillermo/Desktop/CODE-TUSUG/JTUSUG/src/GUI/RootGUI.java</file>
-            <file>file:/Users/Guillermo/Desktop/CODE-TUSUG/JTUSUG/src/CONTROLLERS/SQLRepSinies.java</file>
-            <file>file:/Users/Guillermo/Desktop/CODE-TUSUG/JTUSUG/ReporteMante.jrxml</file>
-            <file>file:/Users/Guillermo/Desktop/CODE-TUSUG/JTUSUG/src/CONTROLLERS/ControladorSiniestro.java</file>
-            <file>file:/Users/Guillermo/Desktop/CODE-TUSUG/JTUSUG/src/GUI/HistorialMantenGUI.java</file>
-            <file>file:/Users/Guillermo/Desktop/CODE-TUSUG/JTUSUG/src/CONTROLLERS/SQLHistMant.java</file>
-            <file>file:/Users/Guillermo/Desktop/CODE-TUSUG/JTUSUG/src/GUI/TrabajadorGUI.java</file>
-            <file>file:/Users/Guillermo/Desktop/CODE-TUSUG/JTUSUG/src/GUI/ReportarSiniestroGUI.java</file>
-=======
-            <file>file:/C:/Lab/Git/CODE-TUSUG/JTUSUG/src/GUI/Splash.java</file>
->>>>>>> 24b30590e425cc2d878fc51859d7c4cfe8d65afe
->>>>>>> b05b213897d3417fb9a2f180a6209d9a3d07fe2b
+            <file>file:/C:/Users/laibr/Desktop/sextosemestre/Ingenieria%20de%20software/CODE-TUSUG/CODE-TUSUG/JTUSUG/src/GUI/ReportarSiniestroGUI.java</file>
+            <file>file:/C:/Users/laibr/Desktop/sextosemestre/Ingenieria%20de%20software/CODE-TUSUG/CODE-TUSUG/JTUSUG/src/GUI/AutobusGUI.java</file>
+            <file>file:/C:/Users/laibr/Desktop/sextosemestre/Ingenieria%20de%20software/CODE-TUSUG/CODE-TUSUG/JTUSUG/src/CONTROLLERS/Conexion.java</file>
+            <file>file:/C:/Users/laibr/Desktop/sextosemestre/Ingenieria%20de%20software/CODE-TUSUG/CODE-TUSUG/JTUSUG/src/GUI/LoginGUI.java</file>
+            <file>file:/C:/Users/laibr/Desktop/sextosemestre/Ingenieria%20de%20software/CODE-TUSUG/CODE-TUSUG/JTUSUG/src/GUI/Insumos.java</file>
         </group>
     </open-files>
 </project-private>
