@@ -7,7 +7,7 @@ momento, estaran siempre disponibles.
 
 >>JMenuBar "username".
 *Posicion: (589,116).
-*Tamaño: 201 x 63 px.
+*Tamaño: 67 x 18 px.
 
 >>ImageIcon foto_usuario
 *Posicion: (547,109).
