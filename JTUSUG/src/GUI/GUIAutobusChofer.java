@@ -1,8 +1,15 @@
 package GUI;
+import CONTROLLERS.ControladorChoferAutobus;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Rectangle;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.sql.SQLException;
+import static java.util.Collections.list;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -32,8 +39,11 @@ public class GUIAutobusChofer {
     JFrame x;    
     JPanel p;
     ActionListener listener;
+    ControladorChoferAutobus controlador;
     public GUIAutobusChofer()
     {
+        ControladorChoferAutobus ui= new ControladorChoferAutobus(this);
+        controlador=ui;
         user = "Usuario";
         x = Builder.construirFrame("Trabajador", new Rectangle(0,0,700,600), false); 
         p = Builder.crearPanel(x, new Rectangle(0,0,700,600),ruta + "fondo_vta_chofer_autobus.png", false);
@@ -79,6 +89,9 @@ public class GUIAutobusChofer {
          p.add(lista);
          lista.setBounds(new Rectangle(65,150,193,280));
          lista.setVisible(true);
+         lista.addMouseListener(new CustomMouseListener());
+         controlador.cargarLista(lista);
+         
          //lista.addMouseListener(new TrabajadorGUI.CustomMouseListener());
          
          //JTextField
@@ -92,10 +105,25 @@ public class GUIAutobusChofer {
          
          //JComboBox
          combo= Builder.crearComboBox(p, new Rectangle(401,314,129,22),null , null, null,null);
-         
-         
-         
- 
+    }
+    public static void main(String[] args){
+        GUIAutobusChofer s= new GUIAutobusChofer();
     }
  
+    
+            class CustomMouseListener extends MouseAdapter{
+            public void mouseClicked(MouseEvent me){
+            if(lista.getSelectedValue()!=null){
+                String matricula1 = (String)lista.getSelectedValue();
+                try {
+                    controlador.listaParametro(matricula1);
+                } catch (SQLException ex) {
+                    Logger.getLogger(GUIAutobusChofer.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            else
+                System.err.println("Nada que elegir");
+        };
+    }
+            
 }
