@@ -11,6 +11,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -28,10 +34,13 @@ public class RootGUI {
     String rol_activo;
     String nombre_usuario;
     String urlimage;
+    String rfc;
     private JMenuBar bar_menu;
     private JMenu ar;
     private JMenuItem   menu_cerrarsesion;
     private JMenuItem   menu_cambiarpass;
+    String newPassConfirm;
+    
     
     CustomActionListener listen;
     String carpeta_img = "src/imagenes/";
@@ -39,6 +48,7 @@ public class RootGUI {
     public static JFrame root;
     public static JPanel panel;
     public JButton btn_close, btn_secre, btn_manten, btn_rrhh, btn_rutas;
+    Connection conn;
     
     //Para reciclar
     JLabel lb_text;
@@ -142,6 +152,21 @@ public class RootGUI {
     //     =        Builder.crearButtonIcon(panel, "MreUnidades",  carpeta_img + "reincorporar_nuevas_unidades.png",new Rectangle(85, 352, 256, 63),  listen, false,true, false);
         
     }
+    
+    public void cambiarContra()
+    {
+        try {
+            PreparedStatement pstm = conn.prepareStatement("UPDATE sistemaTusug.usuario set contrasenia = md5(?) where rfc = ?;");                  
+            pstm.setString(1,newPassConfirm );
+            pstm.setString(2,rfc);    
+            pstm.execute();
+            pstm.close();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+    }
+
+
     
     private static void habilitarComponentes(Component... btns) {
         for (Component b : btns) {
@@ -293,9 +318,9 @@ public class RootGUI {
                 case "Cambiar Password":
                     try{
                         String newPass = javax.swing.JOptionPane.showInputDialog("Ingrese su nueva contraseña");
-                        String newPassConfirm  = javax.swing.JOptionPane.showInputDialog("Ingrese su nueva contraseña");
+                        newPassConfirm  = javax.swing.JOptionPane.showInputDialog("Ingrese su nueva contraseña");
                         if (newPass.equals(newPassConfirm)){
-                            
+                            cambiarContra();
                             javax.swing.JOptionPane.showMessageDialog(null, "Contraseña cambiada");
                         }
                     }catch(NullPointerException ex){
