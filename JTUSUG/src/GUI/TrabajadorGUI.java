@@ -213,7 +213,10 @@ public class TrabajadorGUI {
                 cargarLista(lista);
                 Cfoto.setEnabled(false);
                 area1.setText("");
-                area1.setEditable(true);
+                tfrfc.setText("");
+                tfapp.setText("");
+                tfapm.setText("");
+                tfnom.setText("");
             }
         }
     };
