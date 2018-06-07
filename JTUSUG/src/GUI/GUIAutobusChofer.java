@@ -113,10 +113,11 @@ public class GUIAutobusChofer {
     
             class CustomMouseListener extends MouseAdapter{
             public void mouseClicked(MouseEvent me){
+                System.err.println("sdads");
             if(lista.getSelectedValue()!=null){
                 String matricula1 = (String)lista.getSelectedValue();
                 try {
-                    controlador.listaParametro(matricula1);
+                    controlador.listaParametro(matricula1.toLowerCase());
                 } catch (SQLException ex) {
                     Logger.getLogger(GUIAutobusChofer.class.getName()).log(Level.SEVERE, null, ex);
                 }

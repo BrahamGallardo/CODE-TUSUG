@@ -34,11 +34,11 @@ public class ControladorChoferAutobus {
             pstm.setString(1, rfc);
             ResultSet rs = pstm.executeQuery();
             while (rs.next()) {
-            interfaz.matric.setText(rs.getString(1));
-            interfaz.name.setText(rs.getString(2));
-            interfaz.ap_paterno.setText(rs.getString(3));
-            interfaz.ap_materno.setText(rs.getString(4));
-            interfaz.state.setText(rs.getString(9));
+            //interfaz.matric.        setText(rs.getString(1));
+            interfaz.name.          setText(rs.getString(2));
+            interfaz.ap_paterno.    setText(rs.getString(3));
+            interfaz.ap_materno.    setText(rs.getString(4));
+            interfaz.state.         setText(rs.getString(9));
             }
             
         
@@ -56,14 +56,15 @@ public class ControladorChoferAutobus {
         try {
 
             String[] registros = new String[1];
-            String cons = "select rfc from sistemaTusug.trabajador";
+            m= new ArrayList();
+            String cons = "select rfc from sistemaTusug.trabajador where puesto='chofer'";
 
             Statement st = c.createStatement();
             ResultSet rs = st.executeQuery(cons);
             while (rs.next()) {
-                registros[0] = rs.getString(1);
-                System.out.print(registros[0]);
-                m.add(registros[0]);
+                m.add( rs.getString(1));
+                System.out.print(rs.getString(1));
+               
              //   st.close();
 
             }
