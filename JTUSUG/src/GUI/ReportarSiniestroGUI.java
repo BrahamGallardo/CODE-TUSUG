@@ -78,7 +78,7 @@ public class ReportarSiniestroGUI {
         p.add(calendarioIndemnizado);
         calendarioIndemnizado.setBounds(509,155,114,22);
         
-        
+        listener = new ReportCustomListener();
         //labels
          fechas  = Builder.crearLabel(p,"Fechas",new Rectangle(325,130,61,18),new Color(66,66,66), null, new Font("Segoe UI", Font.BOLD, 14)); 
          siniestro = Builder.crearLabel(p,"Siniestro:",new Rectangle(35,157,55,18),new Color(66,66,66), null, new Font("Segoe UI", Font.PLAIN, 14)); 
@@ -115,8 +115,8 @@ public class ReportarSiniestroGUI {
          status = Builder.crearComboBox(p, new Rectangle(519,389,114,22),estadoSiniestro,null,null,null);
          
          //JTextField
-         reclama  = Builder.crearTextField(p,new Rectangle(101,389,137,25), "", null, null, new Font("Segoe UI", Font.PLAIN, 11), true,true, true,listener);
-         paga  = Builder.crearTextField(p,new Rectangle(320,389,137,25), "", null, null, new Font("Segoe UI", Font.PLAIN, 11), true,true, true,listener);
+         reclama  = Builder.crearTextField(p,new Rectangle(101,389,137,25), "", null, null, new Font("Segoe UI", Font.PLAIN, 11), true,true, true);
+         paga  = Builder.crearTextField(p,new Rectangle(320,389,137,25), "", null, null, new Font("Segoe UI", Font.PLAIN, 11), true,true, true);
          
          //RadioButtons
          group = new ButtonGroup();

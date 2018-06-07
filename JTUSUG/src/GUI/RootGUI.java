@@ -256,7 +256,8 @@ public class RootGUI {
                     auto.btn_regresar.addActionListener(nextWindowFlowProgram);
                     break;
                 case "facturas":
-                    root.setVisible(false);
+                    System.err.println("Holi22");
+                    //root.setVisible(false);
                     GFacturas facturas = new GFacturas();
                     facturas.regresar.addActionListener(nextWindowFlowProgram);
                     facturas.cSesion.addActionListener(nextWindowFlowProgram);

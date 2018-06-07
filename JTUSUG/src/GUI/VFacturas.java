@@ -42,6 +42,7 @@ public class VFacturas extends JFrame {
     JPanel p;
     ActionListener listener;
     public VFacturas() {
+        System.err.println("Holi");
         //listener = new GFacturas.CustomActionListener();
         f = Builder.construirFrame("Facturas", new Rectangle(0,0, 700, 600), false); 
         p = Builder.crearPanel(f, new Rectangle(0, 0, 700, 600),ruta+"img_fondo_ventana_facturas.png", false);
@@ -53,7 +54,7 @@ public class VFacturas extends JFrame {
         nFacturas = Builder.crearLabel(p,"Numero de factura: ",new Rectangle(393,93,103,16), null, null, new Font("Segoe UI", Font.PLAIN, 11));
         cProveedor = Builder.crearLabel(p,"Codigo de Proveedor:",new Rectangle(380,119,118,16), null, null, new Font("Segoe UI", Font.PLAIN, 11));
         ordenar = Builder.crearLabel(p,"Ordenar por:",new Rectangle(304,441,68,16), null, null, new Font("Segoe UI", Font.PLAIN, 11));
-        
+        //listener = new 
         
         
         //botones  

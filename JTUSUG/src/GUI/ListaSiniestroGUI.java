@@ -71,7 +71,7 @@ public class ListaSiniestroGUI {
         p.add(barra);
         barra.setBounds(new Rectangle(513, 75, 55, 34));
         barra.setVisible(true);
-
+        listener = new ReportCustomListener();
         //botones
         lSiniestros = Builder.crearButtonIcon(p, "listado", ruta + "boton_listado_siniestros_selected.png", new Rectangle(135, 69, 142, 43), listener, true, false);
         Rsiniestro = Builder.crearButtonIcon(p, "reportar", ruta + "boton_reportar_siniestro.png", new Rectangle(313, 69, 142, 43), listener, true, false);
@@ -135,7 +135,6 @@ public class ListaSiniestroGUI {
                 }
                 break;
                 case "cerrarSesion":
-                    break;
                 case "regresar":
                     f.dispose();
                     break;

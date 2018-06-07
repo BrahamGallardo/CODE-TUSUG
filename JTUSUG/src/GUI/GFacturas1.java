@@ -41,7 +41,7 @@ public class GFacturas1 extends JFrame {
         fecha = LocalDate.now();
         String fechaN = fecha.format(DateTimeFormatter.ofPattern("dd/MMMM/yyyy"));
 
-        listener = new GFacturas1.CustomActionListener();
+        //listener = new GFacturas1.CustomActionListener();
         //etiquetas
         fEmision = Builder.crearLabel(p, "Fecha de Emisión: ", new Rectangle(446, 89, 200, 15), null, null, new Font("Segoe UI", Font.PLAIN, 11));
         fechaE = Builder.crearLabel(p, fechaN, new Rectangle(545, 89, 200, 15), null, Color.blue, new Font("Segoe UI", Font.PLAIN, 11));

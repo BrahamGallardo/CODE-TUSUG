@@ -24,7 +24,7 @@ public class GFacturas extends JFrame{
         
         //Etiquetas
         facturas = Builder.crearLabel(p,"Facturas", new Rectangle(317,135, 61,18), Color.darkGray,new Color(102, 205, 205),new Font("Arial", Font.BOLD, 14));
-        
+        listener = new CustomActionListener();
         //Botones
         gFactura = Builder.crearButtonIcon(p,"Generar Factura", ruta+"img_generar_factura.png", new Rectangle(104,165, 198,326), listener, true, false);
         vFactura = Builder.crearButtonIcon(p,"Visualizar Factura", ruta+"img_visualizar_factura.png", new Rectangle(380,165, 198,326), listener, true, false);
@@ -55,7 +55,7 @@ public class GFacturas extends JFrame{
                     break;
                 case "Visualizar Factura":
                     VFacturas v= new VFacturas();
-                    f.dispose();
+                    //f.dispose();
             }
         }
     }
