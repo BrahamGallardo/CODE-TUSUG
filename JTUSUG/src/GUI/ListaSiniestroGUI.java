@@ -134,7 +134,7 @@ public class ListaSiniestroGUI {
                 }
                 }
                 break;
-                case "Cerrar Sesion":
+                case "cerrarSesion":
                     break;
                 case "Regresar":
                     break;

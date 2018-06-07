@@ -44,7 +44,7 @@ public class ReportesGUI {
         imprimir = Builder.crearButtonIcon(p,"imprimir", ruta+"print.png",new Rectangle(643,243,24,24), listener, true,false);
         guardar = Builder.crearButtonIcon(p,"guardar", ruta+"save.png",new Rectangle(643,301,24,24), listener, true,false);
         regresar = Builder.crearButtonIcon(p, "regresar", ruta+"regresar.png",new Rectangle(326,513, 41,41), listener, true, false);
-        cSesion = Builder.crearButtonIcon(p,"Cerrar Sesión", ruta+"boton_cerrar_sesion.png",new Rectangle(460,510, 142,45), listener, true, false);
+        cSesion = Builder.crearButtonIcon(p,"cerrarSesion", ruta+"boton_cerrar_sesion.png",new Rectangle(460,510, 142,45), listener, true, false);
         
         //label
         reporte = Builder.crearLabel(p,"Reportes",new Rectangle(298,160,59,18),new Color(79,79,79), null, new Font("Segoe UI", Font.PLAIN, 14));

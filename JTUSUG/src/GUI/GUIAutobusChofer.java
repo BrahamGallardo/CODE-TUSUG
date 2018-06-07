@@ -50,7 +50,7 @@ public class GUIAutobusChofer {
         p = Builder.crearPanel(x, new Rectangle(0,0,700,600),ruta + "fondo_vta_chofer_autobus.png", false);
         
         //Menu
-         barra=new JMenuBar();
+         /**barra=new JMenuBar();
          barra.setBackground(Color.GRAY);
          archivo=new JMenu(user);
          reestablecer = new JMenuItem("Reestablecer Contraseña");
@@ -60,7 +60,7 @@ public class GUIAutobusChofer {
          barra.add(archivo);
          p.add(barra);
          barra.setBounds(new Rectangle(478,518,55,34));
-         barra.setVisible(true);
+         barra.setVisible(true);*/
          
         //botones
         btActualizar =  Builder.crearButtonIcon( p,     "Actualizar",ruta+"boton_actualizar_lista.png", new Rectangle(89,444,145,36),listener ,true, false);      

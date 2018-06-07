@@ -74,7 +74,7 @@ public class HistorialMantenGUI {
         btn_buscar       = Builder.crearButtonIcon(a,"buscar",ruta + "btn_buscar.png",             new Rectangle(54,89,74,21)   ,listener,false,false);
         btn_regresar     = Builder.crearButtonIcon(a,"regresar",ruta + "regresar.png",             new Rectangle(326,518,39,39) ,listener,false,false);
         btn_guardar      = Builder.crearButtonIcon(a,"guardar",ruta + "save.png",                  new Rectangle(643,301,24,24) ,listener,false,false);
-        //btn_cerrarSesion = Builder.crearButtonIcon(a,"cerrarSesion",ruta + "cerrar_sesion.png",    new Rectangle(460,506,201,63),listener,false,false);
+        btn_cerrarSesion = Builder.crearButtonIcon(a,"cerrarSesion",ruta + "cerrar_sesion.png",    new Rectangle(460,506,201,63),listener,false,false);
         
         
         lb_no_manten         =   Builder.crearLabel(a, "No. Mantenimiento:",                new Rectangle(158,85,125,28) ,null,null);
@@ -148,7 +148,7 @@ public class HistorialMantenGUI {
                 }
             }
                     break;
-                case "Cerrar Sesion":
+                case "cerrarSesion":
                     break;
                 case "Regresar":
                     a.dispose();
