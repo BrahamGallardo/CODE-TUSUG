@@ -136,7 +136,8 @@ public class ListaSiniestroGUI {
                 break;
                 case "cerrarSesion":
                     break;
-                case "Regresar":
+                case "regresar":
+                    f.dispose();
                     break;
             }
         }

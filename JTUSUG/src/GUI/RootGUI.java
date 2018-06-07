@@ -315,7 +315,9 @@ public class RootGUI {
             String op = e.getActionCommand();
             switch(op){
                 case "cerrarSesion":
+                    LoginGUI l = new LoginGUI();
                     root.dispose();
+                    
                     //root.setVisible(false);
                     break;
                 case "regresar":

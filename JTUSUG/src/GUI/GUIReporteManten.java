@@ -79,7 +79,7 @@ public class GUIReporteManten{
         ReportCustomListener listen = new ReportCustomListener();
         btn_genReporte =        Builder.crearButtonIcon(     panel, "Generar Reporte", carpeta_img + "btn_new_reporte.png", new Rectangle(440,447,150,27), listen, true, true);
         btn_cerrarsesion=       Builder.crearButtonIcon(     panel, "cerrarSesion",   carpeta_img + "cerrar_sesion.png",   new Rectangle(460,506,201,63), listen, true, true);
-        btn_regresar    =       Builder.crearButtonIcon(     panel, "Regresar",        carpeta_img + "regresar.png",        new Rectangle(326,518,32,32),  listen, true, true);
+        btn_regresar    =       Builder.crearButtonIcon(     panel, "regresar",        carpeta_img + "regresar.png",        new Rectangle(326,518,32,32),  listen, true, true);
     }
     
     
@@ -104,7 +104,7 @@ public class GUIReporteManten{
                 case "cerrarSesion":
                     ventana.dispose();                    
                     break;
-                case "Regresar":
+                case "regresar":
                     ventana.dispose();
                     break;
             }

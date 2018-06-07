@@ -152,7 +152,8 @@ public class ReportarSiniestroGUI {
                     break;
                 case "cerrarSesion":
                     break;
-                case "Regresar":
+                case "regresar":
+                    f.dispose();
                     break;
             }
         }

@@ -66,6 +66,7 @@ public class HistorialMantenGUI {
     public void inicializarComp()
     {  p = Builder.crearPanel(a, new Rectangle(0, 0, 700, 600),"", false );
         //JCalendar
+        listener = new ReportCustomListener();
         dateChooser = new JDateChooser ();
         a.add(dateChooser);
         dateChooser.setBounds(500,90,170,22);
@@ -150,7 +151,7 @@ public class HistorialMantenGUI {
                     break;
                 case "cerrarSesion":
                     break;
-                case "Regresar":
+                case "regresar":
                     a.dispose();
                     break;
             }

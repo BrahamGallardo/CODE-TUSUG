@@ -29,7 +29,7 @@ public class GFacturas extends JFrame{
         gFactura = Builder.crearButtonIcon(p,"Generar Factura", ruta+"img_generar_factura.png", new Rectangle(104,165, 198,326), listener, true, false);
         vFactura = Builder.crearButtonIcon(p,"Visualizar Factura", ruta+"img_visualizar_factura.png", new Rectangle(380,165, 198,326), listener, true, false);
         cSesion = Builder.crearButtonIcon(p,"cerrarSesion", ruta+"boton_cerrar_sesion.png",new Rectangle(460,506, 142,45), listener, false, false);
-        regresar = Builder.crearButtonIcon(p,"Regresar", ruta+"regresar.png",new Rectangle(326,510,41,41), listener, false, false);
+        regresar = Builder.crearButtonIcon(p,"regresar", ruta+"regresar.png",new Rectangle(326,510,41,41), listener, false, false);
         f.setVisible(true);
         p.setVisible(true);
 
@@ -42,7 +42,7 @@ public class GFacturas extends JFrame{
             String op = e.getActionCommand();
             switch(op)
             {                    
-                case "Regresar":
+                case "regresar":
                     f.dispose();
                     break;
                 case "cerrarSesion":
