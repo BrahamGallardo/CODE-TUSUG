@@ -1,7 +1,7 @@
-JLabel etiqueta "facturas"
-*Posicion: (317,101)
-*Tamaño: 61 x 18 px.
-*Fuente de letra: Arial
+JLabel etiqueta "notas de compra"
+*Posicion: (291,100)
+*Tamaño: 119 x 18 px.
+*Fuente de letra: Segoe UI
 *Tamaño letra: 14 (NEGRITA).
 
 JButton boton "regresar"
@@ -9,9 +9,15 @@ JButton boton "regresar"
 *Tamaño: 32 x 32 px.
 *Nombre icono: "regresar.png"
 
-JButton boton "cerrar sesion"
-*Posicion: (460,506).
-*Tamaño: 201 x 63 px.
+JMenuBar username
+*Posicion: (589,116).
+*Tamaño: 67 x 18 px.
+Fuente letra: Segoe UI
+tamaño letra: 14
+
+JImageIcon foto_usuario
+*Posicion: (547,109).
+*Tamaño: 32 x 32 px.
 
 JButton boton "generar factura"
 *Posicion: (104,140).

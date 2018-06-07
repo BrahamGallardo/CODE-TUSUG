@@ -95,3 +95,10 @@ JButton salir
 *Tamaño: 84 x 32 px.
 
 
+JLabel "lista de autobuses"
+*Posicion: (501,137).
+*Tamaño: 114 x 20 px.
+
+JList lista_trabajadores
+*Posicion: (488,167).
+*Tamaño: 140 x 280 px.
