@@ -1,4 +1,5 @@
 package GUI;
+import CONTROLLERS.Conexion;
 import CONTROLLERS.Trabajador;
 import com.toedter.calendar.JDateChooser;
 import java.awt.Color;
@@ -384,8 +385,6 @@ public class TrabajadorGUI {
         int numLetrasValidas;
         public KeyListenerValidation(int length){
             super();
-            
-            
             numLetrasValidas = length;
         }
         @Override
@@ -397,6 +396,8 @@ public class TrabajadorGUI {
         }
     }
     public static void main(String []args){
+        Conexion.setRol("root");
+        
         TrabajadorGUI t = new TrabajadorGUI();
     }
     
