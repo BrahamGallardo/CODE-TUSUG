@@ -5,7 +5,6 @@ import Servicios.Fachada;
 import java.sql.Date;
 import GUI.TrabajadorGUI;
 import Validacion.Validador;
-import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date;
 import java.awt.Image;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
