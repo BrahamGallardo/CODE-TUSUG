@@ -6,6 +6,10 @@ import java.awt.Font;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import static Validacion.Validador.*;
+import java.awt.HeadlessException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ButtonGroup;
@@ -17,6 +21,7 @@ import javax.swing.JList;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollBar;
@@ -39,6 +44,7 @@ public class ReportarSiniestroGUI {
     public String user;
     JMenuBar barra;
     JMenu archivo;
+    JTextField ingresov,ingreso2v,ingreso3v;
     JMenuItem reestablecer;
     JMenuItem Cerrar_Sesion;
     public JDateChooser calendarioSiniestro,calendarioIngreso,calendarioIndemnizado;
@@ -117,6 +123,7 @@ public class ReportarSiniestroGUI {
          //JTextField
          reclama  = Builder.crearTextField(p,new Rectangle(101,389,137,25), "", null, null, new Font("Segoe UI", Font.PLAIN, 11), true,true, true);
          paga  = Builder.crearTextField(p,new Rectangle(320,389,137,25), "", null, null, new Font("Segoe UI", Font.PLAIN, 11), true,true, true);
+         valida();
          
          //RadioButtons
          group = new ButtonGroup();
@@ -131,7 +138,25 @@ public class ReportarSiniestroGUI {
          
          
     }
- 
+    public void valida()
+    {
+        reclama.addKeyListener(new java.awt.event.KeyAdapter() 
+        {
+            @Override
+            public void keyTyped(java.awt.event.KeyEvent evt) 
+            {
+                validafloat(evt,reclama,20);
+            }
+        });
+        paga.addKeyListener(new java.awt.event.KeyAdapter() 
+        {
+            @Override
+            public void keyTyped(java.awt.event.KeyEvent evt) 
+            {
+                validafloat(evt,paga,20);
+            }
+        });
+    }
         class ReportCustomListener implements ActionListener{
         String op;
         @Override
@@ -142,11 +167,37 @@ public class ReportarSiniestroGUI {
                 case "guardar":
                     
             {
+                
                 try {
-                    controlador.agregaMan();
-                    controlador.creaRepor();
+                    String formato = calendarioIngreso.getDateFormatString();
+                    Date date = calendarioIngreso.getDate();
+                    SimpleDateFormat sdf = new SimpleDateFormat(formato);
+                    String ingreso = String.valueOf(sdf.format(date));
+                    String formato2 = calendarioIndemnizado.getDateFormatString();
+                    Date date2 = calendarioIndemnizado.getDate();
+                    SimpleDateFormat sdf2 = new SimpleDateFormat(formato2);
+                    String ingreso2 = String.valueOf(sdf2.format(date2));
+                    String formato3 = calendarioSiniestro.getDateFormatString();
+                    Date date3 = calendarioSiniestro.getDate();
+                    SimpleDateFormat sdf3 = new SimpleDateFormat(formato3);
+                    String ingreso3 = String.valueOf(sdf3.format(date3));
+                    ingresov=new JTextField();ingreso2v=new JTextField();ingreso3v=new JTextField();
+                    ingresov.setText(ingreso);ingreso2v.setText(ingreso2);ingreso3v.setText(ingreso3);
+                    if(validaIngreso(ingresov,ingreso2v,ingreso3v,reclama,paga))
+                        if(validarFecha(ingreso3,ingreso)&&validarFecha(ingreso,ingreso2)){
+                            controlador.agregaMan();
+                            controlador.creaRepor();
+                        }
+                        else
+                            JOptionPane.showMessageDialog(null, "Error del orden de fechas", "Error..!!", JOptionPane.ERROR_MESSAGE);
+                    else
+                        JOptionPane.showMessageDialog(null, "Debe llenar todos los campos", "Error..!!", JOptionPane.ERROR_MESSAGE);
                 } catch (JRException ex) {
                     Logger.getLogger(ReportarSiniestroGUI.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                catch(HeadlessException ef)
+                {
+                    System.err.println("Elija fecha valida "+ "Error..!!");
                 }
             }
                     break;
@@ -159,6 +210,4 @@ public class ReportarSiniestroGUI {
         }
         
     }
-    
-    
 }

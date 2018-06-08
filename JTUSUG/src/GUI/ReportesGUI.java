@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Rectangle;
 import java.awt.event.ActionListener;
+import static Validacion.Validador.*;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -55,7 +56,7 @@ public class ReportesGUI {
         //JtextField
         numR = Builder.crearTextField(p,new Rectangle(293,88,131,22),"",null, null,new Font("Segoe UI", Font.PLAIN, 11), true, true, true, listener);
         name = Builder.crearTextField(p,new Rectangle(516,88,131,22),"",null, null,new Font("Segoe UI", Font.PLAIN, 11), true, true, true, listener);
-        
+        valida();
          //Tabla
         dtm= new DefaultTableModel();
         tabla = new JTable(datos,encabezado);
@@ -65,5 +66,24 @@ public class ReportesGUI {
         scrollPane.setBounds(75,196,504,278);
         p.add(scrollPane);
     }
-   
+    public void valida()
+    {
+        name.addKeyListener(new java.awt.event.KeyAdapter() 
+        {
+            @Override
+            public void keyTyped(java.awt.event.KeyEvent evt) 
+            {
+                validaNombre(evt,name,20);
+            }
+        });
+        numR.addKeyListener(new java.awt.event.KeyAdapter() 
+        {
+            @Override
+            public void keyTyped(java.awt.event.KeyEvent evt) 
+            {
+                validaNum(evt,numR,20);
+            }
+        });
+    }
+    
 }

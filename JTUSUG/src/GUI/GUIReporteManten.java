@@ -5,6 +5,7 @@ import com.toedter.calendar.JDateChooser;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import static Validacion.Validador.*;
 import java.awt.event.ActionListener;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -80,8 +81,84 @@ public class GUIReporteManten{
         btn_genReporte =        Builder.crearButtonIcon(     panel, "Generar Reporte", carpeta_img + "btn_new_reporte.png", new Rectangle(440,447,150,27), listen, true, true);
         btn_cerrarsesion=       Builder.crearButtonIcon(     panel, "cerrarSesion",   carpeta_img + "cerrar_sesion.png",   new Rectangle(460,506,201,63), listen, true, true);
         btn_regresar    =       Builder.crearButtonIcon(     panel, "regresar",        carpeta_img + "regresar.png",        new Rectangle(326,518,32,32),  listen, true, true);
+        valida();
     }
-    
+    public void valida()
+    {
+        txt_areaTrabajo.addKeyListener(new java.awt.event.KeyAdapter() 
+        {
+            @Override
+            public void keyTyped(java.awt.event.KeyEvent evt) 
+            {
+                validaNombre(evt,txt_areaTrabajo,20);
+            }
+        });
+        txt_marca.addKeyListener(new java.awt.event.KeyAdapter() 
+        {
+            @Override
+            public void keyTyped(java.awt.event.KeyEvent evt) 
+            {
+                validaNombre(evt,txt_marca,20);
+            }
+        });
+        txt_prioridad.addKeyListener(new java.awt.event.KeyAdapter() 
+        {
+            @Override
+            public void keyTyped(java.awt.event.KeyEvent evt) 
+            {
+                validaNombre(evt,txt_prioridad,20);
+            }
+        });
+        txt_costo.addKeyListener(new java.awt.event.KeyAdapter() 
+        {
+            @Override
+            public void keyTyped(java.awt.event.KeyEvent evt) 
+            {
+                validafloat(evt,txt_costo,10);
+            }
+        });
+        txt_matricula.addKeyListener(new java.awt.event.KeyAdapter() 
+        {
+            @Override
+            public void keyTyped(java.awt.event.KeyEvent evt) 
+            {
+                validaAlfanumerico(evt,txt_matricula,10);
+            }
+        });     
+        
+        txt_tipoManten.addKeyListener(new java.awt.event.KeyAdapter() 
+        {
+            @Override
+            public void keyTyped(java.awt.event.KeyEvent evt) 
+            {
+                validaNombre(evt,txt_tipoManten,15);
+            }
+        });
+        txt_direccion.addKeyListener(new java.awt.event.KeyAdapter() 
+        {
+            @Override
+            public void keyTyped(java.awt.event.KeyEvent evt) 
+            {
+                validaAlfanumerico(evt,txt_direccion,40);
+            }
+        });
+        txt_telefono.addKeyListener(new java.awt.event.KeyAdapter() 
+        {
+            @Override
+            public void keyTyped(java.awt.event.KeyEvent evt) 
+            {
+                validaNum(evt,txt_telefono,10);
+            }
+        });
+        txt_email.addKeyListener(new java.awt.event.KeyAdapter() 
+        {
+            @Override
+            public void keyTyped(java.awt.event.KeyEvent evt) 
+            {
+                validaAlfanumerico(evt,txt_email,30);
+            }
+        });
+    }
     
     class ReportCustomListener implements ActionListener{
         String op;
@@ -91,7 +168,7 @@ public class GUIReporteManten{
             switch (op){
                 
                 case "Generar Reporte":
-                    
+                    if(validaIngreso(txt_areaTrabajo,txt_marca,txt_prioridad,txt_costo,txt_matricula,txt_tipoManten,txt_direccion,txt_telefono,txt_email))
             {
                 try {
                     controlador.agregaMan();
@@ -100,6 +177,8 @@ public class GUIReporteManten{
                     Logger.getLogger(GUIReporteManten.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
+                    else
+                        JOptionPane.showMessageDialog(null, "Debe llenar todos los campos", "Error..!!", JOptionPane.ERROR_MESSAGE);
                     break;
                 case "cerrarSesion":
                     ventana.dispose();                    

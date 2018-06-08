@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Rectangle;
+import static Validacion.Validador.*;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -61,7 +62,7 @@ public class ListaInventario {
         
         //JTextField
         numInv = Builder.crearTextField(p,new Rectangle(280,90,130,22), "", null, null, new Font("Segoe UI", Font.PLAIN, 11), true,true, true,listener);
-        
+        valida();
         
         //Tabla
         dtm= new DefaultTableModel();
@@ -75,5 +76,15 @@ public class ListaInventario {
         
         
      }
-    
+     public void valida()
+     {
+         numInv.addKeyListener(new java.awt.event.KeyAdapter() 
+        {
+            @Override
+            public void keyTyped(java.awt.event.KeyEvent evt) 
+            {
+                validaNum(evt,numInv,10);
+            }
+        });
+     }
 }

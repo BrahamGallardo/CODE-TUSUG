@@ -314,7 +314,8 @@ public class TrabajadorGUI {
                 JOptionPane.showMessageDialog(null,"Guardado Exitosamente");
             }
             else
-                JOptionPane.showMessageDialog(null,"Campos vacios");
+                JOptionPane.showMessageDialog(null, "Debe llenar todos los campos", "Error..!!", JOptionPane.ERROR_MESSAGE);
+
         }
     };
     
@@ -339,7 +340,7 @@ public class TrabajadorGUI {
                 Cfoto.setEnabled(false);
                 JOptionPane.showMessageDialog(null,"Guardado Exitosamente");
             }else
-                JOptionPane.showMessageDialog(null,"Campos vacios");
+                JOptionPane.showMessageDialog(null, "Debe llenar todos los campos", "Error..!!", JOptionPane.ERROR_MESSAGE);
         }
     };
     
