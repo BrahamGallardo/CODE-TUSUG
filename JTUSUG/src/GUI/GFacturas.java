@@ -43,10 +43,7 @@ public class GFacturas extends JFrame{
             switch(op)
             {                    
                 case "regresar":
-                    f.dispose();
-                    break;
                 case "cerrarSesion":
-                    LoginGUI l = new LoginGUI();
                     f.dispose();
                     break;
                 case "Generar Factura":

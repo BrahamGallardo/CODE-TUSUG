@@ -1,8 +1,11 @@
 package CONTROLLERS;
 
+import CustomException.InvalidFormatException;
 import Servicios.Fachada;
 import java.sql.Date;
 import GUI.TrabajadorGUI;
+import Validacion.Validador;
+import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date;
 import java.awt.Image;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,11 +13,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 public class Trabajador {
 
@@ -35,19 +40,46 @@ public class Trabajador {
     }
 
     public void agregaTrabajador() {
-        String rfc = interfaz.tfrfc.getText().toLowerCase();
-        String nombre = interfaz.tfnom.getText().toLowerCase();
-        String ap_paterno = interfaz.tfapp.getText().toLowerCase();
-        String ap_materno = interfaz.tfapm.getText().toLowerCase();
-        String domicilio = interfaz.area1.getText().toLowerCase();
-        String puesto = (String) interfaz.cbPuesto.getSelectedItem().toString().toLowerCase();
-        java.sql.Date f_nac = new java.sql.Date(interfaz.fecha_nac.getDate().getTime());
-        java.sql.Date f_cont = new java.sql.Date(interfaz.fecha_nac.getDate().getTime());
-        //Date f_nac = interfaz.fecha;
-        //Date f_cont = interfaz.fechaA;
-        String estado = (String) interfaz.cb6.getSelectedItem().toString().toLowerCase();
-        String url = " ";
-        addT(rfc, nombre, ap_paterno, ap_materno, domicilio, puesto, f_nac, f_cont, estado, url);
+        try {
+            String rfc = Validador.getRfcIfIsValid(interfaz.tfrfc.getText()).toLowerCase();
+            String nombre = interfaz.tfnom.getText().toLowerCase();
+            String ap_paterno = interfaz.tfapp.getText().toLowerCase();
+            String ap_materno = interfaz.tfapm.getText().toLowerCase();
+            String domicilio = interfaz.area1.getText().toLowerCase();
+            /*--------Intermedio para obtener fecha de nac y validar esa parte-------*/
+
+            int anioFechaNac;
+            try {
+                anioFechaNac = Integer.parseInt(rfc.substring(3, 5));
+            } catch (NumberFormatException ex) {
+                anioFechaNac = Integer.parseInt(rfc.substring(4, 6));
+            }
+            if ((new java.util.Date().getYear() - anioFechaNac) > 100) {
+                anioFechaNac += 2000;
+            } else {
+                anioFechaNac += 1900;
+            }
+            interfaz.fecha_nac.setDate(new Date(anioFechaNac,
+                    Integer.parseInt(rfc.substring(5, 7)),
+                    Integer.parseInt(rfc.substring(7, 9))
+            ));
+            /*.......................<End>................................................*/
+
+            String puesto = (String) interfaz.cbPuesto.getSelectedItem().toString().toLowerCase();
+            java.sql.Date f_nac = new java.sql.Date(interfaz.fecha_nac.getDate().getTime());
+            java.sql.Date f_cont = new java.sql.Date(interfaz.fecha_nac.getDate().getTime());
+            String estado = (String) interfaz.cb6.getSelectedItem().toString().toLowerCase();
+            String url = " ";
+            addT(rfc, nombre, ap_paterno, ap_materno, domicilio, puesto, f_nac, f_cont, estado, url);
+        } catch (InvalidFormatException ex) {
+            if (ex.getMessage().equals("RFC")) {
+                JOptionPane.showMessageDialog(null, "RFC Invalido");
+            } else {
+                Logger.getLogger(SQLAutobus.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(SQLAutobus.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }
 
@@ -84,7 +116,7 @@ public class Trabajador {
             pstm.setString(1, estado);
             pstm.setString(2, rfc.toLowerCase());
             pstm.execute();
-           // pstm.close();
+            // pstm.close();
         } catch (SQLException e) {
             System.out.println(e);
         }
@@ -99,8 +131,9 @@ public class Trabajador {
             //sql = "select rfc from sistemaTusug.trabajador ORDER BY rfc";
             pst = c.prepareStatement(sql);
             res = pst.executeQuery();
-            while (res.next())
+            while (res.next()) {
                 listEmployers.add(res.getString("rfc"));
+            }
         } catch (SQLException ex) {
             Logger.getLogger(SQLAutobus.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -131,7 +164,7 @@ public class Trabajador {
             pstm.setString(5, puesto);
             pstm.setString(6, rfc);
             pstm.execute();
-           // pstm.close();
+            // pstm.close();
         } catch (SQLException e) {
             System.out.println(e);
         }
@@ -150,7 +183,7 @@ public class Trabajador {
                 registros[0] = rs.getString(1);
                 System.out.print(registros[0]);
                 m.add(registros[0]);
-             //   st.close();
+                //   st.close();
 
             }
 
@@ -178,13 +211,14 @@ public class Trabajador {
                 interfaz.tfapm.setText(registros[3].toUpperCase());
                 registros[4] = rs.getString(5);
                 interfaz.area1.setText(registros[4].toUpperCase());
+                interfaz.cb1.setSelectedItem(rs.getString("estado").toLowerCase());
                 registros[5] = rs.getString(6);
                 registros[6] = rs.getString(7);
                 registros[7] = rs.getString(8);
                 registros[8] = rs.getString(9);
                 putImageProfile(rs.getString("url_img"));
             }
-         //   pstm.close();
+            //   pstm.close();
         } catch (Exception e) {
             //System.out.println(e.getMessage());
             Logger.getLogger(SQLAutobus.class.getName()).log(Level.SEVERE, null, e);
@@ -209,7 +243,7 @@ public class Trabajador {
             //pstm.close();
             // Mostrar la img en el Label
             Icon icon = new ImageIcon(absPathImg);
-            interfaz.lb_imagen.setIcon(icon); 
+            interfaz.lb_imagen.setIcon(icon);
         } catch (SQLException e) {
             System.out.println("Error 404: Conexion refusada o algun pedo así");
         } catch (NullPointerException ex) {
@@ -217,15 +251,14 @@ public class Trabajador {
         }
     }
 
-        public void putImageProfile(String path) {
+    public void putImageProfile(String path) {
         // Replace los simbolos        '\'       por '/'
-        String Path = path.replace('\u005C\u005C' ,  '\u002F');
+        String Path = path.replace('\u005C\u005C', '\u002F');
         ImageIcon fot = new ImageIcon(Path);
         Icon icon = new ImageIcon(fot.getImage().getScaledInstance(interfaz.lb_imagen.getWidth(), interfaz.lb_imagen.getHeight(), Image.SCALE_DEFAULT));
         interfaz.lb_imagen.setIcon(icon);
     }
+
+    /*-------------------Funciones Mejoradas-----------------------*/
     
-    public void cargarImagen() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }
