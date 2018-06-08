@@ -6,6 +6,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Rectangle;
+import static Validacion.Validador.*;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -47,7 +48,7 @@ public class Reportes {
         //JTextField
         nom =           Builder.crearTextField(p, new Rectangle(516,88,131,22), " ",            null, null, null, true, true, true);
         numero_reporte= Builder.crearTextField(p, new Rectangle(293,88,131,22), " ", null, null, null, true, true, true);
-        
+        valida();
         //JTable
         
         JTreportes = new JTable();
@@ -57,7 +58,23 @@ public class Reportes {
         scrollPane.setBounds(75,196,504,278);
         p.add(scrollPane);
  }
-    
-   
-    
+    public void valida()
+    {
+        nom.addKeyListener(new java.awt.event.KeyAdapter() 
+        {
+            @Override
+            public void keyTyped(java.awt.event.KeyEvent evt) 
+            {
+                validaNombre(evt,nom,20);
+            }
+        });
+        numero_reporte.addKeyListener(new java.awt.event.KeyAdapter() 
+        {
+            @Override
+            public void keyTyped(java.awt.event.KeyEvent evt) 
+            {
+                validaNum(evt,numero_reporte,20);
+            }
+        });
+    }
 }

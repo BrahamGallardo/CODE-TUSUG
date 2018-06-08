@@ -13,6 +13,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.util.logging.Level;
+import static Validacion.Validador.*;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
@@ -100,7 +101,17 @@ public class HistorialMantenGUI {
         scrollPane.setBounds(69,210,515,277);
         p.add(scrollPane);      
     }
-    
+    public void valida()
+    {
+        txt_no_manten.addKeyListener(new java.awt.event.KeyAdapter() 
+        {
+            @Override
+            public void keyTyped(java.awt.event.KeyEvent evt) 
+            {
+                validaNum(evt,txt_no_manten,10);
+            }
+        });
+    }
     private JTable updateTabla(){             
         String[] columNames = {"Num. Mantenimiento", "Responsable", "Fecha de emisión"};  
         // se utiliza la funcion

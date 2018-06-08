@@ -6,6 +6,7 @@ import java.awt.Font;
 import java.awt.Rectangle;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import static Validacion.Validador.*;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -52,13 +53,32 @@ public class Insumos {
         JBcan.setBackground(Color.white);
         JBcan.setForeground(Color.black);
         JBcan.setFont(new Font("Segoe UI", Font.PLAIN, 13));
-        
+        valida();
         
         
        }
-       
+       public void valida()
+    {
+        JTcan.addKeyListener(new java.awt.event.KeyAdapter() 
+        {
+            @Override
+            public void keyTyped(java.awt.event.KeyEvent evt) 
+            {
+                validaNum(evt,JTcan,10);
+            }
+        });
+        
+        JTcod.addKeyListener(new java.awt.event.KeyAdapter() 
+        {
+            @Override
+            public void keyTyped(java.awt.event.KeyEvent evt) 
+            {
+                validaAlfanumerico(evt,JTcod,20);
+            }
+        });
+    }
        public static void main(String[] args){
            Insumos i = new Insumos();
        }
-       
+
 }

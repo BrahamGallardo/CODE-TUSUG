@@ -10,11 +10,13 @@ import java.awt.event.ActionListener;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import static Validacion.Validador.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -84,7 +86,7 @@ public class GFacturas2 extends JFrame {
         tabla = new JTable(datos, encabezado);
         //tabla.setBackground(Color.GRAY);
         tabla.setPreferredSize(new Dimension(392, 179));
-        JScrollPane scrollPane = new JScrollPane(tabla);
+         JScrollPane scrollPane = new JScrollPane(updateTabla());
         scrollPane.setBounds(281, 176, 392, 179);
         p.add(scrollPane);
 
@@ -93,8 +95,64 @@ public class GFacturas2 extends JFrame {
         total = Builder.crearTextField(p, new Rectangle(560, 365, 86, 20), "", null, null, new Font("Segoe UI", Font.PLAIN, 11), true, true, true);
         iva = Builder.crearTextField(p, new Rectangle(383, 392, 82, 20), "", null, null, new Font("Segoe UI", Font.PLAIN, 11), true, true, true);
         descuento = Builder.crearTextField(p, new Rectangle(383, 422, 82, 20), "", null, null, new Font("Segoe UI", Font.PLAIN, 11), true, true, true);
+        valida();
     }
-
+    public void valida()
+    {
+        subtotal.addKeyListener(new java.awt.event.KeyAdapter() 
+        {
+            @Override
+            public void keyTyped(java.awt.event.KeyEvent evt) 
+            {
+                validafloat(evt,subtotal,10);
+            }
+        });
+        
+        total.addKeyListener(new java.awt.event.KeyAdapter() 
+        {
+            @Override
+            public void keyTyped(java.awt.event.KeyEvent evt) 
+            {
+                validafloat(evt,total,10);
+            }
+        });
+        
+        iva.addKeyListener(new java.awt.event.KeyAdapter() 
+        {
+            @Override
+            public void keyTyped(java.awt.event.KeyEvent evt) 
+            {
+                validafloat(evt,iva,5);
+            }
+        });     
+        
+        descuento.addKeyListener(new java.awt.event.KeyAdapter() 
+        {
+            @Override
+            public void keyTyped(java.awt.event.KeyEvent evt) 
+            {
+                validafloat(evt,descuento,5);
+            }
+        });
+        
+    }
+    private JTable updateTabla(){             
+        String[] columNames = {"Num. Mantenimiento", "Responsable", "Fecha de emisión"};  
+        // se utiliza la funcion
+        //dtPer = p.getDatos();
+        // se colocan los datos en la tabla
+        DefaultTableModel registro = new DefaultTableModel(datos,columNames);
+        tabla = new JTable(registro)
+        {
+            @Override
+            public boolean isCellEditable(int row, int column)
+            {
+                return false;
+            }
+        };
+        tabla.setModel(registro); 
+        return tabla;
+    }
     public void array() {
         datos_com.add(subtotal.getText());
         datos_com.add(iva.getText());
@@ -121,7 +179,7 @@ public class GFacturas2 extends JFrame {
                     f.dispose();
                     break;
                 case "confirmar":
-
+                    if(validaIngreso(subtotal,total,iva,descuento)){
                      array();
                     controlador= new ReporteCompras(g);
                     dispose();
@@ -134,6 +192,9 @@ public class GFacturas2 extends JFrame {
                             Logger.getLogger(GFacturas2.class.getName()).log(Level.SEVERE, null, ex);
                         }
                     }
+                    }
+                else
+                        JOptionPane.showMessageDialog(null, "Debe llenar todos los campos", "Error..!!", JOptionPane.ERROR_MESSAGE);
             }
         }
     }

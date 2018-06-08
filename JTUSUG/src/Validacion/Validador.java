@@ -1,6 +1,8 @@
 package Validacion;
 
 import CustomException.InvalidFormatException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JFrame;
@@ -48,11 +50,40 @@ public class Validador extends JFrame
             if(l.getText().equals(""))
             {
                 aux=false;
+                l.requestFocus();
                 break;
             }
         return aux;
     }
-    
+    public static boolean validarFecha(String fecha1,String fecha2){
+        boolean bandera=true;
+        try{
+            SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy");
+            SimpleDateFormat formatoFecha_inicial = new SimpleDateFormat("dd/MM/yyyy");
+            formatoFecha.setLenient(false);
+            formatoFecha_inicial.setLenient(false);
+            formatoFecha.parse(fecha1);
+            formatoFecha_inicial.parse(fecha2);
+            if(formatoFecha_inicial.parse(fecha1).compareTo(formatoFecha.parse(fecha2))<0)
+            {}
+            else{
+                bandera=false;
+                System.err.println("Error: Fecha inicial mayor que fecha final");
+            }
+        }
+        catch (ParseException e){
+            bandera=false;
+        }
+        return bandera;
+    }
+    public static void validafloat(java.awt.event.KeyEvent evt,JTextField text,int x){
+        Matcher m = Pattern.compile("[0-9.,]+").matcher(Character.toString(evt.getKeyChar()));
+        if (!m.find())
+           evt.consume();
+        if(text.getText().length()>=x)
+            evt.consume();  
+        txtNumeroControlKeyTyped(evt);
+    }
     /*------------------------------<Funciones de Alejo>--------------------------------------*/
     /*------------------------------<Funciones para la clase Trabajador>----------------------*/
     public static String getRfcIfIsValid(String rfc) throws InvalidFormatException{

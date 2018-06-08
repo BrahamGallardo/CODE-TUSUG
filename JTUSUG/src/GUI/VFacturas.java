@@ -7,6 +7,7 @@ import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
+import static Validacion.Validador.*;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -89,9 +90,10 @@ public class VFacturas extends JFrame {
         //checkbox
         fechaE = Builder.crearCheckBox(p, new Rectangle(382,441,124,16),"Fecha de Emisión", null, false,null, null);
         nFact = Builder.crearCheckBox(p, new Rectangle(382,467,133,16),"Numero de Factura", null, false,null, null);
-        cProv = Builder.crearCheckBox(p, new Rectangle(511,441,143,16),"Codigo de Proveedor", null, false,null, null);  
+        cProv = Builder.crearCheckBox(p, new Rectangle(511,441,143,16),"Codigo de Proveedor", null, false,null, null);
+        valida();
     }
-class CustomActionListener implements ActionListener{
+    class CustomActionListener implements ActionListener{
 
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -108,5 +110,23 @@ class CustomActionListener implements ActionListener{
             }
         }
     }
-  
+    public void valida()
+    {
+        cP.addKeyListener(new java.awt.event.KeyAdapter() 
+        {
+            @Override
+            public void keyTyped(java.awt.event.KeyEvent evt) 
+            {
+                validaAlfanumerico(evt,cP,10);
+            }
+        });
+        nF.addKeyListener(new java.awt.event.KeyAdapter() 
+        {
+            @Override
+            public void keyTyped(java.awt.event.KeyEvent evt) 
+            {
+                validaNum(evt,nF,10);
+            }
+        });
+    }
 }
