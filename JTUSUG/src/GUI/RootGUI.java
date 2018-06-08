@@ -54,7 +54,7 @@ public class RootGUI {
     JLabel lb_text;
     private JLabel lb_title, lb_descripcion, lb_img_user;
     // Botones para la secretaria    
-    private JButton btn_regresar, btn_listaBus, btn_facturas, btn_reportes;
+    private JButton btn_regresar, btn_listaBus, btn_facturas, btn_reportes, btn_asig;
     // Botones para almacenista
     private JButton btn_insumos, btn_lista_invent, btn_gener_inventario;
     // Botones de Recursos Humanos
@@ -74,7 +74,7 @@ public class RootGUI {
                 habilitarComponentes(btn_secre, btn_manten, btn_rrhh);
                 break;
             case "secretaria":
-                habilitarComponentes(btn_regresar, btn_listaBus, btn_facturas, btn_reportes);
+                habilitarComponentes(btn_regresar, btn_listaBus, btn_facturas, btn_reportes, btn_asig);
                 break;
             case "mantenimiento":
                 habilitarComponentes(btn_nuevoreporte, btn_historial);
@@ -134,9 +134,10 @@ public class RootGUI {
         btn_rutas =             Builder.crearButtonIcon(panel, "btnrutas",           carpeta_img + "rutas.png",                 new Rectangle(379, 256, 256, 63), listen, true, true, true);
         
         // Botones de Secretaria
-        btn_listaBus =          Builder.crearButtonIcon(panel, "modulo_autobus",    carpeta_img + "lista_de_autobuses.png",     new Rectangle(85,  256, 256, 63), listen, false,true, false);
-        btn_facturas =          Builder.crearButtonIcon(panel, "facturas",          carpeta_img + "sec_facturas.png",           new Rectangle(85,  352, 256, 63), listen, false,true, false);
-        btn_reportes =          Builder.crearButtonIcon(panel, "reportes",          carpeta_img + "reportes de siniestros.png", new Rectangle(379, 352, 256, 63), listen, false,true, false);
+        btn_listaBus =          Builder.crearButtonIcon(panel, "modulo_autobus",    carpeta_img + "lista_de_autobuses.png",         new Rectangle(85,  256, 256, 63), listen, false,true, false);
+        btn_facturas =          Builder.crearButtonIcon(panel, "facturas",          carpeta_img + "sec_facturas.png",               new Rectangle(85,  352, 256, 63), listen, false,true, false);
+        btn_reportes =          Builder.crearButtonIcon(panel, "reportes",          carpeta_img + "reportes de siniestros.png",     new Rectangle(379, 352, 256, 63), listen, false,true, false);
+        btn_asig     =          Builder.crearButtonIcon(panel, "asigna",            carpeta_img+"boton_asignar_chofer_autobus.png", new Rectangle(85, 452, 256,63), listen, false, true, false);
         // Botones de Almacen
         btn_insumos =           Builder.crearButtonIcon(panel, "insumos",           carpeta_img + "Insumos.png",                new Rectangle(85,  256, 256, 63), listen, false,true, false);
         btn_lista_invent =      Builder.crearButtonIcon(panel, "lista_inventario",  carpeta_img + "lista_de_inventario.png",    new Rectangle(85,  352, 256, 63), listen, false,true, false);
@@ -189,7 +190,7 @@ public class RootGUI {
                 /*-------------------------------<Botones de flujo del programa>--------------------------*/
                 case "btnSecretaria":
                     deshabilitarComponentes(btn_secre, btn_manten, btn_rrhh);
-                    habilitarComponentes(btn_regresar, btn_listaBus, btn_facturas, btn_reportes);
+                    habilitarComponentes(btn_listaBus,btn_regresar,  btn_facturas, btn_reportes, btn_asig);
                     btn_regresar.setActionCommand("btn_regresar");
                     lb_title.setText("Secretaria");
                     break;
@@ -233,7 +234,7 @@ public class RootGUI {
                 break;
                 /*-------------------------------<Botones para el flujo el programa>--------------------------*/
                 case "btn_regresar": //Secretaria
-                    deshabilitarComponentes(btn_regresar, btn_listaBus, btn_facturas, btn_reportes);
+                    deshabilitarComponentes(btn_regresar, btn_listaBus, btn_facturas, btn_reportes, btn_asig);
                     habilitarComponentes(btn_secre, btn_manten, btn_rrhh);
                     
                     break;
@@ -270,6 +271,13 @@ public class RootGUI {
                     frameSiniestro.Cerrar_Sesion.addActionListener(nextWindowFlowProgram);
                     break;
                 /*-------------------------------<Botones para Almacen>--------------------------*/
+                    case "asigna":
+                    root.setVisible(false);
+                    GUIAutobusChofer frameAsignarchofer = new GUIAutobusChofer();
+                    frameAsignarchofer.regresar.addActionListener(nextWindowFlowProgram);
+//                    frameAsignarchofer.Cerrar_Sesion.addActionListener(nextWindowFlowProgram);
+                    break;
+
                 /*case "insumos":
                     javax.swing.JOptionPane.showMessageDialog(null, "Esta funcion aun no esta implementada");
                     break;
