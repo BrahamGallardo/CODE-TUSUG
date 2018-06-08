@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -15,10 +16,13 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.text.JTextComponent;
 
 /**
  *
@@ -87,6 +91,7 @@ public class LoginGUI {
         b = Builder.crearBoton(loginUI, "Ingresar", new Rectangle(257, 383, 185, 39), escucha, false, false);
 
         txt_rfc.addKeyListener(new CustomKeyListener());
+        txt_rfc.addKeyListener(decoratorText);
         txt_rfc.setFont(font);
         txt_rfc.setBackground(new Color(0xe4, 0xe4, 0xe4));
 
@@ -99,10 +104,10 @@ public class LoginGUI {
 
     public void iniciarSesion() throws Exception {
         String inputPass = txt_password.getText();
-        String inputRFC = txt_rfc.getText();
+        String inputRFC = txt_rfc.getText().toLowerCase();
         Sesion userValid = sesiones.get(inputRFC);
         if (userValid!=null && Encriptar.md5(inputPass).equals(userValid.password)){
-            RootGUI main = new RootGUI(userValid.puesto, userValid.nombre, "src/imagenes/icono usuario.jpg");
+            RootGUI main = new RootGUI(userValid.puesto, userValid.nombre.toUpperCase(), "src/imagenes/icono usuario.jpg");
             main.rfc = userValid.rfc;
             frame.dispose();
         }else javax.swing.JOptionPane.showMessageDialog(null, "Error: Usuario o Contraseña invalidos\nIntente otra vez");
@@ -141,6 +146,22 @@ public class LoginGUI {
         }
     }
 
+    KeyListener decoratorText = new KeyAdapter(){
+        int numLetrasValidas = 15;
+        @Override
+        public void keyTyped(java.awt.event.KeyEvent evt){            
+            Matcher m = Pattern.compile("[a-zA-ZáéíóúÁÉÍÓÚ1234567890-]+").matcher(Character.toString(evt.getKeyChar()));
+            if(!m.find()||((JTextComponent)evt.getComponent()).getText().length()>=numLetrasValidas)
+                evt.consume();
+            else evt.setKeyChar(Character.toUpperCase(evt.getKeyChar()));
+        }
+
+        public void setNumLetrasValidas(int numLetrasValidas) {
+            this.numLetrasValidas = numLetrasValidas;
+        }
+        
+    };
+    
     class Sesion {
 
         String rfc;

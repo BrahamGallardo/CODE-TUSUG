@@ -22,16 +22,15 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 public class Trabajador {
+    HashMap<String, TrabajadorEntity> dataBD;
 
     TrabajadorGUI interfaz;
-
     Connection c;
     ArrayList<String> m;
 
     public Trabajador(TrabajadorGUI ui) {
-
+        dataBD = new HashMap<String, TrabajadorEntity>();
         interfaz = ui;
-        Conexion.setConfiguracion("postgres", "root");
         c = Conexion.getConexion();
         if (c == null) {
             interfaz.disable();
@@ -58,11 +57,12 @@ public class Trabajador {
                 anioFechaNac += 2000;
             } else {
                 anioFechaNac += 1900;
-            }
-            interfaz.fecha_nac.setDate(new Date(anioFechaNac,
-                    Integer.parseInt(rfc.substring(5, 7)),
-                    Integer.parseInt(rfc.substring(7, 9))
-            ));
+            }            
+            interfaz.fecha_nac.setDate(new Date(1996, 05,05));
+            //interfaz.fecha_nac.setDate(new Date(anioFechaNac,
+            //        Integer.parseInt(rfc.substring(5, 7)),
+            //       Integer.parseInt(rfc.substring(7, 9))
+            // ));
             /*.......................<End>................................................*/
 
             String puesto = (String) interfaz.cbPuesto.getSelectedItem().toString().toLowerCase();
@@ -211,7 +211,7 @@ public class Trabajador {
                 interfaz.tfapm.setText(registros[3].toUpperCase());
                 registros[4] = rs.getString(5);
                 interfaz.area1.setText(registros[4].toUpperCase());
-                interfaz.cb1.setSelectedItem(rs.getString("estado").toLowerCase());
+                //interfaz.cb1.setSelectedItem(rs.getString("estado").toLowerCase());
                 registros[5] = rs.getString(6);
                 registros[6] = rs.getString(7);
                 registros[7] = rs.getString(8);
@@ -260,5 +260,26 @@ public class Trabajador {
     }
 
     /*-------------------Funciones Mejoradas-----------------------*/
+    public void loadDataFromDB(){
+        String sql = "select * from sistemaTusug.trabajador ORDER BY rfc";
+        PreparedStatement pst;
+        ResultSet res;
+        try {
+            //sql = "select rfc from sistemaTusug.trabajador ORDER BY rfc";
+            pst = c.prepareStatement(sql);
+            res = pst.executeQuery();
+            TrabajadorEntity rowEmpleado;
+            while (res.next()) {
+                rowEmpleado = new TrabajadorEntity(res.getString("rfc"), res.getString("nombre"),
+                        res.getString("ap_paterno"), res.getString("ap_materno"), res.getString("domicilio"), 
+                        res.getString("puesto"), res.getDate("fecha_nac"), res.getDate("fecha_contratacion"), 
+                        res.getString("estado"), res.getString("url_img"));
+                dataBD.put(rowEmpleado.getRfc(), rowEmpleado);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(SQLAutobus.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     
 }
