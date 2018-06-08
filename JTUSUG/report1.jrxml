@@ -66,8 +66,8 @@
 				</textField>
 			</frame>
 			<image>
-				<reportElement x="420" y="0" width="133" height="95" uuid="5fe51a63-ca8f-48aa-9a0e-0f11726a1a6c"/>
-				<imageExpression><![CDATA["/Users/Guillermo/Desktop/CODE-TUSUG/JTUSUG/src/imagenes/tusug logo.png"]]></imageExpression>
+				<reportElement x="420" y="0" width="153" height="132" uuid="5fe51a63-ca8f-48aa-9a0e-0f11726a1a6c"/>
+				<imageExpression><![CDATA["src/imagenes/tusug logo.png"]]></imageExpression>
 			</image>
 		</band>
 	</title>
