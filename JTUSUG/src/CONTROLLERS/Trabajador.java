@@ -99,7 +99,7 @@ public class Trabajador {
             pstm.setString(9, estado);
             pstm.setString(10, urlImage);
             pstm.execute();
-            System.out.print("agregado");
+            System.out.println("agregado");
         } catch (SQLException ex) {
             Logger.getLogger(SQLAutobus.class.getName()).log(Level.SEVERE, null, ex);
         }

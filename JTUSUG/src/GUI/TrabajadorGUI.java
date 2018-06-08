@@ -91,12 +91,13 @@ public class TrabajadorGUI {
         JLabel puesto=  Builder.crearLabel( p, "Puesto :",              new Rectangle(322, 440,50, 13), null, null, new Font("Segoe UI",Font.PLAIN,11));
         
         
-        //botones
+        //-----------------------------------------------<Botones para el flujo del programa>-------------------------------------------
         btInicio =      Builder.crearButtonIcon( p, "Inicio",               "src/imagenes/boton_inicio.png",                        new Rectangle(14, 63, 88, 43),   null,   true, false);
         //btBuscar =      Builder.crearButtonIcon( p, "Buscar",               "src/imagenes/buscar.png",                              new Rectangle(26,185,32,32) , null,   true, false);
         btActualizar =  Builder.crearButtonIcon( p, "Actualizar",           "src/imagenes/boton_actualizar_lista.png",              new Rectangle(26, 455, 145, 36), actualizarT,true, false);
         sesion =        Builder.crearButtonIcon( p, "cerrarSesion",        "src/imagenes/boton_cerrar_sesion.png",                 new Rectangle(539, 65, 130, 27), null,   true, false);
         back =          Builder.crearButtonIcon( p, "regresar",             "src/imagenes/regresar.png",                            new Rectangle(626, 452, 32, 32), regresarV,true, false);
+        //-----------------------------------------------<Botones CRUD del empleado>----------------------------------------------------
         nuevo=          Builder.crearButtonIcon( p, "Nuevo Empleado",       "src/imagenes/agregar-usuario.png",                     new Rectangle(218, 140, 32, 32), nuevoT, true, false,true,color);
         agregar=        Builder.crearButtonIcon( p, "Modificar Empleado",   "src/imagenes/anadir-punto-de-anclaje.png",             new Rectangle(218, 202, 32, 32), modificarT ,false, false,true,color);
         btn_cancelar=   Builder.crearButtonIcon( p, "cancelar",             "src/imagenes/btn_cancelar.png",                        new Rectangle(300,464,97,38),    cancel,true,false, true, color);
@@ -124,13 +125,17 @@ public class TrabajadorGUI {
        
          //comboBox
           fecha_nac =   new JDateChooser();
-          fecha_nac.setEnabled(false);
+          fecha_nac.    setEnabled(false);
           p.            add(fecha_nac);
           fecha_nac.    setBounds(420, 316, 100, 17);
-         cb6=       Builder.crearComboBox(p, new Rectangle(351,290,80,17),  st,   null, null, null);
-         cb6.setEnabled(false);
-         cbPuesto=  Builder.crearComboBox(p, new Rectangle(380,438,111,17), Cargo,null, null, null);
+         cb6=           Builder.crearComboBox(p, new Rectangle(351,290,80,17),  st,   null, null, null);
+         cb6.           setEnabled(false);
+         cbPuesto=      Builder.crearComboBox(p, new Rectangle(380,438,111,17), Cargo,null, null, null);
          cbPuesto.setEnabled(false);
+         cbPuesto.      setBackground(Color.white);
+         cbPuesto.      setForeground(Color.black);
+         
+         
           //area de texto
          area1 = new JTextArea();
          p.add(area1);
