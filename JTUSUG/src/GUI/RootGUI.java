@@ -101,12 +101,12 @@ public class RootGUI {
         panel =                 Builder.crearPanel(     root,       new Rectangle(0, 0, 700, 600),      "src/imagenes/pagina_de_fondo.png", true);
         lb_title =              Builder.crearLabel(     panel, "",               new Rectangle(317, 202, 200, 40), Color.BLUE,   null, font);        
         //lb_descripcion =        Builder.crearLabel(     panel, "descripcion",    new Rectangle(114, 445, 100, 40), null,         null, font);
-        lb_img_user       =     FabricaComponentes.crearLabelImg(panel, "biv", new Rectangle(547,109, 32, 32), urlimage, true);
+        lb_img_user       =     FabricaComponentes.crearLabelImg(panel, "biv", new Rectangle(547,70, 32, 32), urlimage, true);
         lb_text =               Builder.crearLabel(     panel, "Seleccione el icono de la seccion que desea visitar",   new Rectangle(193, 172, 300, 60), null, null, font);
         
         bar_menu        =       new JMenuBar();//FabricaComponentes.crearMenuBar(panel, "b", new Rectangle(589,116, 67,18));
         panel.add(bar_menu);        
-        bar_menu.       setBounds(new Rectangle(579,116, 77,18));
+        bar_menu.       setBounds(new Rectangle(579,80, 70,18));
         bar_menu.       setBackground(Color.gray);
         ar = new JMenu(nombre_usuario);
         

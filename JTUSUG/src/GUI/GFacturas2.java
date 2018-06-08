@@ -109,12 +109,15 @@ public class GFacturas2 extends JFrame {
             String op = e.getActionCommand();
             switch (op) {
                 case "regresar":
+                    GFacturas g0 = new GFacturas();
                     f.dispose();
                     break;
                 case "cerrarSesion":
+                    LoginGUI login = new LoginGUI();
                     f.dispose();
                     break;
                 case "anterior":
+                    GFacturas1 g1= new GFacturas1();
                     f.dispose();
                     break;
                 case "confirmar":

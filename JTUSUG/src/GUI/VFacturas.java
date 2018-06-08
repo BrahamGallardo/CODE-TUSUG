@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -42,11 +43,13 @@ public class VFacturas extends JFrame {
     JPanel p;
     ActionListener listener;
     public VFacturas() {
+        listener = new VFacturas.CustomActionListener();
         System.err.println("Holi");
         //listener = new GFacturas.CustomActionListener();
-        f = Builder.construirFrame("Facturas", new Rectangle(0,0, 700, 600), false); 
+        f = Builder.construirFrame("Notas", new Rectangle(0,0, 700, 600), false); 
         p = Builder.crearPanel(f, new Rectangle(0, 0, 700, 600),ruta+"img_fondo_ventana_facturas.png", false);
         javax.swing.border.Border border = LineBorder.createGrayLineBorder();
+        
         
         //etiquetas
         vFacturas = Builder.crearLabelImagen(p, ruta+"img_visualizar_factura.png",  new Rectangle(35,168, 198,326));
@@ -86,11 +89,25 @@ public class VFacturas extends JFrame {
         //checkbox
         fechaE = Builder.crearCheckBox(p, new Rectangle(382,441,124,16),"Fecha de Emisión", null, false,null, null);
         nFact = Builder.crearCheckBox(p, new Rectangle(382,467,133,16),"Numero de Factura", null, false,null, null);
-        cProv = Builder.crearCheckBox(p, new Rectangle(511,441,143,16),"Codigo de Proveedor", null, false,null, null);
-        
-        
-        
+        cProv = Builder.crearCheckBox(p, new Rectangle(511,441,143,16),"Codigo de Proveedor", null, false,null, null);  
     }
+class CustomActionListener implements ActionListener{
 
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            String op = e.getActionCommand();
+            switch(op)
+            {                    
+                case "regresar":
+                    GFacturas g0 = new GFacturas();
+                    f.dispose();
+                    break;
+                case "cerrarSesion":
+                    LoginGUI l = new LoginGUI();
+                    f.dispose();
+                    break;
+            }
+        }
+    }
   
 }

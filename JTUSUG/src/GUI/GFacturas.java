@@ -19,14 +19,14 @@ public class GFacturas extends JFrame{
     public GFacturas()
     {
         listener = new GFacturas.CustomActionListener();
-        f = Builder.construirFrame("Facturas", new Rectangle(0,0, 700, 600), false); 
+        f = Builder.construirFrame("Notas", new Rectangle(0,0, 700, 600), false); 
         p = Builder.crearPanel(f, new Rectangle(0, 0, 700, 600),ruta+"pagina_de_fondo.png", false);
         
         //Etiquetas
-        facturas = Builder.crearLabel(p,"Facturas", new Rectangle(317,135, 61,18), Color.darkGray,new Color(102, 205, 205),new Font("Arial", Font.BOLD, 14));
+        facturas = Builder.crearLabel(p,"Notas", new Rectangle(317,135, 61,18), Color.darkGray,new Color(102, 205, 205),new Font("Arial", Font.BOLD, 14));
         listener = new CustomActionListener();
         //Botones
-        gFactura = Builder.crearButtonIcon(p,"Generar Factura", ruta+"img_generar_factura.png", new Rectangle(104,165, 198,326), listener, true, false);
+        gFactura = Builder.crearButtonIcon(p,"Generar Notas", ruta+"img_generar_factura.png", new Rectangle(104,165, 198,326), listener, true, false);
         vFactura = Builder.crearButtonIcon(p,"Visualizar Factura", ruta+"img_visualizar_factura.png", new Rectangle(380,165, 198,326), listener, true, false);
         cSesion = Builder.crearButtonIcon(p,"cerrarSesion", ruta+"boton_cerrar_sesion.png",new Rectangle(460,506, 142,45), listener, false, false);
         regresar = Builder.crearButtonIcon(p,"regresar", ruta+"regresar.png",new Rectangle(326,510,41,41), listener, false, false);
@@ -59,5 +59,8 @@ public class GFacturas extends JFrame{
             }
         }
     }
-
+public static void main (String [] agrs)
+{
+    GFacturas g= new GFacturas();
+}
 }
