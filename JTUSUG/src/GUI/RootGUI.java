@@ -11,12 +11,16 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyListener;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -24,13 +28,14 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.text.JTextComponent;
 
 /**
  *
  * @author Alekhius
  */
 public class RootGUI {
-    //Datos de la sesion
+    /*-----------------< Datos de la sesion >---------------------*/
     String rol_activo;
     String nombre_usuario;
     String urlimage;
@@ -101,12 +106,12 @@ public class RootGUI {
         panel =                 Builder.crearPanel(     root,       new Rectangle(0, 0, 700, 600),      "src/imagenes/pagina_de_fondo.png", true);
         lb_title =              Builder.crearLabel(     panel, "",               new Rectangle(317, 202, 200, 40), Color.BLUE,   null, font);        
         //lb_descripcion =        Builder.crearLabel(     panel, "descripcion",    new Rectangle(114, 445, 100, 40), null,         null, font);
-        lb_img_user       =     FabricaComponentes.crearLabelImg(panel, "biv", new Rectangle(547,109, 32, 32), urlimage, true);
+        lb_img_user       =     FabricaComponentes.crearLabelImg(panel, "biv", new Rectangle(547,70, 32, 32), urlimage, true);
         lb_text =               Builder.crearLabel(     panel, "Seleccione el icono de la seccion que desea visitar",   new Rectangle(193, 172, 300, 60), null, null, font);
         
         bar_menu        =       new JMenuBar();//FabricaComponentes.crearMenuBar(panel, "b", new Rectangle(589,116, 67,18));
         panel.add(bar_menu);        
-        bar_menu.       setBounds(new Rectangle(579,116, 77,18));
+        bar_menu.       setBounds(new Rectangle(579,80, 70,18));
         bar_menu.       setBackground(Color.gray);
         ar = new JMenu(nombre_usuario);
         
@@ -187,7 +192,7 @@ public class RootGUI {
         public void actionPerformed(ActionEvent e) {
             String op = e.getActionCommand();
             switch (op) {
-                /*-------------------------------|Botones de flujo del programa|--------------------------*/
+                /*-------------------------------<Botones de flujo del programa>--------------------------*/
                 case "btnSecretaria":
                     deshabilitarComponentes(btn_secre, btn_manten, btn_rrhh);
                     habilitarComponentes(btn_listaBus,btn_regresar,  btn_facturas, btn_reportes, btn_asig);
@@ -212,7 +217,7 @@ public class RootGUI {
                     btn_regresar.setActionCommand("btn_back_RH");
                     lb_title.setText("Recursos Humanos");
                     break;
-                 /**-----------------------------| Boton Global |---------------------------------------------*/
+                 /*-----------------------------< Boton Global >---------------------------------------------*/
                 case "btnrutas":
                     root.setVisible(false);
                     java.awt.EventQueue.invokeLater(new Runnable() {
@@ -232,7 +237,7 @@ public class RootGUI {
                         }
                     });
                 break;
-                /*-------------------------------|Botones para el flujo el programa|--------------------------*/
+                /*-------------------------------<Botones para el flujo el programa>--------------------------*/
                 case "btn_regresar": //Secretaria
                     deshabilitarComponentes(btn_regresar, btn_listaBus, btn_facturas, btn_reportes, btn_asig);
                     habilitarComponentes(btn_secre, btn_manten, btn_rrhh);
@@ -250,11 +255,12 @@ public class RootGUI {
                     deshabilitarComponentes(btn_regresar, btn_nuevoreporte, btn_historial);
                     habilitarComponentes(btn_secre, btn_manten, btn_rrhh);
                     break;
-                /*-------------------------------|Botones para Secretaria|--------------------------*/
+                /*-------------------------------<Botones para Secretaria>--------------------------*/
                 case "modulo_autobus":
                     root.setVisible(false);
                     AutobusGUI auto = new AutobusGUI();
                     auto.btn_regresar.addActionListener(nextWindowFlowProgram);
+                    auto.inicio.addActionListener(nextWindowFlowProgram);
                     break;
                 case "facturas":
                     System.err.println("Holi22");
@@ -269,14 +275,14 @@ public class RootGUI {
                     frameSiniestro.bt_regresar.addActionListener(nextWindowFlowProgram);
                     frameSiniestro.Cerrar_Sesion.addActionListener(nextWindowFlowProgram);
                     break;
-                    
+                /*-------------------------------<Botones para Almacen>--------------------------*/
                     case "asigna":
                     root.setVisible(false);
                     GUIAutobusChofer frameAsignarchofer = new GUIAutobusChofer();
                     frameAsignarchofer.regresar.addActionListener(nextWindowFlowProgram);
 //                    frameAsignarchofer.Cerrar_Sesion.addActionListener(nextWindowFlowProgram);
                     break;
-                /*-------------------------------|Botones para Almacen|--------------------------*/
+
                 /*case "insumos":
                     javax.swing.JOptionPane.showMessageDialog(null, "Esta funcion aun no esta implementada");
                     break;
@@ -287,7 +293,7 @@ public class RootGUI {
                     javax.swing.JOptionPane.showMessageDialog(null, "Esta funcion aun no esta implementada");
                     break;
                     */
-                /*-------------------------------|Botones para Recursos Humanos|--------------------------*/
+                /*-------------------------------<Botones para Recursos Humanos>--------------------------*/
                 case "btntrabajadores":
                     root.setVisible(false);
                     TrabajadorGUI employer = new TrabajadorGUI();
@@ -302,7 +308,7 @@ public class RootGUI {
                 case "btniactivos":
                     javax.swing.JOptionPane.showMessageDialog(null, "Esta funcion aun no esta implementada");
                     break;
-                /*-------------------------------|Botones para Mantenimiento|--------------------------*/
+                /*-------------------------------<Botones para Mantenimiento>--------------------------*/
                 case "MnuevoReporte":
                     root.setVisible(false);
                     GUIReporteManten report = new GUIReporteManten();
@@ -319,7 +325,7 @@ public class RootGUI {
                     h.btn_cerrarSesion.addActionListener(nextWindowFlowProgram);
                     break;
                     
-                 /** -------------------|Eventos para el JMenuBar|--------------------*/
+                 /* -------------------<Eventos para el JMenuBar>--------------------*/
                 case "Cerrar Sesion":
                    LoginGUI login = new LoginGUI();                   
                    root.dispose();
@@ -338,7 +344,7 @@ public class RootGUI {
                         Logger.getLogger(RootGUI.class.getName()).log(Level.SEVERE, null, ex);
                     }                   
                    break;
-                /** ---------------------------->   <-----------------------------------*/
+                /* ---------------------------->   <-----------------------------------*/
             }
         }
     }
@@ -354,12 +360,10 @@ public class RootGUI {
                     root.dispose();
                     break;
                 case "regresar":
+                case "inicio":
                     root.setVisible(true);
                     break;
             }
         }        
     };
-    public void cambiarPasswordEvt(){
-        
-    }
 }

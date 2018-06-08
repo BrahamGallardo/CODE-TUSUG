@@ -24,6 +24,7 @@ public class AutobusGUI extends JFrame
     public JTextField   txt_buscar,txt_marca,txt_No_Eco,txt_Km,txt_matricula,txt_id,txt_asientos;
     public JFileChooser url_img;
     public JButton      btn_Act_List,btn_nuevo_autobus,btn_modificar,btn_eliminar,btn_agregar_img,btn_regresar,btn_guardar,btn_cancelar,btn_guardar_mod;
+    public JButton      sesion, inicio, buscar;
     public JLabel       lb_codigo_auto,lb_imagen_autobus;
     JFrame x;
     JPanel p;
@@ -40,9 +41,9 @@ public class AutobusGUI extends JFrame
     public void inicializarcomp()
     {
         Color color = new Color(233,233,233);
-        JButton inicio=     Builder.crearButtonIcon(p,"inicio",ruta + "boton_inicio.png",       new Rectangle(14,63,101,43), listener,false,false);
-        JButton sesion=     Builder.crearButtonIcon(p,"cerrarSesion",ruta + "boton_cerrar_sesion.png",new Rectangle(539,65,142,43),listener,false,false);
-        JButton buscar =    Builder.crearButtonIcon(p,"buscar",ruta + "buscar.png",             new Rectangle(26,185,32,32) ,listener,false,false);
+        inicio=     Builder.crearButtonIcon(p,"inicio",ruta + "boton_inicio.png",       new Rectangle(14,63,101,43), listener,false,false);
+        sesion=     Builder.crearButtonIcon(p,"cerrarSesion",ruta + "boton_cerrar_sesion.png",new Rectangle(539,65,142,43),listener,false,false);
+        buscar =    Builder.crearButtonIcon(p,"buscar",ruta + "buscar.png",             new Rectangle(26,185,32,32) ,listener,false,false);
         txt_buscar=         Builder.crearTextField(p, new Rectangle(68, 189, 106, 25), "", null, null,new Font("Segoe UI", Font.BOLD, 10),true,true,true);
         list=new JList();
         controlador.cargarLista(list);
@@ -284,6 +285,7 @@ public class AutobusGUI extends JFrame
     }
     public static void main (String []agrs)
     {
+        Conexion.setRol("root");
         AutobusGUI autobus = new AutobusGUI();
     }
      

@@ -51,7 +51,7 @@ public class GUIMenuSiniestros {
         //Fondo de la ventana
         fondo_vta = Builder.crearPanel(ventana, new Rectangle(0,0,700,600),ruta + "fondo_frame_sec.png", false);
         //MenuBar
-        barra = new JMenuBar();
+        /*barra = new JMenuBar();
         barra.setEnabled(true);
         archivo = new JMenu(user);
         archivo.setForeground(Color.GRAY);
@@ -67,7 +67,7 @@ public class GUIMenuSiniestros {
         barra.setVisible(true);
         listener = new CustomActionListener();
         reestablecer.addActionListener(listener);
-        Cerrar_Sesion.addActionListener(listener);
+        Cerrar_Sesion.addActionListener(listener);*/
         
         //Botones
         bt_regresar      =  Builder.crearButtonIcon(fondo_vta,     "regresar",ruta+"regresar.png",                      new Rectangle(326,518,39,39),  listener ,true, true); //bt_regresar.setBorder(null);
