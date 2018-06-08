@@ -1,6 +1,7 @@
 package GUI;
 
 import CONTROLLERS.Conexion;
+import CONTROLLERS.Expedientes;
 import GaleriaRutas.interfaz;
 import Servicios.FabricaComponentes;
 import java.awt.Color;
@@ -63,7 +64,7 @@ public class RootGUI {
     // Botones para almacenista
     private JButton btn_insumos, btn_lista_invent, btn_gener_inventario;
     // Botones de Recursos Humanos
-    private JButton btn_trabajadores, btn_expedientes, btn_nuevosempleado, btn_iactivos;
+    private JButton btn_trabajadores, btn_expedientes, btn_nuevosempleado;
     // Botones de Mantenimiento
     private JButton btn_nuevoreporte, btn_historial;
 
@@ -88,7 +89,7 @@ public class RootGUI {
                 habilitarComponentes(btn_insumos, btn_lista_invent, btn_gener_inventario);
                 break;
             case "recursos humanos":
-                habilitarComponentes(btn_trabajadores, btn_expedientes, btn_nuevosempleado, btn_iactivos);
+                habilitarComponentes(btn_trabajadores, btn_expedientes, btn_nuevosempleado);
                 break;
             default:
                 // Code Here:
@@ -112,7 +113,7 @@ public class RootGUI {
         bar_menu        =       new JMenuBar();//FabricaComponentes.crearMenuBar(panel, "b", new Rectangle(589,116, 67,18));
         panel.add(bar_menu);        
         bar_menu.       setBounds(new Rectangle(579,80, 70,18));
-        bar_menu.       setBackground(Color.gray);
+        bar_menu.       setBackground(Color.LIGHT_GRAY);
         ar = new JMenu(nombre_usuario);
         
         menu_cerrarsesion   =   new JMenuItem("Cerrar Sesion");        
@@ -151,7 +152,7 @@ public class RootGUI {
         btn_trabajadores =      Builder.crearButtonIcon(panel, "btntrabajadores",   carpeta_img + "trabajadores.png",           new Rectangle(85,  256, 256, 63), listen, false,true, false);
         btn_expedientes =       Builder.crearButtonIcon(panel, "btnexpedientes",    carpeta_img + "expedientes.png",            new Rectangle(85,  352, 256, 63), listen, false,true, false);
        // btn_nuevosempleado =    Builder.crearButtonIcon(panel, "btnnuevoempleados", carpeta_img + "nuevos_empleados.png",       new Rectangle(379, 352, 256, 63), listen, false,true, false);
-        btn_iactivos =          Builder.crearButtonIcon(panel, "btniactivos",       carpeta_img + "activos_e_inactivos.png",    new Rectangle(379, 352, 256, 63), listen, false,true, false);
+        //--Ya no se implementara'//btn_iactivos =          Builder.crearButtonIcon(panel, "btniactivos",       carpeta_img + "activos_e_inactivos.png",    new Rectangle(379, 352, 256, 63), listen, false,true, false);
         //Botones de Mantenimiento
         btn_nuevoreporte =      Builder.crearButtonIcon(panel, "MnuevoReporte",     carpeta_img + "Generar_nuevo_reporte.png",  new Rectangle(85,  256, 256, 63), listen, false,true, false);        
         btn_historial =         Builder.crearButtonIcon(panel, "Mhistorial",        carpeta_img + "Historial.png",              new Rectangle(85, 352, 256, 63), listen, false,true, false);
@@ -213,7 +214,7 @@ public class RootGUI {
                     break;
                 case "btnRRHH":
                     deshabilitarComponentes(btn_secre, btn_manten, btn_rrhh);
-                    habilitarComponentes(btn_regresar, btn_trabajadores, btn_expedientes, btn_iactivos);
+                    habilitarComponentes(btn_regresar, btn_trabajadores, btn_expedientes);
                     btn_regresar.setActionCommand("btn_back_RH");
                     lb_title.setText("Recursos Humanos");
                     break;
@@ -248,7 +249,7 @@ public class RootGUI {
                     habilitarComponentes(btn_secre, btn_manten, btn_rrhh);
                     break;
                 case "btn_back_RH":
-                    deshabilitarComponentes(btn_regresar, btn_trabajadores, btn_expedientes, btn_iactivos);
+                    deshabilitarComponentes(btn_regresar, btn_trabajadores, btn_expedientes);
                     habilitarComponentes(btn_secre, btn_manten, btn_rrhh);
                     break;
                 case "btn_back_Mant":
@@ -263,8 +264,7 @@ public class RootGUI {
                     auto.inicio.addActionListener(nextWindowFlowProgram);
                     break;
                 case "facturas":
-                    System.err.println("Holi22");
-                    //root.setVisible(false);
+                    root.setVisible(false);
                     GFacturas facturas = new GFacturas();
                     facturas.regresar.addActionListener(nextWindowFlowProgram);
                     facturas.cSesion.addActionListener(nextWindowFlowProgram);
@@ -273,7 +273,7 @@ public class RootGUI {
                     root.setVisible(false);
                     GUIMenuSiniestros frameSiniestro = new GUIMenuSiniestros();
                     frameSiniestro.bt_regresar.addActionListener(nextWindowFlowProgram);
-                    frameSiniestro.Cerrar_Sesion.addActionListener(nextWindowFlowProgram);
+                    //frameSiniestro.Cerrar_Sesion.addActionListener(nextWindowFlowProgram);
                     break;
                 /*-------------------------------<Botones para Almacen>--------------------------*/
                     case "asigna":
@@ -298,9 +298,13 @@ public class RootGUI {
                     root.setVisible(false);
                     TrabajadorGUI employer = new TrabajadorGUI();
                     employer.back.addActionListener(nextWindowFlowProgram);
+                    employer.btInicio.addActionListener(nextWindowFlowProgram);
                     break;
                 case "btnexpedientes":
-                    javax.swing.JOptionPane.showMessageDialog(null, "Esta funcion aun no esta implementada");
+                    root.setVisible(false);
+                    GUIExpedientes exp = new GUIExpedientes();
+                    exp.regresar.addActionListener(nextWindowFlowProgram);
+                    exp.Cerrar_Sesion.addActionListener(nextWindowFlowProgram);
                     break;
                 case "btnnuevoempleados":
                     javax.swing.JOptionPane.showMessageDialog(null, "Esta funcion aun no esta implementada");

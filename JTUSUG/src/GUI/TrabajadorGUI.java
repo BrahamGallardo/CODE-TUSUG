@@ -68,6 +68,15 @@ public class TrabajadorGUI {
         cargarLista(lista);
     }
     
+    
+    ActionListener closeSesion = new ActionListener(){
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            x.dispose();
+        }
+        
+    };
+    
     private void initComponents(){
         interfaz= new Trabajador(this);
         x = Builder.construirFrame("Trabajador", new Rectangle(0,0,700,600), false); 
@@ -92,10 +101,10 @@ public class TrabajadorGUI {
         
         
         //-----------------------------------------------<Botones para el flujo del programa>-------------------------------------------
-        btInicio =      Builder.crearButtonIcon( p, "Inicio",               "src/imagenes/boton_inicio.png",                        new Rectangle(14, 63, 88, 43),   null,   true, false);
+        btInicio =      Builder.crearButtonIcon( p, "regresar",               "src/imagenes/boton_inicio.png",                        new Rectangle(14, 63, 88, 43),   closeSesion,   true, false);
         //btBuscar =      Builder.crearButtonIcon( p, "Buscar",               "src/imagenes/buscar.png",                              new Rectangle(26,185,32,32) , null,   true, false);
         btActualizar =  Builder.crearButtonIcon( p, "Actualizar",           "src/imagenes/boton_actualizar_lista.png",              new Rectangle(26, 455, 145, 36), actualizarT,true, false);
-        sesion =        Builder.crearButtonIcon( p, "cerrarSesion",        "src/imagenes/boton_cerrar_sesion.png",                 new Rectangle(539, 65, 130, 27), null,   true, false);
+        //sesion =        Builder.crearButtonIcon( p, "cerrarSesion",        "src/imagenes/boton_cerrar_sesion.png",                 new Rectangle(539, 65, 130, 27), null,   true, false);
         back =          Builder.crearButtonIcon( p, "regresar",             "src/imagenes/regresar.png",                            new Rectangle(626, 452, 32, 32), regresarV,true, false);
         //-----------------------------------------------<Botones CRUD del empleado>----------------------------------------------------
         nuevo=          Builder.crearButtonIcon( p, "Nuevo Empleado",       "src/imagenes/agregar-usuario.png",                     new Rectangle(218, 140, 32, 32), nuevoT, true, false,true,color);
@@ -395,7 +404,9 @@ public class TrabajadorGUI {
         @Override
         public void keyTyped(java.awt.event.KeyEvent evt){            
             Matcher m = Pattern.compile("[a-zA-ZáéíóúÁÉÍÓÚ1234567890-]+").matcher(Character.toString(evt.getKeyChar()));
-            if(!m.find()||((JTextComponent)evt.getComponent()).getText().length()>=numLetrasValidas)
+            //boolean b = Character.isAlphabetic(evt.getKeyChar());
+            boolean c = Character.isSpaceChar(evt.getKeyChar());
+            if(!c || !m.find()||((JTextComponent)evt.getComponent()).getText().length()>=numLetrasValidas)
                 evt.consume();
             else evt.setKeyChar(Character.toUpperCase(evt.getKeyChar()));
         }

@@ -73,7 +73,7 @@ public class GFacturas2 extends JFrame {
         b1 = Builder.crearButtonIcon(p, "1", ruta + "btn_1_selected.png", new Rectangle(77, 106, 36, 36), listener, true, false);
         b2 = Builder.crearButtonIcon(p, "2", ruta + "btn_2.png", new Rectangle(156, 106, 36, 36), listener, true, false);
         regresar = Builder.crearButtonIcon(p, "regresar", ruta + "regresar.png", new Rectangle(326, 513, 41, 41), listener, true, false);
-        cSesion = Builder.crearButtonIcon(p, "cerrarSesion", ruta + "boton_cerrar_sesion.png", new Rectangle(460, 510, 142, 45), listener, true, false);
+        //cSesion = Builder.crearButtonIcon(p, "cerrarSesion", ruta + "boton_cerrar_sesion.png", new Rectangle(460, 510, 142, 45), listener, true, false);
         anterior = Builder.crearButtonIcon(p, "anterior", ruta + "img_anterior.png", new Rectangle(320, 460, 87, 43), listener, true, false);
         agregar = Builder.crearButtonIcon(p, "agregar", ruta + "bag.png", new Rectangle(292, 148, 24, 24), listener, true, false);
         eliminar = Builder.crearButtonIcon(p, "agregar", ruta + "shopping-cart.png", new Rectangle(341, 148, 24, 24), listener, true, false);

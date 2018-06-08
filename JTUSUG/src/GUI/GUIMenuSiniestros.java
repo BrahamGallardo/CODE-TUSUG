@@ -68,7 +68,7 @@ public class GUIMenuSiniestros {
         listener = new CustomActionListener();
         reestablecer.addActionListener(listener);
         Cerrar_Sesion.addActionListener(listener);*/
-        
+        listener =  new CustomActionListener();
         //Botones
         bt_regresar      =  Builder.crearButtonIcon(fondo_vta,     "regresar",ruta+"regresar.png",                      new Rectangle(326,518,39,39),  listener ,true, true); //bt_regresar.setBorder(null);
         bt_rep_siniestro =  Builder.crearButtonIcon(fondo_vta,     "reportar",ruta+"imagen_reportar_siniestro.png",     new Rectangle(104,162,205,331),listener ,true, true); //bt_rep_siniestro.setBorder(null);

@@ -133,7 +133,7 @@ public class GUIExpedientes {
                     break;
                 case "cerrarSesion":
                 case "regresar":
-                  
+                    f.dispose();
                     break;
             }
         }
