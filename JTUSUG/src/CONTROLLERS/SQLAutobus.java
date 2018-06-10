@@ -65,7 +65,7 @@ public class SQLAutobus {
 
     public String[] obtenerRegistro(String matricula) {
         String[] registro = new String[7];
-        String sql = "select * from sistemaTusug.autobus where matricula = '" + matricula + "'";
+        String sql = "select * from sistemaTusug.autobus where lower(matricula) = '" + matricula + "'";
         PreparedStatement pst = null;
         try {
             pst = conn.prepareStatement(sql);

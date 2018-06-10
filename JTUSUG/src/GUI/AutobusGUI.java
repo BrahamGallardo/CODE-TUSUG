@@ -49,6 +49,7 @@ public class AutobusGUI extends JFrame
         controlador.cargarLista(list);
         list.setBounds(14,236,172,198);
         list.addMouseListener(new CustomMouseListener());
+        JScrollPane pane = new JScrollPane(list, ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         p.add(list);  
         btn_Act_List =      Builder.crearButtonIcon(p,"actualizar_lista",   ruta + "boton_actualizar_lista.png",new Rectangle(26,446,145,36),listener,true,false);
         btn_nuevo_autobus = Builder.crearButtonIcon(p,"agregar",            ruta + "anadir.png",    new Rectangle(218,136,32,32),listener,true,false, true, color);
@@ -82,6 +83,7 @@ public class AutobusGUI extends JFrame
         
         JLabel fondo    =   Builder.crearLabelImagen(p, ruta + "fondo_ventana_2.png", new Rectangle(0,0,700,518));
         valida();
+       // p.add(pane);
     }
     
     static void p(Object o){
