@@ -32,19 +32,16 @@ import javax.swing.JTextArea;
 import javax.swing.text.JTextComponent;
 
 public class TrabajadorGUI {
+    //----------------------------------<Validacion>-----------------------
     TrabajadorActionListener eventos;    
     Validador valida;
-    String              dia[]={"1","2","3","4","5","6","7","8","9","10","11","12","13","14",
-                            "15","16","17","18","19","20","21","22","23","24","25","26",
-                            "27","28","29","30","31"};        
-    String              mes[]={"1","2","3","4","5","6","7", "8","9", "10", "11", "12"};        
-    String              anio[]={"1990", "1991", "1992", "1993", "1994", "1995", "1996", 
-                            "1997", "1998", "1999", "2000"};        
+    //----------------------------------<Reglas de la empresa>--------------
     String              Cargo[]={"secretaria", "chofer", "mantenimiento", "recursos humanos", "almacen"};
     String              Categoria[]= {"1","2","3","4","5"};        
     String              st[]={"activo", "pasivo", "baja"};
-    private JComboBox<String> cb4;    
     
+    //---------------------------------<Componentes>------------------------
+    private JComboBox<String> cb4;    
     JFrame x;    
     JPanel p;    
     public JLabel       trabajadores, lb_imagen;    
@@ -53,7 +50,6 @@ public class TrabajadorGUI {
     public JTextArea    area1;    
     public JComboBox    cb1, cb2, cb3, cb5,cb6, cb7,cbPuesto;
 
-    Trabajador          interfaz;
     public JDateChooser        fecha_nac;
     public LocalDate    fecha1,fecha2;    
     public int          dia1,mes1,anio1;    
@@ -62,6 +58,10 @@ public class TrabajadorGUI {
                         agregar,baja,btlista,btactinac, Cfoto,btn_guardar,btn_cancelar,btn_guardar_mod;    
     public JScrollBar   scroll;    
     public Date         fecha,fechaA;
+    
+    //-------------------------------<Controlador>------------------------------
+    Trabajador          interfaz;
+
     
     public TrabajadorGUI(){
         initComponents();
@@ -153,12 +153,20 @@ public class TrabajadorGUI {
          area1.setEditable(false);
          area1.setEnabled(true);
          //lista
+         //lista= new JList();
+         //p.add(lista);
+         //lista.setBounds(new Rectangle(14,180,176,260));
+         //lista.setVisible(true);
+         //lista.addMouseListener(new TrabajadorGUI.CustomMouseListener());
+         //--------------------------</Adding a ScrollPane to JPanel>------------
          lista= new JList();
-         p.add(lista);
-         lista.setBounds(new Rectangle(14,180,176,260));
-         lista.setVisible(true);
+         javax.swing.JScrollPane scroll = new javax.swing.JScrollPane(lista);         
+         scroll.setBounds(new Rectangle(14,180,176,260));
+         scroll.setVisible(true);
          lista.addMouseListener(new TrabajadorGUI.CustomMouseListener());
      
+         p.add(scroll);
+         //--------------------------</Adding a ScrollPane to JPanel>---------------
          JLabel fondo    =   Builder.crearLabelImagen(p, "src/imagenes/fondo_ventana_2.png", new Rectangle(0,0,700,518));
     }
     
