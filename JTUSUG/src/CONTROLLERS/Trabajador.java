@@ -59,7 +59,7 @@ public class Trabajador {
             if ((new java.util.Date().getYear() - anioFechaNac) > 100) {
                 anioFechaNac += 100;
             }
-            java.sql.Date nac = new java.sql.Date(anioFechaNac, month, day);
+            java.sql.Date nac = new java.sql.Date(anioFechaNac, month-1, day);
             java.sql.Date contrato = new java.sql.Date(new java.util.Date().getTime());
             interfaz.txt_fechaNac.setText(nac.toString());
             //interfaz.fecha_nac.setDate(new Date(anioFechaNac,

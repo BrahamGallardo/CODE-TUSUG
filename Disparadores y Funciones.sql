@@ -1,10 +1,10 @@
-/* Disparadores  y funciones*/
+﻿/* Disparadores  y funciones*/
 set search_path to sistemaTusug;
 create view sesiones as
 	select rfc, nombre, descripcion as puesto, contrasenia
 	from rol 
 		natural join usuario
-		natural join trabajador
+		natural join trabajador;
 		
 /* Disparador para crear Usuarion*/
 create or replace function func_CreateNewUser() returns trigger as $$
