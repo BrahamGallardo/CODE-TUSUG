@@ -70,7 +70,8 @@ public class SQLAutobus {
         try {
             pst = conn.prepareStatement(sql);
             ResultSet res = pst.executeQuery();
-            res.next();
+           // res.next();
+           while(res.next()){
             registro[0] = res.getString("matricula");
             registro[1] = res.getString("id");
             registro[2] = res.getString("marca");
@@ -78,7 +79,8 @@ public class SQLAutobus {
             registro[4] = Integer.toString(res.getInt("kilometraje"));
             registro[5] = Integer.toString(res.getInt("asientos"));
             registro[6] = res.getString("url_img");
-            //res.close();
+           // res.close();
+           }
 
         } catch (SQLException ex) {
             Logger.getLogger(SQLAutobus.class.getName()).log(Level.SEVERE, null, ex);
