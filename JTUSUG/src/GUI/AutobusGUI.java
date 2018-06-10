@@ -47,10 +47,10 @@ public class AutobusGUI extends JFrame
         txt_buscar=         Builder.crearTextField(p, new Rectangle(68, 189, 106, 25), "", null, null,new Font("Segoe UI", Font.BOLD, 10),true,true,true);
         list=new JList();
         controlador.cargarLista(list);
-        list.setBounds(14,236,172,198);
         list.addMouseListener(new CustomMouseListener());
         JScrollPane pane = new JScrollPane(list, ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        p.add(list);  
+        pane.setBounds(14,236,172,198);
+        p.add(pane);  
         btn_Act_List =      Builder.crearButtonIcon(p,"actualizar_lista",   ruta + "boton_actualizar_lista.png",new Rectangle(26,446,145,36),listener,true,false);
         btn_nuevo_autobus = Builder.crearButtonIcon(p,"agregar",            ruta + "anadir.png",    new Rectangle(218,136,32,32),listener,true,false, true, color);
         btn_eliminar=       Builder.crearButtonIcon(p,"eliminar",           ruta + "boton-x.png",   new Rectangle(218,268,32,32),listener,false,false, true, color);

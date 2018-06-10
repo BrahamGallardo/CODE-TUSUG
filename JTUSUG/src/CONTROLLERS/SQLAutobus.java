@@ -53,7 +53,7 @@ public class SQLAutobus {
         PreparedStatement stmt = null;
         //int tuplas = 0;
         try {
-            stmt = conn.prepareStatement("delete from sistematusug.autobus where matricula = ?");
+            stmt = conn.prepareStatement("delete from sistematusug.autobus where lower(matricula) = ?");
             stmt.setString(1, arg.toLowerCase());
             int tuplas = stmt.executeUpdate();
             //rs.close();
@@ -117,7 +117,7 @@ public class SQLAutobus {
                     + "numero_economico= ? ,"
                     + "kilometraje= ? ,"
                     + "asientos= ? "
-                    + "WHERE matricula = ? ");
+                    + "WHERE lower(matricula) = ? ");
             pstm.setString(1, marca);
             pstm.setString(2, num_eco);
             pstm.setInt(3, km);

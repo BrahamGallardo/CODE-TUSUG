@@ -38,7 +38,6 @@ import net.sf.jasperreports.engine.JRException;
 public class ListaSiniestroGUI {
 
     public JButton lSiniestros, Rsiniestro, regresar, guardar, abrir, imprimir;
-    static String encabezado[] = {"Referencia", "Fecha siniestro", "Tipo", "Estado"};
     static Object[][] datos;
     public JTable tabla;
     public int valor;
@@ -53,25 +52,20 @@ public class ListaSiniestroGUI {
     JMenu archivo;
     JMenuItem reestablecer;
     JMenuItem Cerrar_Sesion;
+    public DefaultTableModel model;
+
 
     public ListaSiniestroGUI() {
+        controlador= new SQLRepSinies(this);
         user = "Usuario";
+        String[] nom= {"Codigo", "Fecha del siniestro", "Tipo"};
+        model=new DefaultTableModel(null, nom);
+
         f = Builder.construirFrame("Lista de Siniestros", new Rectangle(0, 0, 700, 649), false);
         p = Builder.crearPanel(f, new Rectangle(2, 0, 703, 649), ruta + "fondo_lista_siniestros.png", false);
 
         //Menu
-        /*barra = new JMenuBar();
-        barra.setBackground(Color.GRAY);
-        archivo = new JMenu(user);
-        reestablecer = new JMenuItem("Reestablecer Contraseña");
-        Cerrar_Sesion = new JMenuItem("Cerrar Sesión");
-        archivo.add(reestablecer);
-        archivo.add(Cerrar_Sesion);
-        barra.add(archivo);
-        p.add(barra);
-        barra.setBounds(new Rectangle(513, 75, 55, 34));
-        barra.setVisible(true);
-        listener = new ReportCustomListener();*/
+
         //botones
         listener = new ReportCustomListener();
         lSiniestros = Builder.crearButtonIcon(p, "listado", ruta + "boton_listado_siniestros_selected.png", new Rectangle(135, 69, 142, 43), listener, true, false);
@@ -82,39 +76,31 @@ public class ListaSiniestroGUI {
         regresar = Builder.crearButtonIcon(p, "regresar", ruta + "regresar.png", new Rectangle(326, 518, 39, 39), listener, true, false);
 
         //Tabla
-        controlador = new SQLRepSinies(g);
-        Object[][] datos = controlador.obtenerRegistro();
-
-        tabla = new JTable();
-        tabla.setPreferredSize(new Dimension(576, 329));
-        JScrollPane scrollPane = new JScrollPane(updateTabla());
+        controlador.llenarTable();
+        tabla = new JTable();      
+        tabla.setPreferredSize(new Dimension(576, 329));       
+        JScrollPane scrollPane = new JScrollPane(tabla);
         scrollPane.setBounds(54, 145, 576, 329);
         p.add(scrollPane);
-
-        valor = 0;
+        tabla.setModel(model);
+        tabla.addMouseListener(new java.awt.event.MouseAdapter() {
+      @Override
+        public void mouseClicked(MouseEvent e) {
+        tableMouseClicked(e);
+        }
+        });
+       
+        
+    
+  
     }
 
-    private JTable updateTabla() {
-        String[] columNames = {"Referencia", "Fecha siniestro", "Tipo", "Estado"};
-        // se utiliza la funcion
-        //dtPer = p.getDatos();
-        // se colocan los datos en la tabla
-        Object[][] registro = controlador.obtenerRegistro();
-        DefaultTableModel datos = new DefaultTableModel(registro, columNames);
-        tabla = new JTable(datos) {
-            @Override
-            public boolean isCellEditable(int row, int column) {
-                return false;
-            }
-        };
-        tabla.setModel(datos);
-        return tabla;
-    }
 
     public int tableMouseClicked(MouseEvent evt) {
         int filasele = tabla.getSelectedRow();
         valor = Integer.valueOf(tabla.getValueAt(filasele, 0).toString());
         System.out.println(valor);
+        
         return valor;
     }
 
