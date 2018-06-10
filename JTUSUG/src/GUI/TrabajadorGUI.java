@@ -186,7 +186,7 @@ public class TrabajadorGUI {
                     }
                     l.setModel(modelo);
     }
-    
+
     ActionListener nuevoT=new ActionListener(){
         public void actionPerformed(ActionEvent ae){
             cleanFormulario();

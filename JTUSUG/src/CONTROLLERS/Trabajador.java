@@ -31,10 +31,6 @@ public class Trabajador {
         dataBD = new HashMap<String, TrabajadorEntity>();
         interfaz = ui;
         c = Conexion.getConexion();
-        if (c == null) {
-            interfaz.disable();
-        }
-
     }
 
     public void agregaTrabajador() {
