@@ -43,33 +43,38 @@ public class Trabajador {
             String nombre = interfaz.tfnom.getText().toLowerCase();
             String ap_paterno = interfaz.tfapp.getText().toLowerCase();
             String ap_materno = interfaz.tfapm.getText().toLowerCase();
-            String domicilio = interfaz.area1.getText().toLowerCase();
+            String domicilio = interfaz.txtA_direccion.getText().toLowerCase();
             /*--------Intermedio para obtener fecha de nac y validar esa parte-------*/
 
-            int anioFechaNac;
+            int anioFechaNac, month, day;
             try {
                 anioFechaNac = Integer.parseInt(rfc.substring(3, 5));
+                month = Integer.parseInt(rfc.substring(5, 7));
+                day = Integer.parseInt(rfc.substring(7, 9));
             } catch (NumberFormatException ex) {
                 anioFechaNac = Integer.parseInt(rfc.substring(4, 6));
+                month = Integer.parseInt(rfc.substring(6, 8));
+                day = Integer.parseInt(rfc.substring(8, 10));
             }
             if ((new java.util.Date().getYear() - anioFechaNac) > 100) {
-                anioFechaNac += 2000;
-            } else {
-                anioFechaNac += 1900;
-            }            
-            interfaz.fecha_nac.setDate(new Date(1996, 05,05));
+                anioFechaNac += 100;
+            }
+            java.sql.Date nac = new java.sql.Date(anioFechaNac, month, day);
+            java.sql.Date contrato = new java.sql.Date(new java.util.Date().getTime());
+            interfaz.txt_fechaNac.setText(nac.toString());
             //interfaz.fecha_nac.setDate(new Date(anioFechaNac,
             //        Integer.parseInt(rfc.substring(5, 7)),
             //       Integer.parseInt(rfc.substring(7, 9))
             // ));
             /*.......................<End>................................................*/
 
-            String puesto = (String) interfaz.cbPuesto.getSelectedItem().toString().toLowerCase();
-            java.sql.Date f_nac = new java.sql.Date(interfaz.fecha_nac.getDate().getTime());
-            java.sql.Date f_cont = new java.sql.Date(interfaz.fecha_nac.getDate().getTime());
-            String estado = (String) interfaz.cb6.getSelectedItem().toString().toLowerCase();
+            String puesto = (String) interfaz.combo_puesto.getSelectedItem().toString().toLowerCase();
+            
+            //java.sql.Date f_nac = new java.sql.Date(interfaz.fecha_nacimiento.getDate().getTime());
+            //java.sql.Date f_cont = new java.sql.Date(interfaz.fecha_nacimiento.getDate().getTime());
+            String estado = (String) interfaz.combo_estadoLaboral.getSelectedItem().toString().toLowerCase();
             String url = " ";
-            addT(rfc, nombre, ap_paterno, ap_materno, domicilio, puesto, f_nac, f_cont, estado, url);
+            agregarTrabajador(rfc, nombre, ap_paterno, ap_materno, domicilio, puesto, nac, contrato, estado, url);
         } catch (InvalidFormatException ex) {
             if (ex.getMessage().equals("RFC")) {
                 JOptionPane.showMessageDialog(null, "RFC Invalido");
@@ -82,7 +87,8 @@ public class Trabajador {
 
     }
 
-    public void addT(String rfc, String nombre, String ap_paterno, String ap_materno, String domicilio, String puesto, Date f_nac, Date f_cont, String estado, String urlImage) {
+    public void agregarTrabajador(String rfc, String nombre, String ap_paterno, String ap_materno, String domicilio, String puesto, Date f_nac, Date f_cont, String estado, String urlImage) {
+        //------<Validating>----------
         try {
 
             PreparedStatement pstm = c.prepareStatement("insert into "
@@ -144,8 +150,8 @@ public class Trabajador {
         nombre = interfaz.tfnom.getText();
         ap_paterno = interfaz.tfapp.getText();
         ap_materno = interfaz.tfapm.getText();
-        domicilio = interfaz.area1.getText();
-        puesto = ((String) interfaz.cbPuesto.getSelectedItem());
+        domicilio = interfaz.txtA_direccion.getText();
+        puesto = ((String) interfaz.combo_puesto.getSelectedItem());
         rfc = interfaz.tfrfc.getText().toLowerCase();
 
         try {
@@ -200,21 +206,15 @@ public class Trabajador {
             pstm.setString(1, rfc);
             ResultSet rs = pstm.executeQuery();
             while (rs.next()) {
-                registros[0] = rs.getString(1);
-                interfaz.tfrfc.setText(registros[0].toUpperCase());
-                registros[1] = rs.getString(2);
-                interfaz.tfnom.setText(registros[1].toUpperCase());
-                registros[2] = rs.getString(3);
-                interfaz.tfapp.setText(registros[2].toUpperCase());
-                registros[3] = rs.getString(4);
-                interfaz.tfapm.setText(registros[3].toUpperCase());
-                registros[4] = rs.getString(5);
-                interfaz.area1.setText(registros[4].toUpperCase());
-                //interfaz.cb1.setSelectedItem(rs.getString("estado").toLowerCase());
-                registros[5] = rs.getString(6);
-                registros[6] = rs.getString(7);
-                registros[7] = rs.getString(8);
-                registros[8] = rs.getString(9);
+                interfaz.tfrfc.setText(rs.getString("rfc").toUpperCase());
+                interfaz.tfnom.setText(rs.getString("nombre").toUpperCase());
+                interfaz.tfapp.setText(rs.getString("ap_paterno").toUpperCase());
+                interfaz.tfapm.setText(rs.getString("ap_materno").toUpperCase());
+                interfaz.txtA_direccion.setText(rs.getString("domicilio").toUpperCase());
+                interfaz.combo_puesto.          setSelectedItem(rs.getString("puesto"));
+                interfaz.txt_fechaNac.  setText(rs.getString("fecha_nac"));
+                //--Falta Fecha de contratacion, no hay un campo para visualizarlo :|
+                interfaz.combo_estadoLaboral.  setSelectedItem(rs.getString("estado"));
                 putImageProfile(rs.getString("url_img"));
             }
             //   pstm.close();
@@ -282,3 +282,4 @@ public class Trabajador {
     
     
 }
+
