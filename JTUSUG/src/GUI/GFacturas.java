@@ -63,6 +63,7 @@ public class GFacturas extends JFrame {
                 case "Generar Notas":
                     g = new GFacturas1();
                     g.cSesion.addActionListener(listener);
+                    
                     //f.dispose();
                     break;
                 case "Visualizar Factura":

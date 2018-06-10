@@ -33,7 +33,7 @@ public class ControladorChoferAutobus {
         String[] registros = new String[9];
         try {
 
-            PreparedStatement pstm = c.prepareStatement("select * from sistemaTusug.trabajador where rfc=?");
+            PreparedStatement pstm = c.prepareStatement("select * from sistemaTusug.trabajador where lower(rfc)=?");
             pstm.setString(1, rfc);
             ResultSet rs = pstm.executeQuery();
             while (rs.next()) {
@@ -60,7 +60,7 @@ public class ControladorChoferAutobus {
 
             String[] registros = new String[1];
             m= new ArrayList();
-            String cons = "select rfc from sistemaTusug.trabajador where puesto='chofer'";
+            String cons = "select rfc from sistemaTusug.trabajador where lower(puesto)='chofer'";
 
             Statement st = c.createStatement();
             ResultSet rs = st.executeQuery(cons);
@@ -122,7 +122,7 @@ public class ControladorChoferAutobus {
         String[] registros = new String[9];
         try {
 
-            PreparedStatement pstm = c.prepareStatement("select numero_economico,matricula,marca,kilometraje from sistemaTusug.autobus where matricula=?");
+            PreparedStatement pstm = c.prepareStatement("select numero_economico,matricula,marca,kilometraje from sistemaTusug.autobus where lower(matricula)=?");
             pstm.setString(1, matricula);
             ResultSet rs = pstm.executeQuery();
             while (rs.next()) {

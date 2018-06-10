@@ -71,8 +71,8 @@ public class ListaSiniestroGUI {
         lSiniestros = Builder.crearButtonIcon(p, "listado", ruta + "boton_listado_siniestros_selected.png", new Rectangle(135, 69, 142, 43), listener, true, false);
         Rsiniestro = Builder.crearButtonIcon(p, "reportar", ruta + "boton_reportar_siniestro.png", new Rectangle(313, 69, 142, 43), listener, true, false);
         abrir = Builder.crearButtonIcon(p, "abrir", ruta + "folder.png", new Rectangle(656, 199, 24, 24), new ReportCustomListener(), true, false);
-        imprimir = Builder.crearButtonIcon(p, "imprimir", ruta + "print.png", new Rectangle(656, 260, 24, 24), listener, true, false);
-        guardar = Builder.crearButtonIcon(p, "guardar", ruta + "save.png", new Rectangle(656, 318, 24, 24), listener, true, false);
+        //imprimir = Builder.crearButtonIcon(p, "imprimir", ruta + "print.png", new Rectangle(656, 260, 24, 24), listener, true, false);
+        //guardar = Builder.crearButtonIcon(p, "guardar", ruta + "save.png", new Rectangle(656, 318, 24, 24), listener, true, false);
         regresar = Builder.crearButtonIcon(p, "regresar", ruta + "regresar.png", new Rectangle(326, 518, 39, 39), listener, true, false);
 
         //Tabla

@@ -50,8 +50,8 @@ public class ListaInventario {
         buscar.setBackground(Color.white);
         buscar.setForeground(Color.black);
         abrir = Builder.crearButtonIcon(p,"abrir", ruta+"folder.png",new Rectangle(643,182,24,24), listener, true,false);
-        imprimir = Builder.crearButtonIcon(p,"imprimir", ruta+"print.png",new Rectangle(643,243,24,24), listener, true,false);
-        guardar = Builder.crearButtonIcon(p,"guardar", ruta+"save.png",new Rectangle(643,301,24,24), listener, true,false);
+      //  imprimir = Builder.crearButtonIcon(p,"imprimir", ruta+"print.png",new Rectangle(643,243,24,24), listener, true,false);
+      //  guardar = Builder.crearButtonIcon(p,"guardar", ruta+"save.png",new Rectangle(643,301,24,24), listener, true,false);
         regresar = Builder.crearButtonIcon(p, "regresar", ruta+"regresar.png",new Rectangle(326,513, 41,41), listener, true, false);
         cSesion = Builder.crearButtonIcon(p,"Cerrar Sesión", ruta+"boton_cerrar_sesion.png",new Rectangle(460,510, 142,45), listener, true, false);
         

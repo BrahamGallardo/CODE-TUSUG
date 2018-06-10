@@ -72,10 +72,10 @@ public class HistorialMantenGUI {
         a.add(dateChooser);
         dateChooser.setBounds(500,90,170,22);
         btn_abrir        = Builder.crearButtonIcon(a,"abrir",ruta + "folder.png",                  new Rectangle(643,182,24,24) ,new ReportCustomListener(),false,false);
-        btn_imprimir     = Builder.crearButtonIcon(a,"imprimir",ruta + "print.png",                new Rectangle(643,243,24,24) ,listener,false,false);
+       // btn_imprimir     = Builder.crearButtonIcon(a,"imprimir",ruta + "print.png",                new Rectangle(643,243,24,24) ,listener,false,false);
         btn_buscar       = Builder.crearButtonIcon(a,"buscar",ruta + "btn_buscar.png",             new Rectangle(54,89,74,21)   ,listener,false,false);
         btn_regresar     = Builder.crearButtonIcon(a,"regresar",ruta + "regresar.png",             new Rectangle(326,518,39,39) ,listener,false,false);
-        btn_guardar      = Builder.crearButtonIcon(a,"guardar",ruta + "save.png",                  new Rectangle(643,301,24,24) ,listener,false,false);
+       // btn_guardar      = Builder.crearButtonIcon(a,"guardar",ruta + "save.png",                  new Rectangle(643,301,24,24) ,listener,false,false);
         btn_cerrarSesion = Builder.crearButtonIcon(a,"cerrarSesion",ruta + "cerrar_sesion.png",    new Rectangle(460,506,201,63),listener,false,false);
         
         

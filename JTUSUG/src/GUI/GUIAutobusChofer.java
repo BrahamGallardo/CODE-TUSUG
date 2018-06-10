@@ -214,8 +214,11 @@ public class GUIAutobusChofer {
       class CustomActionListener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
-            if(validaIngreso(name,ap_paterno,ap_materno,state,matric,marc,kilometraje))
+            if(validaIngreso(name,ap_paterno,ap_materno,state,matric,marc,kilometraje)){
             controlador.addT();
+           JOptionPane.showMessageDialog(null,"Chofer asignado");
+
+            } 
             else
                 JOptionPane.showMessageDialog(null, "Debe llenar todos los campos", "Error..!!", JOptionPane.ERROR_MESSAGE);
         }
