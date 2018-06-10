@@ -66,7 +66,6 @@ public class ControladorChoferAutobus {
             ResultSet rs = st.executeQuery(cons);
             while (rs.next()) {
                 m.add( rs.getString(1));
-                System.out.print(rs.getString(1));
                
              //   st.close();
 
@@ -106,7 +105,6 @@ public class ControladorChoferAutobus {
             ResultSet rs = st.executeQuery(cons);
             while (rs.next()) {
                 n.add( rs.getString(1));
-                System.out.print(rs.getString(1));
                
              //   st.close();
 

@@ -117,7 +117,7 @@ public class Trabajador {
         try {
             PreparedStatement pstm = c.prepareStatement("UPDATE sistemaTusug.trabajador SET "
                     + " estado= ? "
-                    + "WHERE rfc = ? ");
+                    + "WHERE lower(rfc) = ? ");
             pstm.setString(1, estado);
             pstm.setString(2, rfc.toLowerCase());
             pstm.execute();
@@ -129,7 +129,7 @@ public class Trabajador {
 
     public ArrayList<String> listatrabajador() {
         ArrayList<String> listEmployers = new ArrayList<String>();
-        String sql = "select rfc from sistemaTusug.trabajador where estado like 'activo' ORDER BY rfc";
+        String sql = "select rfc from sistemaTusug.trabajador where lower(estado) like 'activo' ORDER BY rfc";
         PreparedStatement pst;
         ResultSet res;
         try {
@@ -161,7 +161,7 @@ public class Trabajador {
                     + "ap_materno= ? ,"
                     + "domicilio= ? ,"
                     + "puesto= ? "
-                    + "WHERE rfc =? ");
+                    + "WHERE lower(rfc) =? ");
             pstm.setString(1, nombre);
             pstm.setString(2, ap_paterno);
             pstm.setString(3, ap_materno);
@@ -202,7 +202,7 @@ public class Trabajador {
         String[] registros = new String[9];
         try {
 
-            PreparedStatement pstm = c.prepareStatement("select * from sistemaTusug.trabajador where rfc=?");
+            PreparedStatement pstm = c.prepareStatement("select * from sistemaTusug.trabajador where lower(rfc)=?");
             pstm.setString(1, rfc);
             ResultSet rs = pstm.executeQuery();
             while (rs.next()) {
@@ -235,7 +235,7 @@ public class Trabajador {
             // Actualizar dato en la Base de datos
             // Preparar Consulta
             Connection conn = Conexion.getConexion();
-            PreparedStatement pstm = conn.prepareStatement("UPDATE sistemaTusug.trabajador SET url_img = ? WHERE rfc = ? ;");
+            PreparedStatement pstm = conn.prepareStatement("UPDATE sistemaTusug.trabajador SET url_img = ? WHERE lower(rfc) = ? ;");
             pstm.setString(1, absPathImg);
             pstm.setString(2, rfc);
             pstm.execute();
