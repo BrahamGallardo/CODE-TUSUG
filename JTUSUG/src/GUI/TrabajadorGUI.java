@@ -404,10 +404,10 @@ public class TrabajadorGUI {
         }
         @Override
         public void keyTyped(java.awt.event.KeyEvent evt){            
-            Matcher m = Pattern.compile("[a-zA-ZáéíóúÁÉÍÓÚ1234567890-]+").matcher(Character.toString(evt.getKeyChar()));
-            //boolean b = Character.isAlphabetic(evt.getKeyChar());
+            Matcher m = Pattern.compile("[[\\s]a-zA-ZáéíóúÁÉÍÓÚ1234567890-]+").matcher(Character.toString(evt.getKeyChar()));
+            //boolean b = Character.isAlphabetic(evt.getKeyChar());            
             boolean c = Character.isSpaceChar(evt.getKeyChar());
-            if(!c || !m.find()||((JTextComponent)evt.getComponent()).getText().length()>=numLetrasValidas)
+            if(!m.find()||((JTextComponent)evt.getComponent()).getText().length()>=numLetrasValidas)
                 evt.consume();
             else evt.setKeyChar(Character.toUpperCase(evt.getKeyChar()));
         }
