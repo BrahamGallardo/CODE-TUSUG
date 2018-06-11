@@ -79,16 +79,12 @@ public class TrabajadorGUI {
     };
     
     private void initComponents(){
-        UIManager.put( "ComboBox.disabledText", Color.white);
-        
         interfaz= new Trabajador(this);
-        x = Builder.construirFrame("Trabajador", new Rectangle(0,0,700,600), false); 
-        x.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        p = Builder.crearPanel(x, new Rectangle(0,0,700,518),"src/imagenes/fondo_ventana_2.png", false);
-        
-        
         eventos = new TrabajadorActionListener();
-        
+
+        x = Builder.construirFrame("Trabajador", new Rectangle(0,0,700,600), false); 
+            x.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        p = Builder.crearPanel(x, new Rectangle(0,0,700,518),"src/imagenes/fondo_ventana_2.png", false);
         
         Color color = new Color(233,233,233);
         //etiquetas
@@ -430,7 +426,7 @@ public class TrabajadorGUI {
     //--------------<Habilitar botones de Guardar y cancelar>----------------
         btn_guardar.setVisible(false);btn_guardar.setEnabled(false);
         btn_cancelar.setVisible(false);btn_cancelar.setEnabled(false);
-        btn_guardar_mod.setVisible(false);btn_guardar_mod.setEnabled(false);        
+        btn_guardar_mod.setVisible(false);btn_guardar_mod.setEnabled(false);
     //--------------<Fin>------------------------------------------------
     }
 }
