@@ -1,5 +1,6 @@
 package GUI;
 
+import CONTROLLERS.Conexion;
 import CONTROLLERS.ControladorMantenimiento;
 import com.toedter.calendar.JDateChooser;
 import javax.swing.*;
@@ -189,5 +190,10 @@ public class GUIReporteManten{
             }
         }
         
+    }
+    
+    public static void main(String [] args){
+        Conexion.setRol("root");
+        new GUIReporteManten();
     }
 }

@@ -2,25 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-<<<<<<< HEAD
-            <file>file:/C:/Lab/Git/CODE-TUSUG/JTUSUG/src/CONTROLLERS/Conexion.java</file>
-            <file>file:/C:/Lab/Git/CODE-TUSUG/JTUSUG/src/GUI/TrabajadorGUI.java</file>
-            <file>file:/C:/Lab/Git/CODE-TUSUG/JTUSUG/src/CONTROLLERS/Trabajador.java</file>
-=======
-            <file>file:/C:/Users/BARTO/Desktop/proyecto/CODE-TUSUG/JTUSUG/src/GUI/VFacturas.java</file>
-            <file>file:/C:/Users/BARTO/Desktop/proyecto/CODE-TUSUG/JTUSUG/src/GUI/GFacturas1.java</file>
-            <file>file:/C:/Users/BARTO/Desktop/proyecto/CODE-TUSUG/JTUSUG/src/GUI/TrabajadorGUI.java</file>
-            <file>file:/C:/Users/BARTO/Desktop/proyecto/CODE-TUSUG/JTUSUG/src/GUI/RootGUI.java</file>
-            <file>file:/C:/Users/BARTO/Desktop/proyecto/CODE-TUSUG/JTUSUG/src/GUI/GFacturas2.java</file>
-            <file>file:/C:/Users/BARTO/Desktop/proyecto/CODE-TUSUG/JTUSUG/src/GUI/GUIMenuSiniestros.java</file>
-            <file>file:/C:/Users/BARTO/Desktop/proyecto/CODE-TUSUG/JTUSUG/src/GUI/Splash.java</file>
-            <file>file:/C:/Users/BARTO/Desktop/proyecto/CODE-TUSUG/JTUSUG/src/GUI/GFacturas.java</file>
-            <file>file:/C:/Users/BARTO/Desktop/proyecto/CODE-TUSUG/JTUSUG/src/GUI/ListaSiniestroGUI.java</file>
-            <file>file:/C:/Users/BARTO/Desktop/proyecto/CODE-TUSUG/JTUSUG/src/Validacion/Validador.java</file>
-            <file>file:/C:/Users/BARTO/Desktop/proyecto/CODE-TUSUG/JTUSUG/src/CONTROLLERS/ControladorChoferAutobus.java</file>
-            <file>file:/C:/Users/BARTO/Desktop/proyecto/CODE-TUSUG/JTUSUG/src/GUI/LoginGUI.java</file>
->>>>>>> e971aade0318185826114ba2aa80016dff68a3c1
-        </group>
+        <group/>
     </open-files>
 </project-private>
