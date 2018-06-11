@@ -152,3 +152,7 @@
 >>Boton generar_expediente
 *Posicion: (218,336).
 *Tamaño: 32 x 32 px
+
+>>Boton darDeBaja_reactivar
+*Posicion: (218,396).
+*Tamaño: 32 x 32 px
