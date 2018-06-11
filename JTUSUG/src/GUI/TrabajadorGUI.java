@@ -83,6 +83,7 @@ public class TrabajadorGUI {
         
         interfaz= new Trabajador(this);
         x = Builder.construirFrame("Trabajador", new Rectangle(0,0,700,600), false); 
+        x.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         p = Builder.crearPanel(x, new Rectangle(0,0,700,518),"src/imagenes/fondo_ventana_2.png", false);
         
         
@@ -254,10 +255,14 @@ public class TrabajadorGUI {
         public void actionPerformed(ActionEvent ae)
         {
            if(validaIngreso(tfrfc,tfapp,tfapm,tfnom)){
-                interfaz.agregaTrabajador(); 
-                cargarLista(lista);
-                deshabilitaFormulario();
-                JOptionPane.showMessageDialog(null,"Guardado Exitosamente");
+                boolean si = interfaz.agregaTrabajador(); 
+                if (si) {
+                    cargarLista(lista);
+                    cleanFormulario();
+                    deshabilitaFormulario();
+                    JOptionPane.showMessageDialog(null,"Guardado Exitosamente");
+                }else JOptionPane.showMessageDialog(null, "Vuelva a intentarlo","Advertencia", JOptionPane.ERROR_MESSAGE);
+                
             }
             else
                 JOptionPane.showMessageDialog(null, "Debe llenar todos los campos", "Error..!!", JOptionPane.ERROR_MESSAGE);

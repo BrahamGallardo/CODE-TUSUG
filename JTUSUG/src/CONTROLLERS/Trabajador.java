@@ -29,11 +29,11 @@ public class Trabajador {
 
     public Trabajador(TrabajadorGUI ui) {
         dataBD = new HashMap<String, TrabajadorEntity>();
-        interfaz = ui;
+        interfaz = ui;        
         c = Conexion.getConexion();
     }
 
-    public void agregaTrabajador() {
+    public boolean agregaTrabajador() {
         try {
             String rfc = Validador.getRfcIfIsValid(interfaz.tfrfc.getText()).toLowerCase();
             String nombre = interfaz.tfnom.getText().toLowerCase();
@@ -71,7 +71,8 @@ public class Trabajador {
             String estado = (String) interfaz.combo_estadoLaboral.getSelectedItem().toString().toLowerCase();
             String url = " ";
             agregarTrabajador(rfc, nombre, ap_paterno, ap_materno, domicilio, puesto, nac, contrato, estado, url);
-        } catch (InvalidFormatException ex) {
+            return true;
+        } catch (InvalidFormatException ex) {            
             if (ex.getMessage().equals("RFC")) {
                 JOptionPane.showMessageDialog(null, "RFC Invalido");
             } else {
@@ -80,7 +81,7 @@ public class Trabajador {
         } catch (Exception ex) {
             Logger.getLogger(SQLAutobus.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        return false;
     }
 
     public void agregarTrabajador(String rfc, String nombre, String ap_paterno, String ap_materno, String domicilio, String puesto, Date f_nac, Date f_cont, String estado, String urlImage) {
