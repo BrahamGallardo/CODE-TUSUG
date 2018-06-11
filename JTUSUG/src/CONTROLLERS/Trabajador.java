@@ -142,7 +142,7 @@ public class Trabajador {
 
     }
 
-    public void modificaTrabajador(String nombre, String ap_paterno, String ap_materno, String domicilio, String puesto, String rfc) {
+    public void modificaTrabajador(String nombre, String ap_paterno, String ap_materno, String domicilio, String puesto,String estado, String rfc) {
         nombre = interfaz.tfnom.getText();
         ap_paterno = interfaz.tfapp.getText();
         ap_materno = interfaz.tfapm.getText();
@@ -156,14 +156,16 @@ public class Trabajador {
                     + "ap_paterno= ? ,"
                     + "ap_materno= ? ,"
                     + "domicilio= ? ,"
-                    + "puesto= ? "
+                    + "puesto= ? ,"
+                    + "estado= ? "
                     + "WHERE lower(rfc) =? ");
             pstm.setString(1, nombre);
             pstm.setString(2, ap_paterno);
             pstm.setString(3, ap_materno);
             pstm.setString(4, domicilio);
             pstm.setString(5, puesto);
-            pstm.setString(6, rfc);
+            pstm.setString(6,estado);
+            pstm.setString(7, rfc);
             pstm.execute();
             // pstm.close();
         } catch (SQLException e) {
@@ -246,12 +248,16 @@ public class Trabajador {
         }
     }
 
-    public void putImageProfile(String path) {
+    public void putImageProfile(String path) throws NullPointerException{
         // Replace los simbolos        '\'       por '/'
+        try{
         String Path = path.replace('\u005C\u005C', '\u002F');
         ImageIcon fot = new ImageIcon(Path);
         Icon icon = new ImageIcon(fot.getImage().getScaledInstance(interfaz.lb_imagen.getWidth(), interfaz.lb_imagen.getHeight(), Image.SCALE_DEFAULT));
         interfaz.lb_imagen.setIcon(icon);
+        }catch(NullPointerException ex){
+            
+        }
     }
 
     /*-------------------Funciones Mejoradas-----------------------*/

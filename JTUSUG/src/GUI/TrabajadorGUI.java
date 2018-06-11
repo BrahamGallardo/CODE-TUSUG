@@ -109,6 +109,8 @@ public class TrabajadorGUI {
         btActualizar =  Builder.crearButtonIcon( p, "Actualizar",           "src/imagenes/boton_actualizar_lista.png",              new Rectangle(26, 455, 145, 36), actualizarT,true, false);
         //sesion =        Builder.crearButtonIcon( p, "cerrarSesion",        "src/imagenes/boton_cerrar_sesion.png",                 new Rectangle(539, 65, 130, 27), null,   true, false);
         back =          Builder.crearButtonIcon( p, "regresar",             "src/imagenes/regresar.png",                            new Rectangle(626, 452, 32, 32), regresarV,true, false);
+      
+        
         //-----------------------------------------------<Botones CRUD del empleado>----------------------------------------------------
         nuevo=          Builder.crearButtonIcon( p, "Nuevo Empleado",       "src/imagenes/agregar-usuario.png",                     new Rectangle(218, 140, 32, 32), nuevoT, true, false,true,color);
         agregar=        Builder.crearButtonIcon( p, "Modificar Empleado",   "src/imagenes/anadir-punto-de-anclaje.png",             new Rectangle(218, 202, 32, 32), modificarT ,false, false,true,color);
@@ -268,7 +270,7 @@ public class TrabajadorGUI {
         public void actionPerformed(ActionEvent ae)
         {
             if(validaIngreso(tfrfc,tfapp,tfapm,tfnom)){
-                interfaz.modificaTrabajador(tfnom.getText(), tfapp.getText(), tfapm.getText(), txtA_direccion.getText(),( (String)combo_puesto.getSelectedItem()), tfrfc.getText());
+                interfaz.modificaTrabajador(tfnom.getText(), tfapp.getText(), tfapm.getText(), txtA_direccion.getText(),( (String)combo_puesto.getSelectedItem()),(String)combo_estadoLaboral.getSelectedItem(), tfrfc.getText());
                 cargarLista(lista);
                 cleanFormulario();
                 deshabilitaFormulario();
