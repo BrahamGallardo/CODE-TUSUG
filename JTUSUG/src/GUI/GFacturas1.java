@@ -1,5 +1,6 @@
 package GUI;
 
+import Validacion.Validador;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Rectangle;
@@ -124,13 +125,15 @@ public class GFacturas1 extends JFrame {
                     f.dispose();
                     break;
                 case "Siguiente":
-                    if (validaIngreso(nF, cP, rS, Direc, pob, prov, cp, pContacto, mail, telefono)) {
-                        arre();
-                        f.dispose();
-                        GFacturas2 g2 = new GFacturas2(pagina1);
-                    } else {
+                    if (validaIngreso(nF, cP, rS, Direc, pob, prov, cp, pContacto, mail, telefono)) 
+                        if (Validador.emailValido(mail.getText())){
+                            arre();
+                            f.dispose();
+                            GFacturas2 g2 = new GFacturas2(pagina1);
+                        }else 
+                            JOptionPane.showMessageDialog(null, "Email invalido", "Error..!!", JOptionPane.ERROR_MESSAGE);
+                    else
                         JOptionPane.showMessageDialog(null, "Debe llenar todos los campos", "Error..!!", JOptionPane.ERROR_MESSAGE);
-                    }
                     break;
                 case "fisica":
                 case "juridica":
@@ -160,13 +163,6 @@ public class GFacturas1 extends JFrame {
                 validaNombre(evt, rS, 20);
             }
         });
-
-        Direc.addKeyListener(new java.awt.event.KeyAdapter() {
-            @Override
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                validaAlfanumerico(evt, Direc, 40);
-            }
-        });
         pob.addKeyListener(new java.awt.event.KeyAdapter() {
             @Override
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -189,12 +185,6 @@ public class GFacturas1 extends JFrame {
             @Override
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 validaNombre(evt, pContacto, 10);
-            }
-        });
-        mail.addKeyListener(new java.awt.event.KeyAdapter() {
-            @Override
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                validaAlfanumerico(evt, mail, 30);
             }
         });
         telefono.addKeyListener(new java.awt.event.KeyAdapter() {
