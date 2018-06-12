@@ -182,7 +182,7 @@ public class AutobusGUI extends JFrame
                     btn_agregar_img.setVisible(false);
                     break;
                 case "Buscar":
-                    controlador.buscar();
+                    //controlador.buscar();
                     break;
                 case "eliminar":
                     if(list.getSelectedValue()==null)

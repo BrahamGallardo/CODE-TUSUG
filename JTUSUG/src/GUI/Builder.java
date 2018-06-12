@@ -1,6 +1,7 @@
 package GUI;
 
 import CustomComponents.PanelImagen;
+import Entities.AutobusE;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Font;
@@ -216,6 +217,14 @@ public class Builder {
         return producto;
     }
     
+
+    public static JComboBox<AutobusE> crearComboBox(Container ui, Rectangle bounds,ItemListener listener) {
+        JComboBox cbox = new JComboBox();
+        ui.add(cbox);
+        cbox.setBounds(bounds);
+        cbox.addItemListener(listener);
+        return cbox;
+    }
 
 
 }
