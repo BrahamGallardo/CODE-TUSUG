@@ -99,8 +99,8 @@ create table mantenimiento(
 	direccion varchar(50), 
 	telefono varchar(25), 
 	email varchar(25),
-	costo_reparacion numeric(8) not null
-
+	costo_reparacion numeric(8) not null,
+	check(fecha_ingreso<fecha_salida)
 );
 create table servicio(
 	id_servicio int primary key not null,
