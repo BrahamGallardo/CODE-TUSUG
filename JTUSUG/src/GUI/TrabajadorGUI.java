@@ -218,6 +218,7 @@ public class TrabajadorGUI {
         {
             if("".equals(tfrfc.getText())==false)
                 habilitaUpdateFormulario();
+                
         }
     };
     

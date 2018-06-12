@@ -150,7 +150,7 @@ public class AutobusGUI extends JFrame
                         txt_marca.setEditable(true);
                         txt_No_Eco.setEditable(true);
                         txt_Km.setEditable(true);
-                        txt_matricula.setEditable(true);
+                       // txt_matricula.setEditable(true);
                         txt_asientos.setEditable(true);
                         list.setEnabled(false);
                         btn_nuevo_autobus.setEnabled(false);
@@ -185,6 +185,9 @@ public class AutobusGUI extends JFrame
                     //controlador.buscar();
                     break;
                 case "eliminar":
+                       int ok = javax.swing.JOptionPane.showConfirmDialog(null, "Está seguro de eliminar este registro");
+                       if (ok == JOptionPane.NO_OPTION || ok == JOptionPane.CANCEL_OPTION || ok == JOptionPane.CLOSED_OPTION ||ok == JOptionPane.OK_CANCEL_OPTION)
+                return ; 
                     if(list.getSelectedValue()==null)
                         btn_eliminar.setEnabled(false);
                     else{
