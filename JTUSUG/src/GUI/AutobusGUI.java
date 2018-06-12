@@ -4,7 +4,7 @@ import CONTROLLERS.Conexion;
 import CONTROLLERS.SQLAutobus;
 import Validacion.Validador;
 import static Validacion.Validador.*;
-import com.sun.media.jfxmedia.logging.Logger;
+//import com.sun.media.jfxmedia.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.*;
 import java.awt.*;
@@ -102,6 +102,20 @@ public class AutobusGUI extends JFrame
             tf.setText(null);
         }
     }
+    private boolean mat(){
+        String Busqueda=txt_matricula.getText();
+        boolean bandera=false;
+        ListModel model = list.getModel();
+        for(int i=0;i<model.getSize();i++){
+            if(model.getElementAt(i).equals(Busqueda)){
+                JOptionPane.showMessageDialog(null, "La Matricula ya ha sido ingresada antes", "Error..!!", JOptionPane.ERROR_MESSAGE);
+		txt_matricula.requestFocus();
+		bandera=true;
+		break;
+            }
+        }
+        return bandera;
+    }
     class CustomActionListener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -119,20 +133,21 @@ public class AutobusGUI extends JFrame
                     btn_agregar_img.setVisible(true);
                     break;
                 case "guardar":
-                    if(validaIngreso(txt_marca,txt_No_Eco,txt_Km,txt_matricula,txt_asientos)){
-                        controlador.evtAgregarAutobus();
-                        list.setEnabled(true);
-                        textField2(txt_marca,txt_No_Eco,txt_Km,txt_matricula,txt_asientos);
-                        btn_nuevo_autobus.setEnabled(true);
-                        btn_guardar.setVisible(false);
-                        btn_modificar.setEnabled(false);
-                        btn_eliminar.setEnabled(false);
-                        btn_cancelar.setVisible(false);
-                        btn_agregar_img.setVisible(false);
-                        controlador.actualizarLista();
-                    }
-                    else
-                        System.err.println("Error: Debe llenar todos los campos");
+                    if(!mat())
+                        if(validaIngreso(txt_marca,txt_No_Eco,txt_Km,txt_matricula,txt_asientos)){
+                            controlador.evtAgregarAutobus();
+                            list.setEnabled(true);
+                            textField2(txt_marca,txt_No_Eco,txt_Km,txt_matricula,txt_asientos);
+                            btn_nuevo_autobus.setEnabled(true);
+                            btn_guardar.setVisible(false);
+                            btn_modificar.setEnabled(false);
+                            btn_eliminar.setEnabled(false);
+                            btn_cancelar.setVisible(false);
+                            btn_agregar_img.setVisible(false);
+                            controlador.actualizarLista();
+                        }
+                        else
+                            JOptionPane.showMessageDialog(null, "Debe llenar todos los campos", "Error..!!", JOptionPane.ERROR_MESSAGE);
                     break;
                 case "cancelar":
                         list.setEnabled(true);
@@ -282,7 +297,7 @@ public class AutobusGUI extends JFrame
                 txt_asientos. setText(registro[5].toUpperCase());
                 btn_eliminar.setEnabled(true);
                 btn_modificar.setEnabled(true);
-                Logger.logMsg(0, registro[6]);
+                //Logger.logMsg(0, registro[6]);
                 controlador.putImageProfile(registro[6]);
             }
             else
