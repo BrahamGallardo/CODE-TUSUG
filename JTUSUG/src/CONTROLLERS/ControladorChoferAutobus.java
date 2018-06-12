@@ -34,7 +34,7 @@ public class ControladorChoferAutobus {
         try {
 
             PreparedStatement pstm = c.prepareStatement("select * from sistemaTusug.trabajador where lower(rfc)=?");
-            pstm.setString(1, rfc);
+            pstm.setString(1, interfaz.valor);
             ResultSet rs = pstm.executeQuery();
             while (rs.next()) {
             //interfaz.matric.        setText(rs.getString(1));
@@ -121,7 +121,7 @@ public class ControladorChoferAutobus {
         try {
 
             PreparedStatement pstm = c.prepareStatement("select numero_economico,matricula,marca,kilometraje from sistemaTusug.autobus where lower(matricula)=?");
-            pstm.setString(1, matricula);
+            pstm.setString(1, interfaz.valor2);
             ResultSet rs = pstm.executeQuery();
             while (rs.next()) {
             //interfaz.matric.        setText(rs.getString(1));

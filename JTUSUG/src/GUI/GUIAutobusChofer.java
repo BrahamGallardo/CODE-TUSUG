@@ -47,6 +47,8 @@ public class GUIAutobusChofer {
         }
     };
     ControladorChoferAutobus controlador;
+    public String valor;
+    public String valor2;
     public GUIAutobusChofer()
     {
         ControladorChoferAutobus ui= new ControladorChoferAutobus(this);
@@ -101,68 +103,9 @@ public class GUIAutobusChofer {
   
          //JComboBox
          combo= Builder.crearTextField(p, new Rectangle(331,331,129,22),"",null , null, new Font("Segoe UI", Font.PLAIN, 11),false,true, true, listener);
-         valida();
-    }
-    public void valida()
-    {
-        name.addKeyListener(new java.awt.event.KeyAdapter() 
-        {
-            @Override
-            public void keyTyped(java.awt.event.KeyEvent evt) 
-            {
-                validaNombre(evt,name,20);
-            }
-        });
-        kilometraje.addKeyListener(new java.awt.event.KeyAdapter() 
-        {
-            @Override
-            public void keyTyped(java.awt.event.KeyEvent evt) 
-            {
-                validaNum(evt,kilometraje,10);
-            }
-        });
-        ap_paterno.addKeyListener(new java.awt.event.KeyAdapter() 
-        {
-            @Override
-            public void keyTyped(java.awt.event.KeyEvent evt) 
-            {
-                validaNombre(evt,ap_paterno,20);
-            }
-        });
-        marc.addKeyListener(new java.awt.event.KeyAdapter() 
-        {
-            @Override
-            public void keyTyped(java.awt.event.KeyEvent evt) 
-            {
-                validaNombre(evt,marc,20);
-            }
-        });
-        ap_materno.addKeyListener(new java.awt.event.KeyAdapter() 
-        {
-            @Override
-            public void keyTyped(java.awt.event.KeyEvent evt) 
-            {
-                validaNombre(evt,ap_materno,20);
-            }
-        });     
         
-        state.addKeyListener(new java.awt.event.KeyAdapter() 
-        {
-            @Override
-            public void keyTyped(java.awt.event.KeyEvent evt) 
-            {
-                validaNombre(evt,state,20);
-            }
-        });
-        matric.addKeyListener(new java.awt.event.KeyAdapter() 
-        {
-            @Override
-            public void keyTyped(java.awt.event.KeyEvent evt) 
-            {
-                validaAlfanumerico(evt,matric,10);
-            }
-        });
     }
+ 
     public static void main(String[] args){
         GUIAutobusChofer s= new GUIAutobusChofer();
     }
@@ -171,9 +114,9 @@ public class GUIAutobusChofer {
             class CustomMouseListener extends MouseAdapter{
             public void mouseClicked(MouseEvent me){
             if(lista.getSelectedValue()!=null){
-                String matricula1 = (String)lista.getSelectedValue();
+                valor2 = (String)lista.getSelectedValue();
                 try {
-                    controlador.listaParametro(matricula1.toLowerCase());
+                    controlador.listaParametro(valor2.toLowerCase());
                 } catch (SQLException ex) {
                     Logger.getLogger(GUIAutobusChofer.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -186,9 +129,9 @@ public class GUIAutobusChofer {
             class CustomMouseListener2 extends MouseAdapter{
             public void mouseClicked(MouseEvent me){            
             if(list.getSelectedValue()!=null){
-                String matricula1 = (String)list.getSelectedValue();
+                valor = (String)list.getSelectedValue();
                 try {
-                    controlador.listaParametroAutobus(matricula1.toLowerCase());
+                    controlador.listaParametroAutobus(valor.toLowerCase());
                 } catch (SQLException ex) {
                     Logger.getLogger(GUIAutobusChofer.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -201,14 +144,10 @@ public class GUIAutobusChofer {
       class CustomActionListener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
-            if(validaIngreso(name,ap_paterno,ap_materno,state,matric,marc,kilometraje)){
             controlador.addT();
            JOptionPane.showMessageDialog(null,"Chofer asignado");
-
-            } 
-            else
-                JOptionPane.showMessageDialog(null, "Debe llenar todos los campos", "Error..!!", JOptionPane.ERROR_MESSAGE);
         }
+      
         }
             
 }
