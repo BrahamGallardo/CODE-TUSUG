@@ -2,20 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-<<<<<<< Updated upstream
-            <file>file:/C:/Lab/Git/CODE-TUSUG/JTUSUG/src/GUI/GFacturas.java</file>
-            <file>file:/C:/Lab/Git/CODE-TUSUG/JTUSUG/src/GUI/Builder.java</file>
-            <file>file:/C:/Lab/Git/CODE-TUSUG/JTUSUG/src/Validacion/Validador.java</file>
-            <file>file:/C:/Lab/Git/CODE-TUSUG/JTUSUG/src/GUI/GUIReporteManten.java</file>
-            <file>file:/C:/Lab/Git/CODE-TUSUG/JTUSUG/src/CONTROLLERS/ControladorMantenimiento.java</file>
-            <file>file:/C:/Lab/Git/CODE-TUSUG/JTUSUG/src/Entities/AutobusE.java</file>
-=======
-            <file>file:/C:/Users/laibr/Desktop/sextosemestre/Ingenieria%20de%20software/CODE-TUSUG/CODE-TUSUG/JTUSUG/src/GUI/AutobusGUI.java</file>
-            <file>file:/C:/Users/laibr/Desktop/sextosemestre/Ingenieria%20de%20software/CODE-TUSUG/CODE-TUSUG/JTUSUG/src/CONTROLLERS/Conexion.java</file>
-            <file>file:/C:/Users/laibr/Desktop/sextosemestre/Ingenieria%20de%20software/CODE-TUSUG/CODE-TUSUG/JTUSUG/src/CONTROLLERS/SQLAutobus.java</file>
-            <file>file:/C:/Users/laibr/Desktop/sextosemestre/Ingenieria%20de%20software/CODE-TUSUG/CODE-TUSUG/JTUSUG/src/CONTROLLERS/Autobus.java</file>
->>>>>>> Stashed changes
-        </group>
+        <group/>
     </open-files>
 </project-private>
