@@ -422,8 +422,8 @@ public class TrabajadorGUI {
         btActualizar.setEnabled(true);
     //--------------<Habilitar botones de nuevo, modificar y eliminar>------------------
         nuevo.setEnabled(true);
-        agregar.setEnabled(true);
-        baja.setEnabled(true);
+        agregar.setEnabled(false);
+        baja.setEnabled(false);
     //--------------<Habilitar botones de Guardar y cancelar>----------------
         btn_guardar.setVisible(false);btn_guardar.setEnabled(false);
         btn_cancelar.setVisible(false);btn_cancelar.setEnabled(false);
