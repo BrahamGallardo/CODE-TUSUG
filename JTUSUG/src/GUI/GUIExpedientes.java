@@ -57,18 +57,18 @@ public class GUIExpedientes {
         f = Builder.construirFrame("Lista de Expedientes", new Rectangle(0, 0, 700, 649), false);
         p = Builder.crearPanel(f, new Rectangle(2, 0, 703, 649), ruta + "fondo_lista_siniestros.png", false);
         a=this;
-        //Menu
+      /*  //Menu
         barra = new JMenuBar();
         barra.setBackground(Color.GRAY);
-        archivo = new JMenu(user);
-        reestablecer = new JMenuItem("Reestablecer Contraseña");
-        Cerrar_Sesion = new JMenuItem("Cerrar Sesión");
+        //archivo = new JMenu(user);
+        //reestablecer = new JMenuItem("Reestablecer Contraseña");
+        //Cerrar_Sesion = new JMenuItem("Cerrar Sesión");
         archivo.add(reestablecer);
         archivo.add(Cerrar_Sesion);
         barra.add(archivo);
-        p.add(barra);
+        p.add(barra); 
         barra.setBounds(new Rectangle(513, 75, 55, 34));
-        barra.setVisible(true);
+        barra.setVisible(true); */
         listener = new ReportCustomListener();
         //botones
         lexpediente = Builder.crearButtonIcon(p, "listado", ruta + "boton_listado_siniestros_selected.png", new Rectangle(135, 69, 142, 43), listener, true, false);
@@ -80,14 +80,23 @@ public class GUIExpedientes {
 
         //Tabla
         controlador.llenarTable();
-        tabla = new JTable();
+        tabla = new JTable()
+                        {
+            @Override
+            public boolean isCellEditable(int row, int column)
+            {
+                return false;
+            }
+        };
         tabla.setPreferredSize(new Dimension(576, 329));
         
         JScrollPane scrollPane = new JScrollPane(tabla);
         scrollPane.setBounds(54, 145, 576, 329);
         p.add(scrollPane);
+        
         tabla.setModel(model);
         tabla.addMouseListener(new java.awt.event.MouseAdapter() {
+            
  
         @Override
         public void mouseClicked(MouseEvent e) {
