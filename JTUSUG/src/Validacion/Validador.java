@@ -84,7 +84,7 @@ public class Validador extends JFrame {
             formatoFecha_inicial.setLenient(false);
             formatoFecha.parse(fecha1);
             formatoFecha_inicial.parse(fecha2);
-            if (formatoFecha_inicial.parse(fecha1).compareTo(formatoFecha.parse(fecha2)) < 0) {
+            if (formatoFecha_inicial.parse(fecha1).compareTo(formatoFecha.parse(fecha2)) <= 0) {
             } else {
                 bandera = false;
                 System.err.println("Error: Fecha inicial mayor que fecha final");
