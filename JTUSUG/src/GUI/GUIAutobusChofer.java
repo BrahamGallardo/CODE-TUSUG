@@ -27,7 +27,7 @@ import javax.swing.*;
 
 public class GUIAutobusChofer {
     String ruta = "src/imagenes/";
-    public JList lista, list;
+    public JList lista, listas;
     public JScrollBar   scroll; 
     public JButton btActualizar,confirm,regresar;
     public JLabel lTrabajadores,dGeneral,nombre,apP,apM,estado,cAutobus,matricula,marca,km;
@@ -54,7 +54,7 @@ public class GUIAutobusChofer {
         ControladorChoferAutobus ui= new ControladorChoferAutobus(this);
         controlador=ui;
         user = "Usuario";
-        x = Builder.construirFrame("Trabajador", new Rectangle(0,0,700,600), false); 
+        x = Builder.construirFrame("Asignar Chofer Autobus", new Rectangle(0,0,700,600), false); 
         x.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         p = Builder.crearPanel(x, new Rectangle(0,0,700,600),ruta + "fondo_vta_chofer_autobus.png", false);
 
@@ -82,27 +82,35 @@ public class GUIAutobusChofer {
          lista.setVisible(true);
          lista.addMouseListener(new CustomMouseListener());
          controlador.cargarLista(lista);
+           javax.swing.JScrollPane scroll3 = new javax.swing.JScrollPane(lista);         
+         scroll3.setBounds(new Rectangle(65,167,140,280));
+         scroll3.setVisible(true);
+         p.add(scroll3);
          
-         list= new JList();
-         p.add(list);
-         list.setBounds(new Rectangle(468, 167, 140,280));
-         list.setVisible(true);
-         list.addMouseListener(new CustomMouseListener2());
-         controlador.cargarListaAutobus(list);
+         listas= new JList();
+         p.add(listas);
+         listas.setBounds(new Rectangle(468, 167, 140,280));
+         listas.setVisible(true);
+         listas.addMouseListener(new CustomMouseListener2());
+         controlador.cargarListaAutobus(listas);
+         javax.swing.JScrollPane scroll2 = new javax.swing.JScrollPane(listas);         
+         scroll2.setBounds(new Rectangle(468, 167, 140,280));
+         scroll2.setVisible(true);
+         p.add(scroll2);
          
          //lista.addMouseListener(new TrabajadorGUI.CustomMouseListener());
          
          //JTextField
-         name =           Builder.crearTextField(p,new Rectangle(331,163,129,25), "", null, null, new Font("Segoe UI", Font.PLAIN, 11), false,true, true,listener);
-         ap_paterno =     Builder.crearTextField(p,new Rectangle(331,198,129,25), "", null, null, new Font("Segoe UI", Font.PLAIN, 11), false,true, true,listener);
-         ap_materno=      Builder.crearTextField(p,new Rectangle(331,233,129,25), "", null, null, new Font("Segoe UI", Font.PLAIN, 11), false,true, true,listener);
-         state =          Builder.crearTextField(p,new Rectangle(331,268,129,25), "", null, null, new Font("Segoe UI", Font.PLAIN, 11), false,true, true,listener);
-         matric =         Builder.crearTextField(p,new Rectangle(331,363,129,25), "", null, null, new Font("Segoe UI", Font.PLAIN, 11), false,true, true,listener);
-         marc =           Builder.crearTextField(p,new Rectangle(331,398,129,25), "", null, null, new Font("Segoe UI", Font.PLAIN, 11), false,true, true,listener);
-         kilometraje =    Builder.crearTextField(p,new Rectangle(331,433,129,25), "", null, null, new Font("Segoe UI", Font.PLAIN, 11), false,true, true,listener);
+         name =           Builder.crearTextField(p,new Rectangle(331,163,129,25), "", null, null, new Font("Segoe UI", Font.PLAIN, 11), false,true, true);
+         ap_paterno =     Builder.crearTextField(p,new Rectangle(331,198,129,25), "", null, null, new Font("Segoe UI", Font.PLAIN, 11), false,true, true);
+         ap_materno=      Builder.crearTextField(p,new Rectangle(331,233,129,25), "", null, null, new Font("Segoe UI", Font.PLAIN, 11), false,true, true);
+         state =          Builder.crearTextField(p,new Rectangle(331,268,129,25), "", null, null, new Font("Segoe UI", Font.PLAIN, 11), false,true, true);
+         matric =         Builder.crearTextField(p,new Rectangle(331,363,129,25), "", null, null, new Font("Segoe UI", Font.PLAIN, 11), false,true, true);
+         marc =           Builder.crearTextField(p,new Rectangle(331,398,129,25), "", null, null, new Font("Segoe UI", Font.PLAIN, 11), false,true, true);
+         kilometraje =    Builder.crearTextField(p,new Rectangle(331,433,129,25), "", null, null, new Font("Segoe UI", Font.PLAIN, 11), false,true, true);
   
          //JComboBox
-         combo= Builder.crearTextField(p, new Rectangle(331,331,129,22),"",null , null, new Font("Segoe UI", Font.PLAIN, 11),false,true, true, listener);
+         combo= Builder.crearTextField(p, new Rectangle(331,331,129,22),"",null , null, new Font("Segoe UI", Font.PLAIN, 11),false,true, true);
         
     }
  
@@ -114,9 +122,9 @@ public class GUIAutobusChofer {
             class CustomMouseListener extends MouseAdapter{
             public void mouseClicked(MouseEvent me){
             if(lista.getSelectedValue()!=null){
-                valor2 = (String)lista.getSelectedValue();
+                valor = (String)lista.getSelectedValue();
                 try {
-                    controlador.listaParametro(valor2.toLowerCase());
+                    controlador.listaParametro(valor.toLowerCase());
                 } catch (SQLException ex) {
                     Logger.getLogger(GUIAutobusChofer.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -128,10 +136,10 @@ public class GUIAutobusChofer {
             
             class CustomMouseListener2 extends MouseAdapter{
             public void mouseClicked(MouseEvent me){            
-            if(list.getSelectedValue()!=null){
-                valor = (String)list.getSelectedValue();
+            if(listas.getSelectedValue()!=null){
+                valor2 = (String)listas.getSelectedValue();
                 try {
-                    controlador.listaParametroAutobus(valor.toLowerCase());
+                    controlador.listaParametroAutobus(valor2.toLowerCase());
                 } catch (SQLException ex) {
                     Logger.getLogger(GUIAutobusChofer.class.getName()).log(Level.SEVERE, null, ex);
                 }
