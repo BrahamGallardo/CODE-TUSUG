@@ -91,7 +91,7 @@ public class Builder {
         Icon icono = new ImageIcon(urlimg);
         JButton btn = new JButton(icono);
         btn.setActionCommand(accessName);
-        btn.addActionListener(listener);
+        if (listener!=null)btn.addActionListener(listener);
         ui.add(btn);
         btn.setBounds(bounds);
         if (!border) {
