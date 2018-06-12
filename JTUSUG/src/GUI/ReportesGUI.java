@@ -59,7 +59,13 @@ public class ReportesGUI {
         valida();
          //Tabla
         dtm= new DefaultTableModel();
-        tabla = new JTable(datos,encabezado);
+        tabla = new JTable(datos,encabezado)                        {
+            @Override
+            public boolean isCellEditable(int row, int column)
+            {
+                return false;
+            }
+        };
         tabla.setBackground(Color.GRAY);
         tabla.setPreferredSize(new Dimension(504,278));
         JScrollPane scrollPane = new JScrollPane(tabla);

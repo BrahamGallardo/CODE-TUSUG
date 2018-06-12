@@ -77,7 +77,13 @@ public class ListaSiniestroGUI {
 
         //Tabla
         controlador.llenarTable();
-        tabla = new JTable();      
+        tabla = new JTable()                        {
+            @Override
+            public boolean isCellEditable(int row, int column)
+            {
+                return false;
+            }
+        };      
         tabla.setPreferredSize(new Dimension(576, 329));       
         JScrollPane scrollPane = new JScrollPane(tabla);
         scrollPane.setBounds(54, 145, 576, 329);
