@@ -83,7 +83,13 @@ public class VFacturas extends JFrame {
         //Tabla
         model= new DefaultTableModel(null, encabezado);
         controlador.llenarTable();
-        tabla = new JTable();
+        tabla = new JTable()                        {
+            @Override
+            public boolean isCellEditable(int row, int column)
+            {
+                return false;
+            }
+        };
         tabla.setModel(model);
         tabla.setBackground(Color.GRAY);
         tabla.setPreferredSize(new Dimension(302,272));

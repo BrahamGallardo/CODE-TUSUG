@@ -95,7 +95,13 @@ public class HistorialMantenGUI {
         controlador=new SQLHistMant(g);
         Object[][] datos =controlador.obtenerRegistro();
         
-        tabla = new JTable();
+        tabla = new JTable()                        {
+            @Override
+            public boolean isCellEditable(int row, int column)
+            {
+                return false;
+            }
+        };
         tabla.setPreferredSize(new Dimension(515,277));
         JScrollPane scrollPane = new JScrollPane(updateTabla());
         scrollPane.setBounds(69,210,515,277);
