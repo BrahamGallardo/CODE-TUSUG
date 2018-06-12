@@ -21,11 +21,12 @@ public class AutobusGUI extends JFrame
     Autobus             controlador;
     Validador           valida;
     public JList        list;
-    public JTextField   txt_buscar,txt_marca,txt_No_Eco,txt_Km,txt_matricula,txt_id,txt_asientos;
+    public JTextField   txt_buscar,txt_marca,txt_No_Eco,txt_Km,txt_matricula,txt_id,txt_asientos, txt_modelo;
     public JFileChooser url_img;
     public JButton      btn_Act_List,btn_nuevo_autobus,btn_modificar,btn_eliminar,btn_agregar_img,btn_regresar,btn_guardar,btn_cancelar,btn_guardar_mod;
     public JButton      sesion, inicio, buscar;
     public JLabel       lb_codigo_auto,lb_imagen_autobus;
+    public int  model;
     JFrame x;
     JPanel p;
     public AutobusGUI()
@@ -75,12 +76,14 @@ public class AutobusGUI extends JFrame
         JLabel lb_Km =              Builder.crearLabel(p, "Kilometraje",               new Rectangle(499,350,101,13),      null,null);
         JLabel autobuses =          Builder.crearLabel( p, "Autobuses",                new Rectangle(65, 130, 80, 20), null, null, new Font("Segoe UI",Font.PLAIN,11));
         JLabel lb_Asien =           Builder.crearLabel(p, "Asientos:",                 new Rectangle(514,383,101,13),      null,null);
+        JLabel lb_modelo =           Builder.crearLabel(p, "Modelo:",                  new Rectangle(514,416,101,13),      null,null);
 
         txt_marca       =   Builder.crearTextField(p, new Rectangle(389,345,108,23), "", null, null,null,false,true,true);
         txt_No_Eco      =   Builder.crearTextField(p, new Rectangle(389,378,108,23), "", null, null,null,false,true,true);
         txt_Km          =   Builder.crearTextField(p, new Rectangle(584,345,74,23),  "", null, null,null,false,true,true);
         txt_matricula   =   Builder.crearTextField(p, new Rectangle(389,411,108,23), "", null, null,null,false,true,true);
-        txt_asientos    =   Builder.crearTextField(p, new Rectangle(584,378,74,23),  "", null, null,null,false,true,true);        
+        txt_asientos    =   Builder.crearTextField(p, new Rectangle(584,378,74,23),  "", null, null,null,false,true,true);
+        txt_modelo   =      Builder.crearTextField(p, new Rectangle(584,411,74,23), "", null, null,null,false,true,true);     
         
         JLabel fondo    =   Builder.crearLabelImagen(p, ruta + "fondo_ventana_2.png", new Rectangle(0,0,700,518));
         valida();
@@ -123,7 +126,7 @@ public class AutobusGUI extends JFrame
             switch(op)
             {
                 case "agregar":
-                    textField(txt_marca,txt_No_Eco,txt_Km,txt_matricula,txt_asientos);
+                    textField(txt_marca,txt_No_Eco,txt_Km,txt_matricula,txt_asientos, txt_modelo);                    
                     btn_guardar.setVisible(true);
                     list.setEnabled(false);
                     btn_nuevo_autobus.setEnabled(false);
@@ -134,10 +137,12 @@ public class AutobusGUI extends JFrame
                     break;
                 case "guardar":
                     if(!mat())
+                        model=Integer.parseInt(txt_modelo.getText());
                         if(validaIngreso(txt_marca,txt_No_Eco,txt_Km,txt_matricula,txt_asientos)){
+                            if((2018-model)>=6){
                             controlador.evtAgregarAutobus();
                             list.setEnabled(true);
-                            textField2(txt_marca,txt_No_Eco,txt_Km,txt_matricula,txt_asientos);
+                            textField2(txt_marca,txt_No_Eco,txt_Km,txt_matricula,txt_asientos, txt_modelo);
                             btn_nuevo_autobus.setEnabled(true);
                             btn_guardar.setVisible(false);
                             btn_modificar.setEnabled(false);
@@ -145,13 +150,17 @@ public class AutobusGUI extends JFrame
                             btn_cancelar.setVisible(false);
                             btn_agregar_img.setVisible(false);
                             controlador.actualizarLista();
+                            }else {
+                                JOptionPane.showMessageDialog(null,"Autobus muy nuevo, cuidelo");
+                            }
                         }
-                        else
+                        else {
                             JOptionPane.showMessageDialog(null, "Debe llenar todos los campos", "Error..!!", JOptionPane.ERROR_MESSAGE);
-                    break;
+                        }
+                            break;
                 case "cancelar":
                         list.setEnabled(true);
-                        textField2(txt_marca,txt_No_Eco,txt_Km,txt_matricula,txt_asientos);
+                        textField2(txt_marca,txt_No_Eco,txt_Km,txt_matricula,txt_asientos, txt_modelo);
                         btn_nuevo_autobus.setEnabled(true);
                         btn_guardar.setVisible(false);
                         btn_modificar.setEnabled(false);
@@ -165,6 +174,7 @@ public class AutobusGUI extends JFrame
                         txt_marca.setEditable(true);
                         txt_No_Eco.setEditable(true);
                         txt_Km.setEditable(true);
+                        txt_modelo.setEditable(true);
                        // txt_matricula.setEditable(true);
                         txt_asientos.setEditable(true);
                         list.setEnabled(false);

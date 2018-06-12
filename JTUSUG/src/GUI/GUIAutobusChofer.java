@@ -59,8 +59,8 @@ public class GUIAutobusChofer {
         p = Builder.crearPanel(x, new Rectangle(0,0,700,600),ruta + "fondo_vta_chofer_autobus.png", false);
 
         //---------<botones>-------------------------
-        btActualizar =  Builder.crearButtonIcon( p,     "Actualizar",ruta+"boton_actualizar_lista.png", new Rectangle(89,444,145,36),null ,true, false);      
-        confirm =       Builder.crearButtonIcon(p,      "confirmar", ruta+"btn_confirmar.png",          new Rectangle(409,451,114,43), new  CustomActionListener(), true, false);
+       // btActualizar =  Builder.crearButtonIcon( p,     "Actualizar",ruta+"boton_actualizar_lista.png", new Rectangle(89,444,145,36),null ,true, false);      
+        confirm =       Builder.crearButtonIcon(p,      "confirmar", ruta+"btn_confirmar.png",          new Rectangle(490,450,114,43), new  CustomActionListener(), true, false);
         regresar =      Builder.crearButtonIcon(p,      "regresar",  ruta+"regresar.png",               new Rectangle(326,513, 41,41), listener, true, false);
 
         //---------<Labels>-------------------------
