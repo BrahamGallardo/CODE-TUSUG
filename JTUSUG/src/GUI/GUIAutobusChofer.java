@@ -93,16 +93,16 @@ public class GUIAutobusChofer {
          //lista.addMouseListener(new TrabajadorGUI.CustomMouseListener());
          
          //JTextField
-         name =           Builder.crearTextField(p,new Rectangle(331,163,129,25), "", null, null, new Font("Segoe UI", Font.PLAIN, 11), false,true, true,listener);
-         ap_paterno =     Builder.crearTextField(p,new Rectangle(331,198,129,25), "", null, null, new Font("Segoe UI", Font.PLAIN, 11), false,true, true,listener);
-         ap_materno=      Builder.crearTextField(p,new Rectangle(331,233,129,25), "", null, null, new Font("Segoe UI", Font.PLAIN, 11), false,true, true,listener);
-         state =          Builder.crearTextField(p,new Rectangle(331,268,129,25), "", null, null, new Font("Segoe UI", Font.PLAIN, 11), false,true, true,listener);
-         matric =         Builder.crearTextField(p,new Rectangle(331,363,129,25), "", null, null, new Font("Segoe UI", Font.PLAIN, 11), false,true, true,listener);
-         marc =           Builder.crearTextField(p,new Rectangle(331,398,129,25), "", null, null, new Font("Segoe UI", Font.PLAIN, 11), false,true, true,listener);
-         kilometraje =    Builder.crearTextField(p,new Rectangle(331,433,129,25), "", null, null, new Font("Segoe UI", Font.PLAIN, 11), false,true, true,listener);
+         name =           Builder.crearTextField(p,new Rectangle(331,163,129,25), "", null, null, new Font("Segoe UI", Font.PLAIN, 11), false,true, true);
+         ap_paterno =     Builder.crearTextField(p,new Rectangle(331,198,129,25), "", null, null, new Font("Segoe UI", Font.PLAIN, 11), false,true, true);
+         ap_materno=      Builder.crearTextField(p,new Rectangle(331,233,129,25), "", null, null, new Font("Segoe UI", Font.PLAIN, 11), false,true, true);
+         state =          Builder.crearTextField(p,new Rectangle(331,268,129,25), "", null, null, new Font("Segoe UI", Font.PLAIN, 11), false,true, true);
+         matric =         Builder.crearTextField(p,new Rectangle(331,363,129,25), "", null, null, new Font("Segoe UI", Font.PLAIN, 11), false,true, true);
+         marc =           Builder.crearTextField(p,new Rectangle(331,398,129,25), "", null, null, new Font("Segoe UI", Font.PLAIN, 11), false,true, true);
+         kilometraje =    Builder.crearTextField(p,new Rectangle(331,433,129,25), "", null, null, new Font("Segoe UI", Font.PLAIN, 11), false,true, true);
   
          //JComboBox
-         combo= Builder.crearTextField(p, new Rectangle(331,331,129,22),"",null , null, new Font("Segoe UI", Font.PLAIN, 11),false,true, true, listener);
+         combo= Builder.crearTextField(p, new Rectangle(331,331,129,22),"",null , null, new Font("Segoe UI", Font.PLAIN, 11),false,true, true);
         
     }
  
