@@ -124,6 +124,7 @@ public class Builder {
         cbox.setBounds(bounds);
         if (ctexto!=null)cbox.setForeground(ctexto);
         if (cfondo!=null)cbox.setBackground(cfondo);
+        if (listener!=null)cbox.addItemListener(listener);
         return cbox;
     }
 

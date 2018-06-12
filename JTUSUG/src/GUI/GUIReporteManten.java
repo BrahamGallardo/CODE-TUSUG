@@ -34,7 +34,7 @@ public class GUIReporteManten{
                             txt_prioridad, txt_tipoManten, txt_direccion, txt_telefono, txt_email, 
                             txt_descripGenerica,
                             txt_marca, txt_matricula, txt_costo;
-    public JComboBox<String> cbx_codAutobus;
+    public JComboBox<String> cbx_codAutobus, cbx_prioridad, cbx_tipoManten;
     public JComboBox<AutobusE>  cbx_matricula;
     public JTextArea       text_descripcionEquipos, text_solicitud;
     public JButton         btn_genReporte, btn_cerrarsesion, btn_regresar;
@@ -84,8 +84,12 @@ public class GUIReporteManten{
         //text_solicitud  =       Builder.crearTextArea(panel, new Rectangle(44,222,219,66), c);
         text_solicitud  =       Builder.crearTextArea(panel, "B", new Rectangle(44,222,219,66));
         txt_areaTrabajo=        Builder.crearTextField( panel, new Rectangle(44,313,110,20), "", null, null, f, true, true, true);
-        txt_prioridad  =        Builder.crearTextField( panel, new Rectangle(171,313,92,20), "", null, null, f, true, true, true);
-        txt_tipoManten =        Builder.crearTextField( panel, new Rectangle(44,358,135,20), "", null, null, f, true, true, true);
+        //txt_prioridad  =        Builder.crearTextField( panel, new Rectangle(171,313,92,20), "", null, null, f, true, true, true);
+        String [] ops = {"Normal", "Alto", "Bajo"};
+        cbx_prioridad =         Builder.crearComboBox(panel, new Rectangle(171,313,92,20), ops, null, null, null);
+        //txt_tipoManten =        Builder.crearTextField( panel, new Rectangle(44,358,135,20), "", null, null, f, true, true, true);
+        String [] tipos = {"Correctivo", "Preventivo"};
+        cbx_tipoManten     =    Builder.crearComboBox(panel, new Rectangle(44,358,135,20), tipos, null, null, null);
         txt_direccion  =        Builder.crearTextField( panel, new Rectangle(44,402,186,20), "", null, null, f, true, true, true);
         txt_telefono   =        Builder.crearTextField( panel, new Rectangle(44,447,135,20), "", null, null, f, true, true, true);
         txt_email      =        Builder.crearTextField( panel, new Rectangle(44,492,162,20), "", null, null, f, true, true, true);
@@ -94,6 +98,7 @@ public class GUIReporteManten{
         //txt_matricula  =        Builder.crearTextField( panel, new Rectangle(504,177,127,20),"", null, null, f, true, true, true);
         
         cbx_matricula =         Builder.crearComboBox(panel, new Rectangle(410,135,139,22),matriculaSelected);
+        
         
         txt_costo      =        Builder.crearTextField( panel, new Rectangle(355,222,165,20),"", null, null, f, true, true, true);
         text_descripcionEquipos=Builder.crearTextArea(  panel, new Rectangle(355,266,276,53), c);
@@ -150,10 +155,10 @@ public class GUIReporteManten{
         txt_solicitante.addKeyListener(len20);        
         txt_areaTrabajo.addKeyListener(len20);        
         txt_marca.addKeyListener(len20);
-        txt_prioridad.addKeyListener(len20);txt_prioridad.addKeyListener(Validador.KEYonlyNumbers);
+        //txt_prioridad.addKeyListener(len20);txt_prioridad.addKeyListener(Validador.KEYonlyNumbers);
         txt_costo.addKeyListener(len20);txt_costo.addKeyListener(Validador.KEYonlyNumbers);
         //txt_matricula.addKeyListener(len20);
-        txt_tipoManten.addKeyListener(len20);
+        //txt_tipoManten.addKeyListener(len20);
         txt_direccion.addKeyListener(len40);
         txt_telefono.addKeyListener(len10);txt_telefono.addKeyListener(Validador.KEYonlyNumbers);
         txt_email.addKeyListener(len40);
@@ -171,7 +176,8 @@ public class GUIReporteManten{
         op = e.getActionCommand();
         switch (op) {
             case "Generar Reporte":
-                if (validaIngreso(txt_areaTrabajo, txt_marca, txt_prioridad, txt_costo, txt_matricula, txt_tipoManten, txt_direccion, txt_telefono, txt_email)) {
+                if (validaIngreso(txt_areaTrabajo, txt_costo, txt_direccion, txt_telefono)&&
+                        Validador.emailValido(txt_email.getText())) {
                     try {
                         controlador.agregaMan();
                         controlador.creaRepor();
