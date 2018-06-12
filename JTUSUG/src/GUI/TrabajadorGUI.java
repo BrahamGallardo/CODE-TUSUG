@@ -32,6 +32,7 @@ import javax.swing.JTextArea;
 import javax.swing.UIManager;
 import javax.swing.text.JTextComponent;
 import Validacion.*;
+import javax.swing.ListModel;
 public class TrabajadorGUI {
     //----------------------------------<Validacion>-----------------------
     TrabajadorActionListener eventos;    
@@ -246,12 +247,26 @@ public class TrabajadorGUI {
             x.dispose();
         }
     };
-    
+    private boolean mat(){
+        String Busqueda=tfrfc.getText();
+        boolean bandera=false;
+        ListModel model = lista.getModel();
+        for(int i=0;i<model.getSize();i++){
+            if(Busqueda.equalsIgnoreCase((String) model.getElementAt(i))){
+                JOptionPane.showMessageDialog(null, "El RFC ya ha sido registrado antes", "Error..!!", JOptionPane.ERROR_MESSAGE);
+		tfrfc.requestFocus();
+		bandera=true;
+		break;
+            }
+        }
+        return bandera;
+    }
     
     ActionListener guardarN=new ActionListener() {
         public void actionPerformed(ActionEvent ae)
         {
            if(validaIngreso(tfrfc,tfapp,tfapm,tfnom)){
+               if(!mat()){
                 boolean si = interfaz.agregaTrabajador(); 
                 if (si) {
                     cargarLista(lista);
@@ -259,7 +274,7 @@ public class TrabajadorGUI {
                     deshabilitaFormulario();
                     JOptionPane.showMessageDialog(null,"Guardado Exitosamente");
                 }else JOptionPane.showMessageDialog(null, "Vuelva a intentarlo","Advertencia", JOptionPane.ERROR_MESSAGE);
-                
+               }  
             }
             else
                 JOptionPane.showMessageDialog(null, "Debe llenar todos los campos", "Error..!!", JOptionPane.ERROR_MESSAGE);
