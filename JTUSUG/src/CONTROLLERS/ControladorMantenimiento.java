@@ -1,6 +1,7 @@
 
 package CONTROLLERS;
 
+import Entities.AutobusE;
 import GUI.GUIReporteManten;
 import java.awt.HeadlessException;
 import java.sql.Connection;
@@ -58,15 +59,15 @@ public class ControladorMantenimiento {
                     + "sistemaTusug.mantenimiento(matricula,fecha_ingreso,fecha_salida,solicitante,responsable,solicitud,area_trabajo,prioridad,tipo_de_mantenimiento,direccion,telefono,email,costo_reparacion) "
                     + " values(?,CURRENT_DATE,?,?,?,?,?,?,?,?,?,?,?) returning codigo_m");
             System.out.print("agregado");
-            
-            pstm.setString(1, interfaz.txt_matricula.getText());
+            AutobusE matricula = (AutobusE)interfaz.cbx_matricula.getSelectedItem();
+            pstm.setString(1, matricula.getMatricula());
             pstm.setDate  (2, new java.sql.Date(interfaz.calendario.getDate().getTime() ));
             pstm.setString(3, interfaz.txt_solicitante.getText());
             pstm.setString(4, interfaz.txt_responsable.getText());
             pstm.setString(5, interfaz.text_solicitud.getText());
             pstm.setString(6, interfaz.txt_areaTrabajo.getText());
-            pstm.setString(7, interfaz.txt_prioridad.getText());
-            pstm.setString(8, interfaz.txt_tipoManten.getText());
+            pstm.setString(7, interfaz.cbx_prioridad.getSelectedItem().toString());
+            pstm.setString(8, interfaz.cbx_tipoManten.getSelectedItem().toString());
             pstm.setString(9, interfaz.txt_direccion.getText());
             pstm.setString(10,interfaz.txt_telefono.getText());
             pstm.setString(11,interfaz.txt_email.getText());

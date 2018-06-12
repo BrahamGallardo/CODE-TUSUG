@@ -40,7 +40,12 @@ public class GUIAutobusChofer {
     JMenuItem Cerrar_Sesion;
     JFrame x;    
     JPanel p;
-    ActionListener listener;
+    ActionListener listener = new ActionListener(){
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            x.dispose();
+        }
+    };
     ControladorChoferAutobus controlador;
     public GUIAutobusChofer()
     {
@@ -48,30 +53,15 @@ public class GUIAutobusChofer {
         controlador=ui;
         user = "Usuario";
         x = Builder.construirFrame("Trabajador", new Rectangle(0,0,700,600), false); 
+        x.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         p = Builder.crearPanel(x, new Rectangle(0,0,700,600),ruta + "fondo_vta_chofer_autobus.png", false);
-        
-        //Menu
-         /**barra=new JMenuBar();
-         barra.setBackground(Color.GRAY);
-         archivo=new JMenu(user);
-         reestablecer = new JMenuItem("Reestablecer Contraseña");
-         Cerrar_Sesion= new JMenuItem("Cerrar Sesión");
-         archivo.add(reestablecer);
-         archivo.add(Cerrar_Sesion);
-         barra.add(archivo);
-         p.add(barra);
-         barra.setBounds(new Rectangle(478,518,55,34));
-         barra.setVisible(true);*/
-         
-        //botones
+
+        //---------<botones>-------------------------
         btActualizar =  Builder.crearButtonIcon( p,     "Actualizar",ruta+"boton_actualizar_lista.png", new Rectangle(89,444,145,36),listener ,true, false);      
         confirm =       Builder.crearButtonIcon(p,      "confirmar", ruta+"btn_confirmar.png",          new Rectangle(409,451,114,43), new  CustomActionListener(), true, false);
         regresar =      Builder.crearButtonIcon(p,      "regresar",  ruta+"regresar.png",               new Rectangle(326,513, 41,41), listener, true, false);
 
-        
-        
-        
-        //Labels
+        //---------<Labels>-------------------------
         lTrabajadores = Builder.crearLabel(p,"Lista de Trabajadores",   new Rectangle(65,137,136,20),new Color(66,66,66), null, new Font("Segoe UI", Font.PLAIN, 14)); 
         dGeneral =      Builder.crearLabel(p,"Descripcion General",     new Rectangle(317,129,121,20),new Color(66,66,66), null, new Font("Segoe UI", Font.PLAIN, 14)); 
         nombre =        Builder.crearLabel(p,"Nombre:",                 new Rectangle(266,167,55,20),new Color(66,66,66), null, new Font("Segoe UI", Font.PLAIN, 14)); 
@@ -82,9 +72,6 @@ public class GUIAutobusChofer {
         matricula =     Builder.crearLabel(p,"Matricula:",              new Rectangle(258,366,62,20),new Color(66,66,66), null, new Font("Segoe UI", Font.PLAIN, 14)); 
         marca =         Builder.crearLabel(p,"Marca:",                  new Rectangle(276,398,43,20),new Color(66,66,66), null, new Font("Segoe UI", Font.PLAIN, 14)); 
         km =            Builder.crearLabel(p,"Kilometraje:",            new Rectangle(245,433,73,20),new Color(66,66,66), null, new Font("Segoe UI", Font.PLAIN, 14)); 
-        
-        
-        
         
         //lista
          lista= new JList();

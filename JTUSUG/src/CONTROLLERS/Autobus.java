@@ -102,10 +102,6 @@ public class Autobus {
         putImageProfile("src/imagenes/autobu.png");
     }
 
-    public void buscar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
     public void borrarAutobus() {
         SQLAutobus sql = new SQLAutobus();
         try {
@@ -113,16 +109,6 @@ public class Autobus {
         } catch (SQLException ex) {
             Logger.getLogger(Autobus.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
-
-    public void inicio() {
-        RootGUI a= new RootGUI();
-       
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public void regresar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public void putImageProfile(String path) {

@@ -29,15 +29,11 @@ public class Trabajador {
 
     public Trabajador(TrabajadorGUI ui) {
         dataBD = new HashMap<String, TrabajadorEntity>();
-        interfaz = ui;
+        interfaz = ui;        
         c = Conexion.getConexion();
-        if (c == null) {
-            interfaz.disable();
-        }
-
     }
 
-    public void agregaTrabajador() {
+    public boolean agregaTrabajador() {
         try {
             String rfc = Validador.getRfcIfIsValid(interfaz.tfrfc.getText()).toLowerCase();
             String nombre = interfaz.tfnom.getText().toLowerCase();
@@ -59,7 +55,7 @@ public class Trabajador {
             if ((new java.util.Date().getYear() - anioFechaNac) > 100) {
                 anioFechaNac += 100;
             }
-            java.sql.Date nac = new java.sql.Date(anioFechaNac, month, day);
+            java.sql.Date nac = new java.sql.Date(anioFechaNac, month-1, day);
             java.sql.Date contrato = new java.sql.Date(new java.util.Date().getTime());
             interfaz.txt_fechaNac.setText(nac.toString());
             //interfaz.fecha_nac.setDate(new Date(anioFechaNac,
@@ -75,7 +71,8 @@ public class Trabajador {
             String estado = (String) interfaz.combo_estadoLaboral.getSelectedItem().toString().toLowerCase();
             String url = " ";
             agregarTrabajador(rfc, nombre, ap_paterno, ap_materno, domicilio, puesto, nac, contrato, estado, url);
-        } catch (InvalidFormatException ex) {
+            return true;
+        } catch (InvalidFormatException ex) {            
             if (ex.getMessage().equals("RFC")) {
                 JOptionPane.showMessageDialog(null, "RFC Invalido");
             } else {
@@ -84,7 +81,7 @@ public class Trabajador {
         } catch (Exception ex) {
             Logger.getLogger(SQLAutobus.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        return false;
     }
 
     public void agregarTrabajador(String rfc, String nombre, String ap_paterno, String ap_materno, String domicilio, String puesto, Date f_nac, Date f_cont, String estado, String urlImage) {
@@ -129,7 +126,7 @@ public class Trabajador {
 
     public ArrayList<String> listatrabajador() {
         ArrayList<String> listEmployers = new ArrayList<String>();
-        String sql = "select rfc from sistemaTusug.trabajador where lower(estado) like 'activo' ORDER BY rfc";
+        String sql = "select rfc from sistemaTusug.trabajador ORDER BY rfc";
         PreparedStatement pst;
         ResultSet res;
         try {
@@ -146,7 +143,7 @@ public class Trabajador {
 
     }
 
-    public void modificaTrabajador(String nombre, String ap_paterno, String ap_materno, String domicilio, String puesto, String rfc) {
+    public void modificaTrabajador(String nombre, String ap_paterno, String ap_materno, String domicilio, String puesto,String estado, String rfc) {
         nombre = interfaz.tfnom.getText();
         ap_paterno = interfaz.tfapp.getText();
         ap_materno = interfaz.tfapm.getText();
@@ -160,14 +157,16 @@ public class Trabajador {
                     + "ap_paterno= ? ,"
                     + "ap_materno= ? ,"
                     + "domicilio= ? ,"
-                    + "puesto= ? "
+                    + "puesto= ? ,"
+                    + "estado= ? "
                     + "WHERE lower(rfc) =? ");
             pstm.setString(1, nombre);
             pstm.setString(2, ap_paterno);
             pstm.setString(3, ap_materno);
             pstm.setString(4, domicilio);
             pstm.setString(5, puesto);
-            pstm.setString(6, rfc);
+            pstm.setString(6,estado);
+            pstm.setString(7, rfc);
             pstm.execute();
             // pstm.close();
         } catch (SQLException e) {
@@ -250,12 +249,16 @@ public class Trabajador {
         }
     }
 
-    public void putImageProfile(String path) {
+    public void putImageProfile(String path) throws NullPointerException{
         // Replace los simbolos        '\'       por '/'
+        try{
         String Path = path.replace('\u005C\u005C', '\u002F');
         ImageIcon fot = new ImageIcon(Path);
         Icon icon = new ImageIcon(fot.getImage().getScaledInstance(interfaz.lb_imagen.getWidth(), interfaz.lb_imagen.getHeight(), Image.SCALE_DEFAULT));
         interfaz.lb_imagen.setIcon(icon);
+        }catch(NullPointerException ex){
+            
+        }
     }
 
     /*-------------------Funciones Mejoradas-----------------------*/

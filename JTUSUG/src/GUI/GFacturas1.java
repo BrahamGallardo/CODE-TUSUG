@@ -96,6 +96,7 @@ public class GFacturas1 extends JFrame {
         telefono = Builder.crearTextField(p, new Rectangle(444, 422, 127, 20), "", null, null, new Font("Segoe UI", Font.PLAIN, 11), true, true, true);
         valida();
     }
+
     public void arre() {
         pagina1.add(nF.getText());
         pagina1.add(cP.getText());
@@ -123,103 +124,83 @@ public class GFacturas1 extends JFrame {
                     f.dispose();
                     break;
                 case "Siguiente":
-                    if(validaIngreso(nF,cP,rS,Direc,pob,prov,cp,pContacto,mail,telefono)){
+                    if (validaIngreso(nF, cP, rS, Direc, pob, prov, cp, pContacto, mail, telefono)) {
                         arre();
                         f.dispose();
                         GFacturas2 g2 = new GFacturas2(pagina1);
-                    }
-                    else
+                    } else {
                         JOptionPane.showMessageDialog(null, "Debe llenar todos los campos", "Error..!!", JOptionPane.ERROR_MESSAGE);
+                    }
                     break;
                 case "fisica":
                 case "juridica":
-                  
+
             }
         }
     }
-    public void valida()
-    {
-        nF.addKeyListener(new java.awt.event.KeyAdapter() 
-        {
+
+    public void valida() {
+        nF.addKeyListener(new java.awt.event.KeyAdapter() {
             @Override
-            public void keyTyped(java.awt.event.KeyEvent evt) 
-            {
-                validaNum(evt,nF,20);
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                validaNum(evt, nF, 20);
             }
         });
-        
-        cP.addKeyListener(new java.awt.event.KeyAdapter() 
-        {
+
+        cP.addKeyListener(new java.awt.event.KeyAdapter() {
             @Override
-            public void keyTyped(java.awt.event.KeyEvent evt) 
-            {
-                validaAlfanumerico(evt,cP,10);
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                validaAlfanumerico(evt, cP, 10);
             }
         });
-        
-        rS.addKeyListener(new java.awt.event.KeyAdapter() 
-        {
+
+        rS.addKeyListener(new java.awt.event.KeyAdapter() {
             @Override
-            public void keyTyped(java.awt.event.KeyEvent evt) 
-            {
-                validaNombre(evt,rS,20);
-            }
-        });     
-        
-        Direc.addKeyListener(new java.awt.event.KeyAdapter() 
-        {
-            @Override
-            public void keyTyped(java.awt.event.KeyEvent evt) 
-            {
-                validaAlfanumerico(evt,Direc,40);
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                validaNombre(evt, rS, 20);
             }
         });
-        pob.addKeyListener(new java.awt.event.KeyAdapter() 
-        {
+
+        Direc.addKeyListener(new java.awt.event.KeyAdapter() {
             @Override
-            public void keyTyped(java.awt.event.KeyEvent evt) 
-            {
-                validaNombre(evt,pob,15);
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                validaAlfanumerico(evt, Direc, 40);
             }
         });
-        prov.addKeyListener(new java.awt.event.KeyAdapter() 
-        {
+        pob.addKeyListener(new java.awt.event.KeyAdapter() {
             @Override
-            public void keyTyped(java.awt.event.KeyEvent evt) 
-            {
-                validaNombre(evt,prov,10);
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                validaNombre(evt, pob, 15);
             }
         });
-        cp.addKeyListener(new java.awt.event.KeyAdapter() 
-        {
+        prov.addKeyListener(new java.awt.event.KeyAdapter() {
             @Override
-            public void keyTyped(java.awt.event.KeyEvent evt) 
-            {
-                validaNum(evt,cp,5);
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                validaNombre(evt, prov, 10);
             }
         });
-        pContacto.addKeyListener(new java.awt.event.KeyAdapter() 
-        {
+        cp.addKeyListener(new java.awt.event.KeyAdapter() {
             @Override
-            public void keyTyped(java.awt.event.KeyEvent evt) 
-            {
-                validaNombre(evt,pContacto,10);
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                validaNum(evt, cp, 5);
             }
         });
-        mail.addKeyListener(new java.awt.event.KeyAdapter() 
-        {
+        pContacto.addKeyListener(new java.awt.event.KeyAdapter() {
             @Override
-            public void keyTyped(java.awt.event.KeyEvent evt) 
-            {
-                validaAlfanumerico(evt,mail,30);
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                validaNombre(evt, pContacto, 10);
             }
         });
-        telefono.addKeyListener(new java.awt.event.KeyAdapter() 
-        {
+        mail.addKeyListener(new java.awt.event.KeyAdapter() {
             @Override
-            public void keyTyped(java.awt.event.KeyEvent evt) 
-            {
-                validaNum(evt,telefono,10);
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                validaAlfanumerico(evt, mail, 30);
+            }
+        });
+        telefono.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                validaNum(evt, telefono, 10);
             }
         });
     }

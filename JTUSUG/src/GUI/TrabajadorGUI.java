@@ -31,7 +31,7 @@ import javax.swing.JScrollBar;
 import javax.swing.JTextArea;
 import javax.swing.UIManager;
 import javax.swing.text.JTextComponent;
-
+import Validacion.*;
 public class TrabajadorGUI {
     //----------------------------------<Validacion>-----------------------
     TrabajadorActionListener eventos;    
@@ -79,15 +79,12 @@ public class TrabajadorGUI {
     };
     
     private void initComponents(){
-        UIManager.put( "ComboBox.disabledText", Color.white);
-        
         interfaz= new Trabajador(this);
-        x = Builder.construirFrame("Trabajador", new Rectangle(0,0,700,600), false); 
-        p = Builder.crearPanel(x, new Rectangle(0,0,700,518),"src/imagenes/fondo_ventana_2.png", false);
-        
-        
         eventos = new TrabajadorActionListener();
-        
+
+        x = Builder.construirFrame("Trabajador", new Rectangle(0,0,700,600), false); 
+            x.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        p = Builder.crearPanel(x, new Rectangle(0,0,700,518),"src/imagenes/fondo_ventana_2.png", false);
         
         Color color = new Color(233,233,233);
         //etiquetas
@@ -109,6 +106,8 @@ public class TrabajadorGUI {
         btActualizar =  Builder.crearButtonIcon( p, "Actualizar",           "src/imagenes/boton_actualizar_lista.png",              new Rectangle(26, 455, 145, 36), actualizarT,true, false);
         //sesion =        Builder.crearButtonIcon( p, "cerrarSesion",        "src/imagenes/boton_cerrar_sesion.png",                 new Rectangle(539, 65, 130, 27), null,   true, false);
         back =          Builder.crearButtonIcon( p, "regresar",             "src/imagenes/regresar.png",                            new Rectangle(626, 452, 32, 32), regresarV,true, false);
+      
+        
         //-----------------------------------------------<Botones CRUD del empleado>----------------------------------------------------
         nuevo=          Builder.crearButtonIcon( p, "Nuevo Empleado",       "src/imagenes/agregar-usuario.png",                     new Rectangle(218, 140, 32, 32), nuevoT, true, false,true,color);
         agregar=        Builder.crearButtonIcon( p, "Modificar Empleado",   "src/imagenes/anadir-punto-de-anclaje.png",             new Rectangle(218, 202, 32, 32), modificarT ,false, false,true,color);
@@ -178,12 +177,6 @@ public class TrabajadorGUI {
          JLabel fondo    =   Builder.crearLabelImagen(p, "src/imagenes/fondo_ventana_2.png", new Rectangle(0,0,700,518));
     }
     
-    
-    public void disable(){
-        for (Component c: p.getComponents()) c.setEnabled(false);
-    }
-    
-    
     public void cargarLista(JList l){
         DefaultListModel modelo = new DefaultListModel();
                     ArrayList<String> list = interfaz.listatrabajador();
@@ -192,45 +185,11 @@ public class TrabajadorGUI {
                     }
                     l.setModel(modelo);
     }
-    
-    
-    static void enableTextFields(JTextField... text){
-        for(JTextField tf:text){
-            tf.setEditable(true);
-            tf.setText(null);
-        }
-    }
-    
-    
-    static void disableTextFields(JTextField... text){
-        for(JTextField tf:text){
-            tf.setEditable(false);
-            tf.setText(null);
-        }
-    }
-    
-    
-    ActionListener nuevoT=new ActionListener() {
-        public void actionPerformed(ActionEvent ae)
-        {
-                enableTextFields(tfrfc,tfapp,tfapm,tfnom);
-                btn_guardar.setVisible(true);
-                lista.setEnabled(false);
-                nuevo.setEnabled(false);
-                agregar.setEnabled(false);
-                baja.setEnabled(false);
-                btn_cancelar.setVisible(true);
-                agregar.setEnabled(false);
-                baja.setEnabled(false);
-                txtA_direccion.setEditable(true);
-                txtA_direccion.setText("");
-                Cfoto.setEnabled(true);
-                interfaz.putImageProfile("src/imagenes/perfil.jpg");
-                combo_estadoLaboral.setEnabled(false);
-                combo_estadoLaboral.           setForeground(Color.BLACK);
-                combo_puesto.setEnabled(true);
-                txt_fechaNac.setEnabled(true);
-                
+
+    ActionListener nuevoT=new ActionListener(){
+        public void actionPerformed(ActionEvent ae){
+            cleanFormulario();
+            habilitaNewFormulario();
         }
     };
     
@@ -245,15 +204,10 @@ public class TrabajadorGUI {
             if(lista.getSelectedValue()==null){
                 baja.setEnabled(false);
             }else{
-                baja.setEnabled(true);
                 interfaz.eliminaTrabajador(tfrfc.getText());
                 cargarLista(lista);
-                Cfoto.setEnabled(false);
-                txtA_direccion.setText("");
-                tfrfc.setText("");
-                tfapp.setText("");
-                tfapm.setText("");
-                tfnom.setText("");
+                cleanFormulario();
+                
             }
         }
     };
@@ -262,65 +216,25 @@ public class TrabajadorGUI {
     ActionListener modificarT=new ActionListener() {
         public void actionPerformed(ActionEvent ae)
         {
-            if("".equals(tfrfc.getText())){}
-                    else{
-                        tfrfc.setEditable(true);
-                        tfapp.setEditable(true);
-                        tfapm.setEditable(true);
-                        tfnom.setEditable(true);
-                        lista.setEnabled(false);
-                        nuevo.setEnabled(false);
-                        baja.setEnabled(false);
-                        btn_guardar_mod.setVisible(true);
-                        agregar.setEnabled(false);
-                        btn_guardar_mod.setVisible(true);
-                        combo_estadoLaboral.setEnabled(true);
-                        combo_estadoLaboral.           setForeground(Color.BLACK);
-                        combo_puesto.setEnabled(true);
-                        txt_fechaNac.setEnabled(true);
-                        
-                        txtA_direccion.setEditable(true);
-                        Cfoto.setEnabled(true);
-                    }
+            if("".equals(tfrfc.getText())==false)
+                habilitaUpdateFormulario();
         }
     };
     
     
     ActionListener actualizarT=new ActionListener() {
         public void actionPerformed(ActionEvent ag)
-        {
-            disableTextFields(tfrfc,tfapp,tfapm,tfnom);
+        {            
             cargarLista(lista);
-            baja.setEnabled(false);
-            agregar.setEnabled(false);
-            interfaz.putImageProfile("src/imagenes/");
-            txtA_direccion.setText("");
-            txtA_direccion.setEditable(true);
-            Cfoto.setEnabled(false);
-            txt_fechaNac.setEnabled(false);
+            cleanFormulario();
+            deshabilitaFormulario();
         }
     };
     
     
     ActionListener cancel=new ActionListener() {
-        public void actionPerformed(ActionEvent ae)
-        {   
-           lista.setEnabled(true);
-           disableTextFields(tfrfc,tfapp,tfapm,tfnom);
-            nuevo.setEnabled(true);
-            btn_guardar.setVisible(false);
-            agregar.setEnabled(true);
-            baja.setEnabled(true);
-            btn_cancelar.setVisible(false);
-            agregar.setEnabled(false);
-            baja.setEnabled(false);
-            Cfoto.setEnabled(false);
-            combo_estadoLaboral.setEnabled(false);
-            combo_estadoLaboral.setForeground(Color.BLACK);
-            combo_puesto.setEnabled(false);
-            combo_puesto.      setForeground(Color.BLACK);
-            txt_fechaNac.setEnabled(false);
-            txtA_direccion.setText("");
+        public void actionPerformed(ActionEvent ae){   
+           deshabilitaFormulario();
         }
     };
     
@@ -337,24 +251,14 @@ public class TrabajadorGUI {
         public void actionPerformed(ActionEvent ae)
         {
            if(validaIngreso(tfrfc,tfapp,tfapm,tfnom)){
-                interfaz.agregaTrabajador(); 
-                cargarLista(lista);
-                disableTextFields(tfrfc,tfapp,tfapm,tfnom);
-                btn_guardar.setVisible(false);
-                lista.setEnabled(true);
-                nuevo.setEnabled(true);
-                agregar.setEnabled(false);
-                baja.setEnabled(false);
-                txtA_direccion.setText("");
-                txtA_direccion.setEditable(false);
-                btn_cancelar.setVisible(false);
-                Cfoto.setEnabled(false);
-                combo_estadoLaboral.setEnabled(false);
-                combo_estadoLaboral.           setForeground(Color.BLACK);
-                combo_puesto.setEnabled(false);
-                combo_puesto.      setForeground(Color.BLACK);
-                txt_fechaNac.setEnabled(false);
-                JOptionPane.showMessageDialog(null,"Guardado Exitosamente");
+                boolean si = interfaz.agregaTrabajador(); 
+                if (si) {
+                    cargarLista(lista);
+                    cleanFormulario();
+                    deshabilitaFormulario();
+                    JOptionPane.showMessageDialog(null,"Guardado Exitosamente");
+                }else JOptionPane.showMessageDialog(null, "Vuelva a intentarlo","Advertencia", JOptionPane.ERROR_MESSAGE);
+                
             }
             else
                 JOptionPane.showMessageDialog(null, "Debe llenar todos los campos", "Error..!!", JOptionPane.ERROR_MESSAGE);
@@ -367,22 +271,11 @@ public class TrabajadorGUI {
         public void actionPerformed(ActionEvent ae)
         {
             if(validaIngreso(tfrfc,tfapp,tfapm,tfnom)){
-                interfaz.modificaTrabajador(tfnom.getText(), tfapp.getText(), tfapm.getText(), txtA_direccion.getText(),( (String)combo_puesto.getSelectedItem()), tfrfc.getText());
+                interfaz.modificaTrabajador(tfnom.getText(), tfapp.getText(), tfapm.getText(), txtA_direccion.getText(),( (String)combo_puesto.getSelectedItem()),(String)combo_estadoLaboral.getSelectedItem(), tfrfc.getText());
                 cargarLista(lista);
-                btn_guardar_mod.setVisible(false);
-                lista.setEnabled(true);
-                nuevo.setEnabled(true);
-                baja.setEnabled(false);
-                disableTextFields(tfrfc,tfapp,tfapm,tfnom);
-                agregar.setEnabled(false);
-                combo_estadoLaboral.setEnabled(false);
-                combo_estadoLaboral.           setForeground(Color.BLACK);
-                combo_puesto.setEnabled(false);
-                combo_puesto.      setForeground(Color.BLACK);
-                txt_fechaNac.setEnabled(false);
-                txtA_direccion.setText("");
-                interfaz.putImageProfile("src/imagenes/");
-                Cfoto.setEnabled(false);
+                cleanFormulario();
+                deshabilitaFormulario();
+                
                 JOptionPane.showMessageDialog(null,"Guardado Exitosamente");
             }else
                 JOptionPane.showMessageDialog(null, "Debe llenar todos los campos", "Error..!!", JOptionPane.ERROR_MESSAGE);
@@ -427,22 +320,7 @@ public class TrabajadorGUI {
     }
     
     
-    class KeyListenerValidation extends KeyAdapter{
-        int numLetrasValidas;
-        public KeyListenerValidation(int length){
-            super();
-            numLetrasValidas = length;
-        }
-        @Override
-        public void keyTyped(java.awt.event.KeyEvent evt){            
-            Matcher m = Pattern.compile("[[\\s]a-zA-ZáéíóúÁÉÍÓÚ1234567890-]+").matcher(Character.toString(evt.getKeyChar()));
-            //boolean b = Character.isAlphabetic(evt.getKeyChar());            
-            boolean c = Character.isSpaceChar(evt.getKeyChar());
-            if(!m.find()||((JTextComponent)evt.getComponent()).getText().length()>=numLetrasValidas)
-                evt.consume();
-            else evt.setKeyChar(Character.toUpperCase(evt.getKeyChar()));
-        }
-    }
+    
     
     
     public static void main(String []args){
@@ -451,5 +329,89 @@ public class TrabajadorGUI {
         TrabajadorGUI t = new TrabajadorGUI();
     }
     
-
+    
+    public void cleanFormulario(){
+        tfrfc.setText(null);
+        tfnom.setText(null);
+        tfapm.setText(null);
+        tfapp.setText(null);        
+        combo_estadoLaboral.setSelectedItem("activo");
+        txt_fechaNac.setText(null);
+        txtA_direccion.setText(null);
+        interfaz.putImageProfile("src/imagenes/perfil.jpg");
+        Cfoto.setEnabled(true);
+    }
+    
+    
+    public void habilitaNewFormulario(){
+    //----------------<Inhabilitar Lista>--------------------------
+        lista.setEnabled(false);
+        btActualizar.setEnabled(false);
+    //--------------<Inhabilitar botones de nuevo, modificar y eliminar>------------------
+        nuevo.setEnabled(false);
+        agregar.setEnabled(false);
+        baja.setEnabled(false);
+    //--------------<Habilitar botones de Guardar y cancelar>----------------
+        btn_guardar.setVisible(true);btn_guardar.setEnabled(true);
+        btn_cancelar.setVisible(true);btn_cancelar.setEnabled(true);
+    //--------------<Fin>------------------------------------------------
+        tfrfc.setEditable(true);
+        tfnom.setEditable(true);
+        tfapm.setEditable(true);
+        tfapp.setEditable(true);
+        combo_estadoLaboral.setEnabled(false);  //---Nuevo registro siempre es activo        
+        txt_fechaNac.setEditable(false);
+        txtA_direccion.setEditable(true);
+        combo_puesto.setEnabled(true);
+        Cfoto.setEnabled(true);
+    }
+    
+    
+    public void habilitaUpdateFormulario(){
+    //----------------<Inhabilitar Lista>--------------------------
+        lista.setEnabled(false);
+        btActualizar.setEnabled(false);
+    //--------------<Inhabilitar botones de nuevo, modificar y eliminar>------------------
+        nuevo.setEnabled(false);
+        agregar.setEnabled(false);
+        baja.setEnabled(false);
+    //--------------<Habilitar botones de Guardar y cancelar>----------------
+        btn_guardar_mod.setVisible(true);btn_guardar_mod.setEnabled(true);        
+    //--------------<Fin>------------------------------------------------
+        tfrfc.setEditable(false);
+        tfnom.setEditable(true);
+        tfapm.setEditable(true);
+        tfapp.setEditable(true);
+        combo_estadoLaboral.setEnabled(true);  //---Nuevo registro siempre es activo        
+        txt_fechaNac.setEditable(false);
+        txtA_direccion.setEditable(true);
+        combo_puesto.setEnabled(true);
+        Cfoto.setEnabled(true);
+    }
+    
+    
+    public void deshabilitaFormulario(){
+        tfrfc.setEditable(false);
+        tfnom.setEditable(false);
+        tfapm.setEditable(false);
+        tfapp.setEditable(false);
+        combo_estadoLaboral.setEnabled(false);
+        txt_fechaNac.setEditable(false);
+        txtA_direccion.setEditable(false);
+        combo_puesto.setEnabled(false);
+        Cfoto.setEnabled(false);
+        
+    //----------------<Habilitar Lista>--------------------------
+        lista.setEnabled(true);
+        btActualizar.setEnabled(true);
+    //--------------<Habilitar botones de nuevo, modificar y eliminar>------------------
+        nuevo.setEnabled(true);
+        agregar.setEnabled(true);
+        baja.setEnabled(true);
+    //--------------<Habilitar botones de Guardar y cancelar>----------------
+        btn_guardar.setVisible(false);btn_guardar.setEnabled(false);
+        btn_cancelar.setVisible(false);btn_cancelar.setEnabled(false);
+        btn_guardar_mod.setVisible(false);btn_guardar_mod.setEnabled(false);
+    //--------------<Fin>------------------------------------------------
+    }
 }

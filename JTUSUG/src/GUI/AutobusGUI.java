@@ -33,6 +33,7 @@ public class AutobusGUI extends JFrame
         x = this;
         listener = new CustomActionListener();
         x = Builder.construirFrame("Autobus", new Rectangle(0,0, 700, 600), false); 
+        x.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         p = Builder.crearPanel(x, new Rectangle(0, 0, 700, 600),ruta + "fondo_ventana_2.png", false);
         controlador = new Autobus(this);
         inicializarcomp();
@@ -181,7 +182,7 @@ public class AutobusGUI extends JFrame
                     btn_agregar_img.setVisible(false);
                     break;
                 case "Buscar":
-                    controlador.buscar();
+                    //controlador.buscar();
                     break;
                 case "eliminar":
                     if(list.getSelectedValue()==null)
