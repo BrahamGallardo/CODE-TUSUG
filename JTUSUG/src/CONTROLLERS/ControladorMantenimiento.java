@@ -11,6 +11,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
@@ -52,14 +54,14 @@ public class ControladorMantenimiento {
     
     public void agregaMan(){
         try {
-          int x=Integer.parseInt(interfaz.txt_costo.getText());
-           System.out.print("agregado");
+          int x=Integer.parseInt(interfaz.txt_costo.getText());           
            ResultSet res;
             PreparedStatement pstm = c.prepareStatement("insert into "
                     + "sistemaTusug.mantenimiento(matricula,fecha_ingreso,fecha_salida,solicitante,responsable,solicitud,area_trabajo,prioridad,tipo_de_mantenimiento,direccion,telefono,email,costo_reparacion) "
                     + " values(?,CURRENT_DATE,?,?,?,?,?,?,?,?,?,?,?) returning codigo_m");
-            System.out.print("agregado");
+            
             AutobusE matricula = (AutobusE)interfaz.cbx_matricula.getSelectedItem();
+            System.err.println(matricula.getMatricula());
             pstm.setString(1, matricula.getMatricula());
             pstm.setDate  (2, new java.sql.Date(interfaz.calendario.getDate().getTime() ));
             pstm.setString(3, interfaz.txt_solicitante.getText());
@@ -79,8 +81,8 @@ public class ControladorMantenimiento {
             Indice=res.getInt(1);
             System.out.print(Indice);
             }
-        } catch (SQLException e) {
-            System.out.println(e);
+        } catch (SQLException ex) {
+            Logger.getLogger(ControladorMantenimiento.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         

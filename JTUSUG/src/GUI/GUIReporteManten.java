@@ -94,7 +94,7 @@ public class GUIReporteManten{
         txt_telefono   =        Builder.crearTextField( panel, new Rectangle(44,447,135,20), "", null, null, f, true, true, true);
         txt_email      =        Builder.crearTextField( panel, new Rectangle(44,492,162,20), "", null, null, f, true, true, true);
         //cbx_codAutobus =        //Builder.crearComboBox(  panel, new Rectangle(462,135,139,22),    null, null, null, c);        
-        txt_marca      =        Builder.crearTextField( panel, new Rectangle(355,177,127,20),"", null, null, f, true, true, true);
+        txt_marca      =        Builder.crearTextField( panel, new Rectangle(355,177,127,20),"", null, null, f, false, true, true);
         //txt_matricula  =        Builder.crearTextField( panel, new Rectangle(504,177,127,20),"", null, null, f, true, true, true);
         
         cbx_matricula =         Builder.crearComboBox(panel, new Rectangle(410,135,139,22),matriculaSelected);
@@ -151,10 +151,10 @@ public class GUIReporteManten{
         KeyListener len40 = new KeyListenerValidation(40);
         KeyListener len10= new KeyListenerValidation(10);
         
-        txt_responsable.addKeyListener(len20);        
-        txt_solicitante.addKeyListener(len20);        
+        txt_responsable.addKeyListener(len40);        
+        txt_solicitante.addKeyListener(len40);        
         txt_areaTrabajo.addKeyListener(len20);        
-        txt_marca.addKeyListener(len20);
+        //txt_marca.addKeyListener(len20); //No se tiene que validar -_-
         //txt_prioridad.addKeyListener(len20);txt_prioridad.addKeyListener(Validador.KEYonlyNumbers);
         txt_costo.addKeyListener(len20);txt_costo.addKeyListener(Validador.KEYonlyNumbers);
         //txt_matricula.addKeyListener(len20);
@@ -175,18 +175,20 @@ public class GUIReporteManten{
     public void actionPerformed(ActionEvent e) {
         op = e.getActionCommand();
         switch (op) {
-            case "Generar Reporte":
-                if (validaIngreso(txt_areaTrabajo, txt_costo, txt_direccion, txt_telefono)&&
-                        Validador.emailValido(txt_email.getText())) {
-                    try {
-                        controlador.agregaMan();
-                        controlador.creaRepor();
-                    } catch (JRException ex) {
-                        Logger.getLogger(GUIReporteManten.class.getName()).log(Level.SEVERE, null, ex);
+            case "Generar Reporte":                
+                if (validaIngreso(txt_areaTrabajo, txt_costo, txt_direccion, txt_telefono, txt_email)) {
+                    if(Validador.emailValido(txt_email.getText())){
+                        try {
+                            controlador.agregaMan();
+                            controlador.creaRepor();
+                        } catch (JRException ex) {
+                            Logger.getLogger(GUIReporteManten.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Email invalido", "Email:", JOptionPane.ERROR_MESSAGE);
                     }
-                } else {
-                    JOptionPane.showMessageDialog(null, "Debe llenar todos los campos", "Error..!!", JOptionPane.ERROR_MESSAGE);
-                }
+                }else JOptionPane.showMessageDialog(null, "Debe llenar todos los campos", "Error..!!", JOptionPane.ERROR_MESSAGE);
+                    
                 break;
             case "cerrarSesion":
                 ventana.dispose();
@@ -203,7 +205,7 @@ public class GUIReporteManten{
         @Override
         public void itemStateChanged(ItemEvent e) {
             AutobusE auto = (AutobusE)e.getItem();
-            txt_marca.setText(auto.getMarca());
+            txt_marca.setText(auto.getMarca().toUpperCase());
             //txt_/    
         }
     };
