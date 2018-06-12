@@ -103,8 +103,8 @@ public class ReportarSiniestroGUI {
          lSiniestros = Builder.crearButtonIcon(p, "listado", ruta+"boton_listado_siniestros.png",new Rectangle(135,69,142,43), listener, true, false);
          Rsiniestro = Builder.crearButtonIcon(p, "reportar", ruta+"boton_reportar_siniestro_selected.png",new Rectangle(313,69,142,43), listener, true, false);
          regresar = Builder.crearButtonIcon(p, "regresar", ruta+"regresar.png",new Rectangle(53,560, 41,41), listener, true, false);
-         guardar = Builder.crearButtonIcon(p, "guardar", ruta+"boton_guardar.png",new Rectangle(426,560,101,39), new ReportCustomListener(), true, false);
-         cerrar = Builder.crearButtonIcon(p, "cerrar", ruta+"boton_cerrar.png",new Rectangle(554,560,101,39), listener, true, false);
+         guardar = Builder.crearButtonIcon(p, "guardar", ruta+"boton_guardar.png",new Rectangle(554,560,101,39), new ReportCustomListener(), true, false);
+         //cerrar = Builder.crearButtonIcon(p, "cerrar", ruta+"boton_cerrar.png",new Rectangle(554,560,101,39), listener, true, false);
          
          
          
