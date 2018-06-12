@@ -126,7 +126,7 @@ public class Trabajador {
 
     public ArrayList<String> listatrabajador() {
         ArrayList<String> listEmployers = new ArrayList<String>();
-        String sql = "select rfc from sistemaTusug.trabajador where lower(estado) like 'activo' ORDER BY rfc";
+        String sql = "select rfc from sistemaTusug.trabajador ORDER BY rfc";
         PreparedStatement pst;
         ResultSet res;
         try {
