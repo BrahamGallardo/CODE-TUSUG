@@ -16,8 +16,8 @@
 	<parameter name="holis" class="java.lang.Integer">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
-	<queryString language="SQL">
-		<![CDATA[select * from sistemaTusug.mantenimiento]]>
+	<queryString>
+		<![CDATA[select * from sistemaTusug.mantenimiento where codigo_m=$P{holis}]]>
 	</queryString>
 	<field name="codigo_m" class="java.lang.Integer"/>
 	<field name="matricula" class="java.lang.String"/>
