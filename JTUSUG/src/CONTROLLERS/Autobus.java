@@ -99,7 +99,6 @@ public class Autobus {
         ui.txt_Km.setText(null);
         ui.txt_matricula.setText(null);
         ui.txt_asientos.setText(null);
-        putImageProfile("src/imagenes/autobu.png");
     }
 
     public void borrarAutobus() {
@@ -113,12 +112,16 @@ public class Autobus {
 
     public void putImageProfile(String path) {
         // Replace los simbolos        '\'       por '/'
+        try{
         String Path = path.replace('\u005C\u005C' ,  '\u002F');
         ImageIcon fot = new ImageIcon(Path);
         Icon icon = new ImageIcon(fot.getImage().getScaledInstance(ui.lb_imagen_autobus.getWidth(), ui.lb_imagen_autobus.getHeight(), Image.SCALE_DEFAULT));
         //Icon icon = new ImageIcon(Path);
         
         ui.lb_imagen_autobus.setIcon(icon);
+        }catch(NullPointerException ex){
+            //Logger.getLogger(Autobus.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public void evtCargarImagen(){        
@@ -131,7 +134,7 @@ public class Autobus {
             // Actualizar dato en la Base de datos
             // Preparar Consulta
             Connection conn = Conexion.getConexion();
-            PreparedStatement pstm = conn.prepareStatement("UPDATE sistemaTusug.autobus SET url_img = ? WHERE matricula = ? ;");
+            PreparedStatement pstm = conn.prepareStatement("UPDATE sistemaTusug.autobus SET url_img = ? WHERE lower(matricula) = ? ");
             pstm.setString(1, absPathImg);
             pstm.setString(2, matricula);
             pstm.execute();
