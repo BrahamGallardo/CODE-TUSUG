@@ -16,7 +16,7 @@ import javax.swing.text.JTextComponent;
  */
 public class Fachada {
     public static String getSelectedFileImage(){
-        String path = null;
+        String path = "";
         JFileChooser file = new JFileChooser();
         file.setCurrentDirectory(new File(System.getProperty("user.home")));
           //filter the files
