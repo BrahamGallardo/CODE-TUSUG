@@ -113,6 +113,13 @@ public class GUIAutobusChofer {
          combo= Builder.crearTextField(p, new Rectangle(331,331,129,22),"",null , null, new Font("Segoe UI", Font.PLAIN, 11),false,true, true);
         
     }
+    
+    public void limpiaListas(){
+                lista.removeAll();
+                controlador.cargarLista(lista);
+                listas.removeAll();
+                controlador.cargarListaAutobus(lista);
+    }
  
     public static void main(String[] args){
         GUIAutobusChofer s= new GUIAutobusChofer();
@@ -148,14 +155,18 @@ public class GUIAutobusChofer {
                 System.err.println("Nada que elegir");
         };
     }
-         
+        
+      
       class CustomActionListener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
-            controlador.addT();
-           JOptionPane.showMessageDialog(null,"Chofer asignado");
+           
+                controlador.addT();
+                limpiaListas();
+                JOptionPane.showMessageDialog(null,"Chofer asignado.");
+             }
         }
       
         }
             
-}
+

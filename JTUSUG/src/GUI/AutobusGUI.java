@@ -202,8 +202,8 @@ public class AutobusGUI extends JFrame
                 case "actualizar_lista":
                     controlador.actualizarLista();
                     textField2(txt_marca,txt_No_Eco,txt_Km,txt_matricula,txt_asientos);
-                   // btn_eliminar.setEnabled(false);
-                   // btn_modificar.setEnabled(false);
+                    btn_eliminar.setEnabled(false);
+                    btn_modificar.setEnabled(false);
                    // btn_agregar_img.setVisible(false);
                     break;
                 case "Buscar":

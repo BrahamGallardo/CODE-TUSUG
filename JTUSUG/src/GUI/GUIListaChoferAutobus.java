@@ -1,18 +1,17 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package GUI;
 
+
+import CONTROLLERS.ControladorChoferAutobus;
 import CONTROLLERS.Expedientes;
-import CONTROLLERS.SQLRepSinies;
-import java.awt.Color;
+import CONTROLLERS.ListaAutobusChofer;
+import static GUI.GUIExpedientes.encabezado;
 import java.awt.Dimension;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
@@ -26,14 +25,11 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import net.sf.jasperreports.engine.JRException;
 
-/**
- *
- * @author Guillermo
- */
-public class GUIExpedientes {
-    
+
+public class GUIListaChoferAutobus {
+      
     public JButton lexpediente, Rexpdiente, regresar, guardar, abrir, imprimir;
-    static String encabezado[] = {"RFC", "Nombre", "Apellido Paterno", "Apellido Materno"};
+    static String encabezado[] = {"RFC", "MATRICULA"};
     static Object[][] datos;
     public JTable tabla;
     public String valor;
@@ -46,39 +42,23 @@ public class GUIExpedientes {
     JMenu archivo;
     JMenuItem reestablecer;
     JMenuItem Cerrar_Sesion;
-    Expedientes controlador;
+    ListaAutobusChofer controlador;
     public DefaultTableModel model;
-    GUIExpedientes a;
-    public GUIExpedientes(){
+    
+    public GUIListaChoferAutobus(){
         valor="";
         model=new DefaultTableModel(null, encabezado);
-        controlador= new Expedientes(this);
+        controlador= new ListaAutobusChofer(this);
         user = "Usuario";
-        f = Builder.construirFrame("Lista de Expedientes", new Rectangle(0, 0, 700, 649), false);
+        f = Builder.construirFrame("Lista de Relaciones", new Rectangle(0, 0, 700, 649), false);
         p = Builder.crearPanel(f, new Rectangle(2, 0, 703, 649), ruta + "fondo_lista_siniestros.png", false);
-        a=this;
-      /*  //Menu
-        barra = new JMenuBar();
-        barra.setBackground(Color.GRAY);
-        //archivo = new JMenu(user);
-        //reestablecer = new JMenuItem("Reestablecer Contraseña");
-        //Cerrar_Sesion = new JMenuItem("Cerrar Sesión");
-        archivo.add(reestablecer);
-        archivo.add(Cerrar_Sesion);
-        barra.add(archivo);
-        p.add(barra); 
-        barra.setBounds(new Rectangle(513, 75, 55, 34));
-        barra.setVisible(true); */
-        listener = new ReportCustomListener();
-        //botones
-       // lexpediente = Builder.crearButtonIcon(p, "listado", ruta + "boton_listado_siniestros_selected.png", new Rectangle(135, 69, 142, 43), listener, true, false);
-       // Rexpdiente = Builder.crearButtonIcon(p, "reportar", ruta + "boton_reportar_siniestro.png", new Rectangle(313, 69, 142, 43), listener, true, false);
-        abrir = Builder.crearButtonIcon(p, "abrir", ruta + "folder.png", new Rectangle(656, 199, 24, 24), new ReportCustomListener(), true, false);
-        //imprimir = Builder.crearButtonIcon(p, "imprimir", ruta + "print.png", new Rectangle(656, 260, 24, 24), listener, true, false);
-        //guardar = Builder.crearButtonIcon(p, "guardar", ruta + "save.png", new Rectangle(656, 318, 24, 24), listener, true, false);
-        regresar = Builder.crearButtonIcon(p, "regresar", ruta + "regresar.png", new Rectangle(326, 518, 39, 39), listener, true, false);
+        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        //Tabla
+        listener = new ReportCustomListener();
+        
+       // abrir = Builder.crearButtonIcon(p, "abrir", ruta + "folder.png", new Rectangle(656, 199, 24, 24), new ReportCustomListener(), true, false);
+        imprimir = Builder.crearButtonIcon(p, "eliminar", ruta + "boton-x.png", new Rectangle(656, 260, 24, 24), listener, true, false);
+        regresar = Builder.crearButtonIcon(p, "regresar", ruta + "regresar.png", new Rectangle(326, 518, 39, 39), listener, true, false);
         controlador.llenarTable();
         tabla = new JTable()
                         {
@@ -108,7 +88,7 @@ public class GUIExpedientes {
     }
     
     public static void main(String[] args){
-        GUIExpedientes d= new GUIExpedientes();
+        GUIListaChoferAutobus d= new GUIListaChoferAutobus();
     }
 
 
@@ -119,6 +99,15 @@ public class GUIExpedientes {
         System.out.println(valor);
         return valor;
         
+    }
+    
+      public void eliminar(){
+        DefaultTableModel tb = (DefaultTableModel) tabla.getModel();
+        int a = tabla.getRowCount()-1;
+        for (int i = a; i >= 0; i--) {           
+        tb.removeRow(tb.getRowCount()-1);
+        } 
+        //cargaTicket();
     }
 
 
@@ -132,20 +121,27 @@ public class GUIExpedientes {
                 
                 case "abrir":
                     
-            {
-                try {
-                  controlador.creaRepor();
-                } catch (JRException ex) {
-                    Logger.getLogger(GUIReporteManten.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
                     break;
                 case "cerrarSesion":
+                case "eliminar":
+            {
+                try {
+                    controlador.borrarAutobusBy();
+                    eliminar();
+                    controlador.llenarTable();
+                } catch (SQLException ex) {
+                    Logger.getLogger(GUIListaChoferAutobus.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } 
+            break;
                 case "regresar":
+                    
                     f.dispose();
                     break;
             }
         }
         
     }
-}
+
+    }
+

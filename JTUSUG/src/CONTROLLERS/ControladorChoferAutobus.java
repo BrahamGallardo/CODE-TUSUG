@@ -34,7 +34,7 @@ public class ControladorChoferAutobus {
         try {
 
             PreparedStatement pstm = c.prepareStatement("select * from sistemaTusug.trabajador where lower(rfc)=?");
-            pstm.setString(1, interfaz.valor);
+            pstm.setString(1, interfaz.valor.toLowerCase());
             ResultSet rs = pstm.executeQuery();
             while (rs.next()) {
             //interfaz.matric.        setText(rs.getString(1));
@@ -60,7 +60,7 @@ public class ControladorChoferAutobus {
 
             String[] registros = new String[1];
             m= new ArrayList();
-            String cons = "select rfc from sistemaTusug.trabajador where lower(puesto)='chofer'";
+            String cons = "select rfc from sistemaTusug.trabajador where lower(puesto)='chofer'and lower(estado)='activo' EXCEPT select rfc from sistemaTusug.chofer_autobus";
 
             Statement st = c.createStatement();
             ResultSet rs = st.executeQuery(cons);
@@ -99,7 +99,7 @@ public class ControladorChoferAutobus {
 
             String[] registros = new String[1];
             n= new ArrayList();
-            String cons = "select matricula from sistemaTusug.autobus ";
+            String cons = "select matricula from sistemaTusug.autobus EXCEPT select matricula from sistemaTusug.chofer_autobus";
 
             Statement st = c.createStatement();
             ResultSet rs = st.executeQuery(cons);
