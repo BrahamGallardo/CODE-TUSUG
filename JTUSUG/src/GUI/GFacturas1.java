@@ -192,55 +192,16 @@ public class GFacturas1 extends JFrame {
     }
 
     public void valida() {
-        nF.addKeyListener(new java.awt.event.KeyAdapter() {
-            @Override
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                validaNum(evt, nF, 20);
-            }
-        });
-
-        cP.addKeyListener(new java.awt.event.KeyAdapter() {
-            @Override
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                validaAlfanumerico(evt, cP, 10);
-            }
-        });
-
-        rS.addKeyListener(new java.awt.event.KeyAdapter() {
-            @Override
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                validaNombre(evt, rS, 20);
-            }
-        });
-        /*pob.addKeyListener(new java.awt.event.KeyAdapter() {
-            @Override
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                validaNombre(evt, pob, 15);
-            }
-        });*/
-        prov.addKeyListener(new java.awt.event.KeyAdapter() {
-            @Override
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                validaNombre(evt, prov, 10);
-            }
-        });
-        cp.addKeyListener(new java.awt.event.KeyAdapter() {
-            @Override
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                validaNum(evt, cp, 5);
-            }
-        });
-        pContacto.addKeyListener(new java.awt.event.KeyAdapter() {
-            @Override
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                validaNombre(evt, pContacto, 10);
-            }
-        });
-        telefono.addKeyListener(new java.awt.event.KeyAdapter() {
-            @Override
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                validaNum(evt, telefono, 10);
-            }
-        });
+        KeyListener len20 = new KeyListenerValidation(20);
+        KeyListener len10 = new KeyListenerValidation(10);
+        KeyListener len5 = new KeyListenerValidation(5);
+        KeyListener len35 = new KeyListenerValidation(35);
+        nF.addKeyListener(len5); nF.addKeyListener(Validador.KEYonlyNumbers);
+        rS.addKeyListener(len20);
+        prov.addKeyListener(len10);
+        cP.addKeyListener(len10);
+        pContacto.addKeyListener(len10);
+        telefono.addKeyListener(len10);telefono.addKeyListener(Validador.KEYonlyNumbers);
+        Direc.addKeyListener(len35);
     }
 }
