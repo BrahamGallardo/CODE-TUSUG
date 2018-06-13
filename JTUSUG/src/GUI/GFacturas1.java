@@ -1,5 +1,8 @@
 package GUI;
 
+import Entities.Municipio;
+import Servicios.Fachada;
+import Validacion.KeyListenerValidation;
 import Validacion.Validador;
 import java.awt.Color;
 import java.awt.Font;
@@ -12,7 +15,11 @@ import javax.swing.ButtonGroup;
 import java.util.ArrayList;
 import javax.swing.JButton;
 import static Validacion.Validador.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -22,17 +29,26 @@ import javax.swing.JTextField;
 
 public class GFacturas1 extends JFrame {
 
+    static ArrayList<Municipio> municipios;
+
     String ruta = "src/imagenes/";
     public JLabel factura, fEmision, fechaE, gF, dEmisor, pestaña, nFactura, cProveedor, tPersona, rSocial, direccion, poblacion, provincia, postal, contacto, email, phone;
-    public JTextField nF, cP, rS, Direc, pob, prov, cp, pContacto, mail, telefono;
+    public JTextField nF, cP, rS, Direc, prov, cp, pContacto, mail, telefono;
     public JButton regresar, cSesion, b1, b2, vaciar, siguiente;
     public JCheckBox nFact, cProv;
     public LocalDate fecha;
     public JRadioButton fisica, juridica;
+
+    public JComboBox pob;
+
     ButtonGroup group;
     JFrame f;
     JPanel p;
     ActionListener listener;
+
+    static {
+        municipios = Fachada.loadListaMunicipios();
+    }
 
     ArrayList<String> pagina1 = new ArrayList<>();
 
@@ -89,13 +105,43 @@ public class GFacturas1 extends JFrame {
         cP = Builder.crearTextField(p, new Rectangle(444, 184, 82, 20), "", null, null, new Font("Segoe UI", Font.PLAIN, 11), true, true, true);
         rS = Builder.crearTextField(p, new Rectangle(444, 237, 82, 20), "", null, null, new Font("Segoe UI", Font.PLAIN, 11), true, true, true);
         Direc = Builder.crearTextField(p, new Rectangle(444, 262, 165, 20), "", null, null, new Font("Segoe UI", Font.PLAIN, 11), true, true, true);
-        pob = Builder.crearTextField(p, new Rectangle(444, 287, 127, 20), "", null, null, new Font("Segoe UI", Font.PLAIN, 11), true, true, true);
+        //pob = Builder.crearTextField(p, new Rectangle(444, 287, 127, 20), "", null, null, new Font("Segoe UI", Font.PLAIN, 11), true, false, true);
+        pob = Builder.crearComboBox(p, new Rectangle(444, 287, 200, 20), null);
+
         prov = Builder.crearTextField(p, new Rectangle(444, 312, 127, 20), "", null, null, new Font("Segoe UI", Font.PLAIN, 11), true, true, true);
         cp = Builder.crearTextField(p, new Rectangle(444, 337, 82, 20), "", null, null, new Font("Segoe UI", Font.PLAIN, 11), true, true, true);
+
         pContacto = Builder.crearTextField(p, new Rectangle(444, 372, 127, 20), "", null, null, new Font("Segoe UI", Font.PLAIN, 11), true, true, true);
         mail = Builder.crearTextField(p, new Rectangle(444, 397, 165, 20), "", null, null, new Font("Segoe UI", Font.PLAIN, 11), true, true, true);
         telefono = Builder.crearTextField(p, new Rectangle(444, 422, 127, 20), "", null, null, new Font("Segoe UI", Font.PLAIN, 11), true, true, true);
         valida();
+        addListenerMunis();
+    }
+
+    public void addListenerMunis() {
+        KeyListener putMunicipios;
+        putMunicipios = new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                if (!Character.isDigit(e.getKeyChar())) {
+                    return;
+                }
+                pob.removeAllItems();
+                int cod = Integer.parseInt(Character.toString(e.getKeyChar()));
+                for (Municipio m : municipios) {
+                    if (!cp.getText().equals("")) {
+                        if (m.getCodigoPostal() == Integer.parseInt(cp.getText())) {
+                            pob.addItem(m);
+                        }
+                    }
+                }
+            }
+        };
+        KeyListener len5 = new KeyListenerValidation(5);
+        cp.addKeyListener(Validador.KEYonlyNumbers);
+        cp.addKeyListener(len5);
+        cp.addKeyListener(putMunicipios);
+
     }
 
     public void arre() {
@@ -103,7 +149,7 @@ public class GFacturas1 extends JFrame {
         pagina1.add(cP.getText());
         pagina1.add(rS.getText());
         pagina1.add(Direc.getText());
-        pagina1.add(pob.getText());
+        pagina1.add(pob.getSelectedItem().toString());
         pagina1.add(prov.getText());
         pagina1.add(cp.getText());
         pagina1.add(pContacto.getText());
@@ -125,15 +171,18 @@ public class GFacturas1 extends JFrame {
                     f.dispose();
                     break;
                 case "Siguiente":
-                    if (validaIngreso(nF, cP, rS, Direc, pob, prov, cp, pContacto, mail, telefono)) 
-                        if (Validador.emailValido(mail.getText())){
+                    if (validaIngreso(nF, cP, rS, Direc, prov, cp, pContacto, mail, telefono)
+                            && pob.getSelectedItem() != null && !pob.getSelectedItem().toString().equals("")) {
+                        if (Validador.emailValido(mail.getText())) {
                             arre();
                             f.dispose();
                             GFacturas2 g2 = new GFacturas2(pagina1);
-                        }else 
+                        } else {
                             JOptionPane.showMessageDialog(null, "Email invalido", "Error..!!", JOptionPane.ERROR_MESSAGE);
-                    else
+                        }
+                    } else {
                         JOptionPane.showMessageDialog(null, "Debe llenar todos los campos", "Error..!!", JOptionPane.ERROR_MESSAGE);
+                    }
                     break;
                 case "fisica":
                 case "juridica":
@@ -143,55 +192,16 @@ public class GFacturas1 extends JFrame {
     }
 
     public void valida() {
-        nF.addKeyListener(new java.awt.event.KeyAdapter() {
-            @Override
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                validaNum(evt, nF, 20);
-            }
-        });
-
-        cP.addKeyListener(new java.awt.event.KeyAdapter() {
-            @Override
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                validaAlfanumerico(evt, cP, 10);
-            }
-        });
-
-        rS.addKeyListener(new java.awt.event.KeyAdapter() {
-            @Override
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                validaNombre(evt, rS, 20);
-            }
-        });
-        pob.addKeyListener(new java.awt.event.KeyAdapter() {
-            @Override
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                validaNombre(evt, pob, 15);
-            }
-        });
-        prov.addKeyListener(new java.awt.event.KeyAdapter() {
-            @Override
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                validaNombre(evt, prov, 10);
-            }
-        });
-        cp.addKeyListener(new java.awt.event.KeyAdapter() {
-            @Override
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                validaNum(evt, cp, 5);
-            }
-        });
-        pContacto.addKeyListener(new java.awt.event.KeyAdapter() {
-            @Override
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                validaNombre(evt, pContacto, 10);
-            }
-        });
-        telefono.addKeyListener(new java.awt.event.KeyAdapter() {
-            @Override
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                validaNum(evt, telefono, 10);
-            }
-        });
+        KeyListener len20 = new KeyListenerValidation(20);
+        KeyListener len10 = new KeyListenerValidation(10);
+        KeyListener len5 = new KeyListenerValidation(5);
+        KeyListener len35 = new KeyListenerValidation(35);
+        nF.addKeyListener(len5); nF.addKeyListener(Validador.KEYonlyNumbers);
+        rS.addKeyListener(len20);
+        prov.addKeyListener(len10);
+        cP.addKeyListener(len10);
+        pContacto.addKeyListener(len10);
+        telefono.addKeyListener(len10);telefono.addKeyListener(Validador.KEYonlyNumbers);
+        Direc.addKeyListener(len35);
     }
 }

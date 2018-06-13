@@ -223,7 +223,7 @@ public class Builder {
         JComboBox cbox = new JComboBox();
         ui.add(cbox);
         cbox.setBounds(bounds);
-        cbox.addItemListener(listener);
+        if (listener!=null)cbox.addItemListener(listener);
         return cbox;
     }
 
