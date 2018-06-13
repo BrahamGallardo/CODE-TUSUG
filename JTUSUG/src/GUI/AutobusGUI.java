@@ -10,6 +10,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.logging.Level;
@@ -87,6 +89,30 @@ public class AutobusGUI extends JFrame
         
         JLabel fondo    =   Builder.crearLabelImagen(p, ruta + "fondo_ventana_2.png", new Rectangle(0,0,700,518));
         valida();
+        DefaultListModel<String> modelOriginal = (DefaultListModel<String>) list.getModel();
+                        txt_buscar.addKeyListener(new KeyAdapter()
+                        {
+                            @Override
+                            public void keyReleased(KeyEvent e) {//Se ejecuta cuando se libera una tecla
+                                JTextField textField = (JTextField) e.getSource();
+                                //obtiene contenido del textfield
+                                String text = textField.getText();
+                                if (text.trim().length() > 0) {
+                                    //nuevo Model temporal
+                                    DefaultListModel<String> tmp = new DefaultListModel();
+                                    for (int i = 0; i < modelOriginal.getSize(); i++) {//recorre Model original
+                                        //si encuentra coincidencias agrega a model temporal
+                                        if (modelOriginal.getElementAt(i).toLowerCase().contains(text.toLowerCase())) {
+                                            tmp.addElement(modelOriginal.getElementAt(i));
+                                        }
+                                    }
+                                    //agrega nuevo modelo a JList
+                                    list.setModel(tmp);
+                                }else {//si esta vacio muestra el Model original
+                                    list.setModel(modelOriginal);
+                                }
+                            }
+                        });
        // p.add(pane);
     }
     
