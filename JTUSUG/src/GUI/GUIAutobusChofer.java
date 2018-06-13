@@ -27,7 +27,7 @@ import javax.swing.*;
 
 public class GUIAutobusChofer {
     String ruta = "src/imagenes/";
-    public JList lista, list;
+    public JList lista, listas;
     public JScrollBar   scroll; 
     public JButton btActualizar,confirm,regresar;
     public JLabel lTrabajadores,dGeneral,nombre,apP,apM,estado,cAutobus,matricula,marca,km;
@@ -54,13 +54,13 @@ public class GUIAutobusChofer {
         ControladorChoferAutobus ui= new ControladorChoferAutobus(this);
         controlador=ui;
         user = "Usuario";
-        x = Builder.construirFrame("Trabajador", new Rectangle(0,0,700,600), false); 
+        x = Builder.construirFrame("Asignar Chofer Autobus", new Rectangle(0,0,700,600), false); 
         x.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         p = Builder.crearPanel(x, new Rectangle(0,0,700,600),ruta + "fondo_vta_chofer_autobus.png", false);
 
         //---------<botones>-------------------------
-        btActualizar =  Builder.crearButtonIcon( p,     "Actualizar",ruta+"boton_actualizar_lista.png", new Rectangle(89,444,145,36),null ,true, false);      
-        confirm =       Builder.crearButtonIcon(p,      "confirmar", ruta+"btn_confirmar.png",          new Rectangle(409,451,114,43), new  CustomActionListener(), true, false);
+       // btActualizar =  Builder.crearButtonIcon( p,     "Actualizar",ruta+"boton_actualizar_lista.png", new Rectangle(89,444,145,36),null ,true, false);      
+        confirm =       Builder.crearButtonIcon(p,      "confirmar", ruta+"btn_confirmar.png",          new Rectangle(490,450,114,43), new  CustomActionListener(), true, false);
         regresar =      Builder.crearButtonIcon(p,      "regresar",  ruta+"regresar.png",               new Rectangle(326,513, 41,41), listener, true, false);
 
         //---------<Labels>-------------------------
@@ -82,13 +82,21 @@ public class GUIAutobusChofer {
          lista.setVisible(true);
          lista.addMouseListener(new CustomMouseListener());
          controlador.cargarLista(lista);
+           javax.swing.JScrollPane scroll3 = new javax.swing.JScrollPane(lista);         
+         scroll3.setBounds(new Rectangle(65,167,140,280));
+         scroll3.setVisible(true);
+         p.add(scroll3);
          
-         list= new JList();
-         p.add(list);
-         list.setBounds(new Rectangle(468, 167, 140,280));
-         list.setVisible(true);
-         list.addMouseListener(new CustomMouseListener2());
-         controlador.cargarListaAutobus(list);
+         listas= new JList();
+         p.add(listas);
+         listas.setBounds(new Rectangle(468, 167, 140,280));
+         listas.setVisible(true);
+         listas.addMouseListener(new CustomMouseListener2());
+         controlador.cargarListaAutobus(listas);
+         javax.swing.JScrollPane scroll2 = new javax.swing.JScrollPane(listas);         
+         scroll2.setBounds(new Rectangle(468, 167, 140,280));
+         scroll2.setVisible(true);
+         p.add(scroll2);
          
          //lista.addMouseListener(new TrabajadorGUI.CustomMouseListener());
          
@@ -114,9 +122,9 @@ public class GUIAutobusChofer {
             class CustomMouseListener extends MouseAdapter{
             public void mouseClicked(MouseEvent me){
             if(lista.getSelectedValue()!=null){
-                valor2 = (String)lista.getSelectedValue();
+                valor = (String)lista.getSelectedValue();
                 try {
-                    controlador.listaParametro(valor2.toLowerCase());
+                    controlador.listaParametro(valor.toLowerCase());
                 } catch (SQLException ex) {
                     Logger.getLogger(GUIAutobusChofer.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -128,10 +136,10 @@ public class GUIAutobusChofer {
             
             class CustomMouseListener2 extends MouseAdapter{
             public void mouseClicked(MouseEvent me){            
-            if(list.getSelectedValue()!=null){
-                valor = (String)list.getSelectedValue();
+            if(listas.getSelectedValue()!=null){
+                valor2 = (String)listas.getSelectedValue();
                 try {
-                    controlador.listaParametroAutobus(valor.toLowerCase());
+                    controlador.listaParametroAutobus(valor2.toLowerCase());
                 } catch (SQLException ex) {
                     Logger.getLogger(GUIAutobusChofer.class.getName()).log(Level.SEVERE, null, ex);
                 }
