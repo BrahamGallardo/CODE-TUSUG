@@ -278,8 +278,8 @@ public class RootGUI {
                 /*-------------------------------<Botones para Almacen>--------------------------*/
                     case "asigna":
                     root.setVisible(false);
-                    GUIAutobusChofer frameAsignarchofer = new GUIAutobusChofer();
-                    frameAsignarchofer.regresar.addActionListener(nextWindowFlowProgram);
+                    MenuAsignarChoferAutobusGUI frameAsignarchofer = new MenuAsignarChoferAutobusGUI();
+                    frameAsignarchofer.bt_regresar.addActionListener(nextWindowFlowProgram);
 //                    frameAsignarchofer.Cerrar_Sesion.addActionListener(nextWindowFlowProgram);
                     break;
 
