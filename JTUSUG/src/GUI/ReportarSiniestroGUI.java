@@ -183,42 +183,6 @@ public class ReportarSiniestroGUI {
                     } catch (JRException ex) {
                         Logger.getLogger(ReportarSiniestroGUI.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                    /*
-                    try {
-                        String formato = calendarioIngreso.getDateFormatString();
-                        Date date = calendarioIngreso.getDate();
-                        SimpleDateFormat sdf = new SimpleDateFormat(formato);
-                        String ingreso = String.valueOf(sdf.format(date));
-                        String formato2 = calendarioIndemnizado.getDateFormatString();
-                        Date date2 = calendarioIndemnizado.getDate();
-                        SimpleDateFormat sdf2 = new SimpleDateFormat(formato2);
-                        String ingreso2 = String.valueOf(sdf2.format(date2));
-                        String formato3 = calendarioSiniestro.getDateFormatString();
-                        Date date3 = calendarioSiniestro.getDate();
-                        SimpleDateFormat sdf3 = new SimpleDateFormat(formato3);
-                        String ingreso3 = String.valueOf(sdf3.format(date3));
-                        ingresov = new JTextField();
-                        ingreso2v = new JTextField();
-                        ingreso3v = new JTextField();
-                        ingresov.setText(ingreso);
-                        ingreso2v.setText(ingreso2);
-                        ingreso3v.setText(ingreso3);
-                        if (validaIngreso(ingresov, ingreso2v, ingreso3v, reclama, paga)) {
-                            if (validarFecha(ingreso3, ingreso) && validarFecha(ingreso, ingreso2)) {
-                                controlador.agregaMan();
-                                controlador.creaRepor();
-                            } else {
-                                JOptionPane.showMessageDialog(null, "Error del orden de fechas", "Error..!!", JOptionPane.ERROR_MESSAGE);
-                            }
-                        } else {
-                            JOptionPane.showMessageDialog(null, "Debe llenar todos los campos", "Error..!!", JOptionPane.ERROR_MESSAGE);
-                        }
-                    } catch (JRException ex) {
-                        Logger.getLogger(ReportarSiniestroGUI.class.getName()).log(Level.SEVERE, null, ex);
-                    } catch (HeadlessException ef) {
-                        System.err.println("Elija fecha valida " + "Error..!!");
-                    }
-                }*/
                     break;
                 case "cerrarSesion":
                     break;
